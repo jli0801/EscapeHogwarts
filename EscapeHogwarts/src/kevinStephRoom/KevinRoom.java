@@ -8,7 +8,7 @@ import caveExplorer.Door;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
-public class KevinRoom extends NPCRoom {
+public class KevinRoom extends CaveRoom {
 
 	public KevinRoom(String description) {
 		super(description);
