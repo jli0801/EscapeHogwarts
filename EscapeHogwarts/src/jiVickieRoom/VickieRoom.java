@@ -1,4 +1,4 @@
-package jiVickieMinigame;
+package jiVickieRoom;
 
 import caveExplorer.CaveRoom;
 
