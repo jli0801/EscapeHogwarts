@@ -1,14 +1,12 @@
 package areejJessRoom;
 
-public class JessRoom {
+import caveExplorer.NPCRoom;
 
-	//press commit not commit push
-		//push branch master
-		//replace master with areejJessBranch
-		//click next
-		
-		//fetch from upstream
-		//under branches there's local and remote tracking
-		//remote tracking double click to access other branches
-		
+public class JessRoom extends NPCRoom {
+
+	public JessRoom(String description) {
+		super(description);
+		// TODO Auto-generated constructor stub
+	}
+
 }
