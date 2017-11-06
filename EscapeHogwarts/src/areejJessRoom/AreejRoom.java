@@ -14,7 +14,7 @@ public class AreejRoom extends NPCRoom {
 	}
 	public void printValidMoves() {
 		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move "
-				+ "or you can press 'e' or 'c' to interact.");
+				+ "or you can press 'e' or 'c' to interact with object in the room.");
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class AreejRoom extends NPCRoom {
 			CaveExplorer.print("You've collected your money from the chest.");
 		}
 	}
-	if(direction == 4) {
+		if(direction == 4) {
 		if(npc != null && npc.isActive()) {
 			npc.interact();
 		}else {
