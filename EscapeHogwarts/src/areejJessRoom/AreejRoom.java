@@ -4,6 +4,7 @@ import caveExplorer.CaveExplorer;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
+
 public class AreejRoom extends NPCRoom {
 
 	private NPC npc;
@@ -22,6 +23,7 @@ public class AreejRoom extends NPCRoom {
 	 * @return
 	 */
 	
+	//extra moves 'e' and 'c' maybe??
 	public String validMoves() {
 		return "wdsaec";
 	}
@@ -46,23 +48,8 @@ public class AreejRoom extends NPCRoom {
 	}
 }
 
-public String getContents() {
-	if(containsNPC() && npc.isActive()) {
-		return npc.getSymbol();
-	}else {
-		return super.getContents();
+	public void enter() {
+		super.enter();
 	}
-}
-
-public String getDescription() {
-	if(containsNPC() && npc.isActive()) {
-		return super.getDescription()+"\n"+npc.getDescription();
-	}else if(containsNPC() && !npc.isActive()){
-		return super.getDescription()+"\n"+npc.getInactiveDescription();
-	}else {
-		return super.getDescription();
-	}
-}
-
 
 }
