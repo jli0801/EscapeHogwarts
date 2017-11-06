@@ -188,13 +188,13 @@ public class CaveRoom {
 
 	public static void setUpCaves() {
 		//Size of Caves
-		CaveExplorer.caves = new NPCRoom[6][6];
+		CaveExplorer.caves = new NPCRoom[4][6];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
 		
 		CaveRoom AreejRoom = new AreejRoom("Room");
 		CaveExplorer.caves[2][3] = AreejRoom;
 		CaveRoom JessRoom = new JessRoom("Room");
-		CaveExplorer.caves[2][3] = JessRoom;
+		CaveExplorer.caves[3][2] = JessRoom;
 		
 	
 
@@ -210,10 +210,23 @@ public class CaveRoom {
 						+ row + ", " + col + ".");
 			}
 		}
-		NPC testNPC = new NPC();
+		
+		NPC NPCAJ = new NPC();
+		NPCAJ.setPosition(1,4);
+		CaveExplorer.npcs = new NPC[1];
+		CaveExplorer.npcs[0] = NPCAJ;
+		
+		
+		
+	/*	NPC testNPCAJ = new NPC();
 		testNPC.setPosition(1,2);
 		CaveExplorer.npcs = new NPC[1];
-		CaveExplorer.npcs[0] = testNPC;
+		CaveExplorer.npcs[0] = testNPC; */
+		
+		//room1 : 1,4
+		//room2: 2,5
+		//room3: 4.3
+		
 		//replace default room with custom room (SAVE FOR LATER)
 		//Set starting room
 		
@@ -224,7 +237,16 @@ public class CaveRoom {
 		c[0][1].setConnection(SOUTH, c[1][1], new Door());
 		c[1][1].setConnection(EAST, c[1][2], new Door());
 		
+		c[1][2].setConnection(WEST, c[1][2], new Door());
 		
+		c[1][3].setConnection(WEST, c[1][3], new Door());
+		c[0][3].setConnection(SOUTH, c[1][3], new Door());
+		c[1][4].setConnection(WEST, c[1][4], new Door());
+		
+		
+		c[3][3].setConnection(EAST, c[3][3], new Door());
+		c[2][3].setConnection(SOUTH, c[2][3], new Door());
+		c[1][3].setConnection(NORTH, c[1][3], new Door());
 	}
 
 
