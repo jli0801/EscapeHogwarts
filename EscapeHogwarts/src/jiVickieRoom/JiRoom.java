@@ -5,9 +5,9 @@ import caveExplorer.CaveRoom;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
-public class JiRoom extends CaveRoom {
+public class JiRoom extends NPCRoom {
 	
-	private NPC npc;
+
 
 	public JiRoom(String description) {
 		super(description);
@@ -25,14 +25,12 @@ public class JiRoom extends CaveRoom {
 	}
 	
 	public void performAction(int direction) {
-		if(direction == 4) {
-			if(npc != null && npc.isActive()) {
-				npc.interact();
-			}else {
-				CaveExplorer.print("There is nothing to interact with.");
-			}
+		if(direction == 5) {
+			//what happens when o is pressed
+			CaveExplorer.print("The ancient walls loom over you.");
 		}else {
-			CaveExplorer.print("That key does nothing.");
+			//when o is not pressed
+			super.performAction(direction);
 		}
 	}
 }
