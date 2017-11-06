@@ -27,7 +27,7 @@ public class NPCRoom extends CaveRoom {
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'w', 'a'. 's'. d'");
+		System.out.println("You can only enter 'w', 'a', 's', d'");
 	}
 	
 	public void performAction (int direction)
