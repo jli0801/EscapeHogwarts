@@ -29,5 +29,5 @@ public class Peeves extends NPC {
 		CaveExplorer.print("Later - I'm off to scare the otherss! Ahahahhaahhaa");
 	}
 	
-	
+	//fghfg
 }
