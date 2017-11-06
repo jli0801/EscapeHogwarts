@@ -6,6 +6,7 @@ import caveExplorer.NPCRoom;
 
 public class JessRoom extends NPCRoom {
 
+	private NPC npc;
 		//press commit not commit push
 		//push branch master
 		//replace master with areejJessBranch
@@ -14,33 +15,18 @@ public class JessRoom extends NPCRoom {
 		//fetch from upstream
 		//under branches there's local and remote tracking
 		//remote tracking double click to access other branches
-	private NPCAJ npc;
+	
 		
 	public JessRoom(String description) {
 		super(description);
+		//super.getContents();
 		
 	}
-	public boolean canEnter()
-	
-	{
-		return npc == null;
-	}
-	public void enterNPC(NPCAJ n)
-	{
-		this.npc = n;
-	}
-	public void leaveNPC()
-	{
-		this.npc = null;
-	}
-	public boolean containsNPC()
-	{
-		return npc != null;
-	}
+
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'w', 'a'. 's'. d'");
+		System.out.println("You can only enter 'w', 'a', 's', d' ");
 	}
 	
 	public void performAction (int direction)
@@ -54,6 +40,12 @@ public class JessRoom extends NPCRoom {
 		}else {
 			CaveExplorer.print("That key does nothing.");
 		}
+	}
+	
+	public void enter()
+	{
+		super.enter();
+		
 	}
 
 }

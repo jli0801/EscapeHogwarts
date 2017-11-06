@@ -2,6 +2,8 @@ package caveExplorer;
 
 import java.util.Scanner;
 
+import areejJessRoom.AreejRoom;
+
 public class CaveRoom {
 	
 	private String description; //what does it hold
@@ -187,6 +189,26 @@ public class CaveRoom {
 		//Size of Caves
 		CaveExplorer.caves = new NPCRoom[6][6];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
+		
+		CaveRoom AreejRoom = new AreejRoom("Room");
+		CaveExplorer.caves[2][3] = AreejRoom;
+		CaveRoom JessRoom = new JessRoom("Room");
+		CaveExplorer.caves[2][3] = JessRoom;
+		
+		CaveRoom JiRoom = new JiRoom("Room");
+		CaveExplorer.caves[2][3] = JiRoom;
+		CaveRoom VickieRoom = new VickieRoom("Room");
+		CaveExplorer.caves[2][3] = VickieRoom;
+		
+		CaveRoom StephanieRoom = new StephanieRoom("Room");
+		CaveExplorer.caves[2][3] = StephanieRoom;
+		CaveRoom KevinRoom = new KevinRoom("Room");
+		CaveExplorer.caves[2][3] = KevinRoom;
+
+
+
+
+
 		//Populate with default caves
 		for(int row = 0; row < c.length; row++)
 		{
