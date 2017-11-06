@@ -204,7 +204,7 @@ public class CaveRoom {
 		CaveExplorer.npcs = new NPC[1];
 		CaveExplorer.npcs[0] = testNPC;
 		
-		//replace default room with custom room (SAVE FOR LATER)
+		//replace default room with custom room (SAVE FOR LATER)	
 		CaveRoom customRoom = new KevinRoom("Room");
 		CaveExplorer.caves[3][3] = customRoom;
 		
