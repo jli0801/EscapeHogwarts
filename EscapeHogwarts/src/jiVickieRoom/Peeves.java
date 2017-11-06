@@ -1,11 +1,17 @@
 package jiVickieRoom;
 
+import caveExplorer.CaveExplorer;
+import caveExplorer.NPC;
+
 public class Peeves extends NPC {
 	//ghost in HP
 
-	
-	public static NPC[] characters;
+
 	public Peeves() {
+		this.setActiveDescription("Peeves is floating in the room with you, "
+				+ "waiting to talk to you. He has a mischevious smile on his face. Press 'e' to talk");
+		
+		this.inactiveDescription = "The ghost you talked to earlier is still here, ready to start that game";
 		interact();
 	}
 
@@ -14,12 +20,14 @@ public class Peeves extends NPC {
 	}
 	
 	public void interact() {
-		caveExplorer.print("Hahahahaa, I'm off to scare the first years! Hahahhahahaa");
-		String s = caveExplorer.in.nextLine();
+		CaveExplorer.print("Hahahahaa, Let's play a game!!!!!!!!! Hahahhahahaa");
+		String s = CaveExplorer.in.nextLine();
 		while(!s.equalsIgnoreCase("bye")) {
-			caveExplorer.print("Yeah.... I don't do that a whole lot.");
-			s = caveExplorer.in.nextLine();
+			CaveExplorer.print("Yeah.... Whatever..");
+			s = CaveExplorer.in.nextLine();
 		}
-		caveExplorer.print("Later, friend!");
+		CaveExplorer.print("Later - I'm off to scare the otherss! Ahahahhaahhaa");
 	}
+	
+	
 }

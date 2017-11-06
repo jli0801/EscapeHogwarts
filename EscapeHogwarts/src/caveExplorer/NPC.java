@@ -3,26 +3,26 @@ package caveExplorer;
 public class NPC {
 
 	//fields needed to program navigation
-	private CaveRoom[][]floor; //area where NPC roams
-	private int currentRow;
-	private int currentCol;
+	protected CaveRoom[][]floor; //area where NPC roams
+	public int currentRow;
+	protected int currentCol;
 	private NPCRoom currentRoom;
 	//are about interaction with NPC
 	private boolean active;
-	private String activeDescription;
-	private String inactiveDescription;
+	private String activeDescription; //Changesdd from private to protected
+	protected String inactiveDescription;
 	//might add more fields to make NPC behave like a chatbot
 	
 	
 	public NPC() {
-		this.floor = CaveExplorer.caves;
-		this.activeDescription = "There is a person standing in the room, "
-				+ "waiting to talk to you. Press 'e' to talk";
+		this.setFloor(CaveExplorer.caves);
+		this.setActiveDescription("There is a person standing in the room, "
+				+ "waiting to talk to you. Press 'e' to talk");
 		this.inactiveDescription = "The person you talked to earlier is stil here.";
 		//by default NPC doesn't have position use coordinate (-1,-1)
 		this.currentCol = -1;
 		this.currentRow = -1;
-		currentRoom = null;
+		setCurrentRoom(null);
 		active = true;
 	}
 	public boolean isActive() {
@@ -45,7 +45,7 @@ public class NPC {
 
 	public String getDescription() {
 		
-		return activeDescription;
+		return getActiveDescription();
 	}
 
 	public String getInactiveDescription() {
@@ -60,16 +60,16 @@ public class NPC {
 	public void setPosition(int row, int col)
 	{
 		//array is from [6][6]
-		if(row >= 0 && row < floor.length && col >=0 && col < floor[row].length
-				&& floor[row][col] instanceof NPCRoom)
+		if(row >= 0 && row < getFloor().length && col >=0 && col < getFloor()[row].length
+				&& getFloor()[row][col] instanceof NPCRoom)
 		{
-			if(currentRoom != null)
+			if(getCurrentRoom() != null)
 			{
-				currentRoom.leaveNPC();
+				getCurrentRoom().leaveNPC();
 			}
 			currentRow = row;
 			currentCol = col;
-			currentRoom = (NPCRoom) floor[row][col];
+			setCurrentRoom((NPCRoom) getFloor()[row][col]);
 		}
 	}
 	public void autoMove() {
@@ -82,14 +82,14 @@ public class NPC {
 	}
 		
 	}
-	private int[] calculateMove() {
+	public int[] calculateMove() {
 		int[][] possibleMoves = {{-1,0}, {0,1}, {1,0}, {0, -1}};
 		//N E S W
 		int index = (int)(Math.random()*possibleMoves.length);
 		int[] newPosition = new int[2];
 		newPosition[0] = currentRow + possibleMoves[index] [0];
 		newPosition[1] = currentCol + possibleMoves[index] [1];
-		while(currentRoom.getDoor(index) == null || 
+		while(getCurrentRoom().getDoor(index) == null || 
 				!(CaveExplorer.caves[newPosition[0]][newPosition[1]] instanceof
 						NPCRoom))
 		{
@@ -98,6 +98,24 @@ public class NPC {
 			newPosition[1] = currentCol + possibleMoves[index] [1];
 		}
 		return newPosition;
+	}
+	public NPCRoom getCurrentRoom() {
+		return currentRoom;
+	}
+	public void setCurrentRoom(NPCRoom currentRoom) {
+		this.currentRoom = currentRoom;
+	}
+	public CaveRoom[][] getFloor() {
+		return floor;
+	}
+	public void setFloor(CaveRoom[][] floor) {
+		this.floor = floor;
+	}
+	public String getActiveDescription() {
+		return activeDescription;
+	}
+	public void setActiveDescription(String activeDescription) {
+		this.activeDescription = activeDescription;
 	}
 
 }

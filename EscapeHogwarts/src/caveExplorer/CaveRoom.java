@@ -2,6 +2,8 @@ package caveExplorer;
 
 import java.util.Scanner;
 
+import jiVickieRoom.Peeves;
+
 public class CaveRoom {
 	
 	private String description; //what does it hold
@@ -196,9 +198,11 @@ public class CaveRoom {
 						+ row + ", " + col + ".");
 			}
 		}
-		NPC testNPC = new NPC();
+		int numberOfNPCS = 1;
+		CaveExplorer.npcs = new NPC[numberOfNPCS];
+
+		NPC testNPC = new Peeves();
 		testNPC.setPosition(1,2);
-		CaveExplorer.npcs = new NPC[1];
 		CaveExplorer.npcs[0] = testNPC;
 		//replace default room with custom room (SAVE FOR LATER)
 		//Set starting room
