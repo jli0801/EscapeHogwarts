@@ -3,6 +3,7 @@ package caveExplorer;
 import java.util.Scanner;
 
 import kevinStephRoom.KevinRoom;
+import kevinStephRoom.StephanieRoom;
 
 public class CaveRoom {
 	
@@ -205,9 +206,11 @@ public class CaveRoom {
 		CaveExplorer.npcs[0] = testNPC;
 		
 		//replace default room with custom room (SAVE FOR LATER)	
-		CaveRoom customRoom = new KevinRoom("Room");
-		CaveExplorer.caves[3][3] = customRoom;
+		CaveRoom KevinRoom = new KevinRoom("Room");
+		CaveExplorer.caves[3][3] = KevinRoom;
 		
+		CaveRoom StephanieRoom = new StephanieRoom("Room");
+		CaveExplorer.caves[3][3] = StephanieRoom;
 		//Set starting room
 		
 		CaveExplorer.currentRoom = c[0][1];
