@@ -2,6 +2,8 @@ package caveExplorer;
 
 import java.util.Scanner;
 
+import kevinStephRoom.StephanieRoom;
+
 public class CaveRoom {
 	
 	private String description; //what does it hold
