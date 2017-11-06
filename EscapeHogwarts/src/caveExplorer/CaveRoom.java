@@ -3,6 +3,7 @@ package caveExplorer;
 import java.util.Scanner;
 
 import areejJessRoom.AreejRoom;
+import areejJessRoom.JessRoom;
 
 public class CaveRoom {
 	
@@ -195,16 +196,7 @@ public class CaveRoom {
 		CaveRoom JessRoom = new JessRoom("Room");
 		CaveExplorer.caves[2][3] = JessRoom;
 		
-		CaveRoom JiRoom = new JiRoom("Room");
-		CaveExplorer.caves[2][3] = JiRoom;
-		CaveRoom VickieRoom = new VickieRoom("Room");
-		CaveExplorer.caves[2][3] = VickieRoom;
-		
-		CaveRoom StephanieRoom = new StephanieRoom("Room");
-		CaveExplorer.caves[2][3] = StephanieRoom;
-		CaveRoom KevinRoom = new KevinRoom("Room");
-		CaveExplorer.caves[2][3] = KevinRoom;
-
+	
 
 
 
