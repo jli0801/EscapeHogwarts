@@ -187,6 +187,10 @@ public class CaveRoom {
 		//Size of Caves
 		CaveExplorer.caves = new NPCRoom[6][6];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
+		
+		CaveRoom StephanieRoom = new StephanieRoom("Room");
+		CaveExplorer.caves[2][3] = StephanieRoom;
+		
 		//Populate with default caves
 		for(int row = 0; row < c.length; row++)
 		{
