@@ -4,6 +4,7 @@ import caveExplorer.CaveExplorer;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
+
 public class AreejRoom extends NPCRoom {
 
 	private NPC npc;
@@ -14,7 +15,7 @@ public class AreejRoom extends NPCRoom {
 	}
 	public void printValidMoves() {
 		System.out.println("You can only enter 'w', 'a', 's', or 'd' to move "
-				+ "or you can press 'e' or 'c' to interact with object in the room.");
+				+ "or you can press 'e' or 'c' to interact with objects in the room.");
 	}
 
 	/**
@@ -22,6 +23,7 @@ public class AreejRoom extends NPCRoom {
 	 * @return
 	 */
 	
+	//extra moves 'e' and 'c' maybe??
 	public String validMoves() {
 		return "wdsaec";
 	}
@@ -34,7 +36,7 @@ public class AreejRoom extends NPCRoom {
 			CaveExplorer.print("You've collected your money from the chest.");
 		}
 	}
-		if(direction == 4) {
+		else if(direction == 4) {
 		if(npc != null && npc.isActive()) {
 			npc.interact();
 		}else {
@@ -46,23 +48,8 @@ public class AreejRoom extends NPCRoom {
 	}
 }
 
-public String getContents() {
-	if(containsNPC() && npc.isActive()) {
-		return npc.getSymbol();
-	}else {
-		return super.getContents();
+	public void enter() {
+		super.enter();
 	}
-}
-
-public String getDescription() {
-	if(containsNPC() && npc.isActive()) {
-		return super.getDescription()+"\n"+npc.getDescription();
-	}else if(containsNPC() && !npc.isActive()){
-		return super.getDescription()+"\n"+npc.getInactiveDescription();
-	}else {
-		return super.getDescription();
-	}
-}
-
 
 }
