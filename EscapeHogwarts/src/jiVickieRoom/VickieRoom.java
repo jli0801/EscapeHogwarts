@@ -28,7 +28,7 @@ public class VickieRoom extends NPCRoom {
 	public void performAction (int direction)
 	{
 		if(direction == 5) {
-			if(peeves != null && peeves.isActive()) {
+			if(Peeves() != null && peeves.isActive()) {
 				peeves.interact();
 			}else {
 				CaveExplorer.print("There is no creatures to interect with..");

@@ -1,16 +1,29 @@
-package caveExplorer;
+package kevinStephRoom;
 
 import java.util.Scanner;
 
-import areejJessRoom.AreejRoom;
-import areejJessRoom.JessRoom;
-import jiVickieRoom.JiRoom;
-import jiVickieRoom.VickieRoom;
-import kevinStephRoom.KevinRoom;
-import kevinStephRoom.StephanieRoom;
+import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoom;
+import caveExplorer.Door;
+import caveExplorer.NPC;
+import caveExplorer.NPCRoom;
 
-public class CaveRoom {
-	
+public class KevinRoom extends CaveRoom {
+
+	public KevinRoom(String description) {
+		super(description);
+		
+		this.description = description;
+		setDefaultContents(" "); 
+		contents = defaultContents;
+		//all arrays are instantiated w/ null
+		borderingRooms = new CaveRoom[4];
+		doors = new Door[4];
+		setDirections();
+	}
+
+
+
 	private String description; //what does it hold
 	private String direction; //what doors can we used
 	private String contents; //symbol what is in the room "X"
@@ -26,17 +39,6 @@ public class CaveRoom {
 	public static final int EAST = 1;
 	public static final int SOUTH = 2;
 	public static final int WEST = 3;
-
-	
-	public CaveRoom(String description) {
-		this.description = description;
-		setDefaultContents(" "); 
-		contents = defaultContents;
-		//all arrays are instantiated w/ null
-		borderingRooms = new CaveRoom[4];
-		doors = new Door[4];
-		setDirections();
-	}
 
 	public static String getInput(){
 		return inputSource.nextLine();
@@ -122,7 +124,7 @@ public class CaveRoom {
 
 
 
-	private void printValidMoves() {
+	public void printValidMoves() {
 		System.out.println("You can only enter 'w', 'a', 's', or 'd'.");
 		
 	}
@@ -194,23 +196,6 @@ public class CaveRoom {
 		//Size of Caves
 		CaveExplorer.caves = new NPCRoom[6][6];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
-		
-		CaveRoom AreejRoom = new AreejRoom("Room");
-		CaveExplorer.caves[2][3] = AreejRoom;
-		CaveRoom JessRoom = new JessRoom("Room");
-		CaveExplorer.caves[2][3] = JessRoom;
-		
-		CaveRoom JiRoom = new JiRoom("Room");
-		CaveExplorer.caves[2][3] = JiRoom;
-		CaveRoom VickieRoom = new VickieRoom("Room");
-		CaveExplorer.caves[2][3] = VickieRoom;
-		
-		CaveRoom StephanieRoom = new StephanieRoom("Room");
-		CaveExplorer.caves[2][3] = StephanieRoom;
-		CaveRoom KevinRoom = new KevinRoom("Room");
-		CaveExplorer.caves[2][3] = KevinRoom;
-
-		
 		//Populate with default caves
 		for(int row = 0; row < c.length; row++)
 		{
@@ -243,6 +228,5 @@ public class CaveRoom {
 	{
 		return doors[direction];
 	}
-	
 
 }
