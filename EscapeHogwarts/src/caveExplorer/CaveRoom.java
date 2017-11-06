@@ -2,6 +2,8 @@ package caveExplorer;
 
 import java.util.Scanner;
 
+import kevinStephRoom.KevinRoom;
+
 public class CaveRoom {
 	
 	private String description; //what does it hold
@@ -123,6 +125,7 @@ public class CaveRoom {
 	public String validMoves() {
 		return "wdsa";
 	}
+	
 	private boolean isValid(String input) {
 		return validMoves().indexOf(input) != -1 && input.length() == 1;
 	}
@@ -200,7 +203,11 @@ public class CaveRoom {
 		testNPC.setPosition(1,2);
 		CaveExplorer.npcs = new NPC[1];
 		CaveExplorer.npcs[0] = testNPC;
+		
 		//replace default room with custom room (SAVE FOR LATER)
+		CaveRoom customRoom = new KevinRoom("Room");
+		CaveExplorer.caves[3][3] = customRoom;
+		
 		//Set starting room
 		
 		CaveExplorer.currentRoom = c[0][1];
