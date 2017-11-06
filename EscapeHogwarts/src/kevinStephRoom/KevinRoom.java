@@ -79,7 +79,7 @@ public class KevinRoom extends CaveRoom {
 
 	public void enter()
 	{
-		contents = "X";
+		contents = "D";
 		
 	}
 	
