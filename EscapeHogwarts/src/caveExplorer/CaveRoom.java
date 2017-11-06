@@ -118,7 +118,7 @@ public class CaveRoom {
 
 
 
-	private void printValidMoves() {
+	public void printValidMoves() {
 		System.out.println("You can only enter 'w', 'a', 's', or 'd'.");
 		
 	}

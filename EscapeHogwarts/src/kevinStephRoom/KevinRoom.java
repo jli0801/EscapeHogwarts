@@ -25,4 +25,23 @@ public class KevinRoom extends CaveRoom {
 		CaveExplorer.currentRoom = CaveExplorer.caves[randomRoom()][randomRoom()];
 		CaveExplorer.currentRoom.enter();
 	}
+	
+	public void printValidMoves()
+	{
+		System.out.println("You can only enter 'w', 'a', 's', d'");
+	}
+	
+	public String validMoves() {
+		return "wdsae";
+	}
+	
+	public void performAction (int direction)
+	{
+		if(direction == 4) {
+			printTeleport();
+			performTeleport();
+		}else {
+			CaveExplorer.print("That key does nothing.");
+		}
+	}
 }
