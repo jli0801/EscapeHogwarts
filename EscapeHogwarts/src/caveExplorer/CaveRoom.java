@@ -192,7 +192,7 @@ public class CaveRoom {
 
 	public static void setUpCaves() {
 		//Size of Caves
-		CaveExplorer.caves = new NPCRoom[6][6];
+		CaveExplorer.caves = new NPCRoom[4][6];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
 		
 	/*	CaveRoom AreejRoom = new AreejRoom("Room");
@@ -216,8 +216,7 @@ public class CaveRoom {
 		{
 			for(int col = 0; col < c[row].length; col++)
 			{
-				c[row][col] = new NPCRoom("This cave has coordinates "
-						+ row + ", " + col + ".");
+				c[row][col] = new NPCRoom("Cave has coordinates " + row + ", " + col); //change
 			}
 		}
 		
@@ -231,7 +230,7 @@ public class CaveRoom {
 		NPC NPCAJ = new NPC(); //EDIT TO OWN NPC
 		NPCAJ.setPosition(1,4);
 		CaveExplorer.npcs = new NPC[1];
-		CaveExplorer.npcs[0] = NPCAJ;
+		CaveExplorer.npcs[0] = NPCAJ; 
 		
 		
 		
@@ -251,21 +250,35 @@ public class CaveRoom {
 		CaveExplorer.currentRoom.enter();
 		//Set up doors
 		
-		c[0][1].setConnection(SOUTH, c[1][1], new Door());
-		c[1][1].setConnection(EAST, c[1][2], new Door());
+		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));
+		c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
 		
-		c[1][2].setConnection(WEST, c[1][2], new Door());
+		c[1][2].setConnection(WEST, c[1][2], new Door("hallway", true));
+		c[0][3].setContents("1");
 		
-		c[1][3].setConnection(WEST, c[1][3], new Door());
-		c[0][3].setConnection(SOUTH, c[1][3], new Door());
-		c[1][4].setConnection(WEST, c[1][4], new Door());
+		c[1][3].setConnection(WEST, c[1][3], new Door("hallway", true));
+	
+		c[0][3].addRoom(SOUTH, c[1][3], new Door("room 1", true));
+		c[1][4].addRoom(WEST, c[1][3], new Door("room 2", true));
 		
+		c[1][4].setContents("2");
 		
-		c[3][3].setConnection(EAST, c[3][3], new Door());
-		c[2][3].setConnection(SOUTH, c[2][3], new Door());
-		c[1][3].setConnection(NORTH, c[1][3], new Door());
+		c[3][2].addRoom(EAST, c[3][4],new Door("room 3", true));
+	
+		c[2][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
+		c[1][3].setConnection(NORTH, c[1][3], new Door("hallway", true));
+		c[3][3].setConnection(EAST, c[3][4], new Door("hallway", true));
+		c[3][3].setConnection(WEST, c[3][4], new Door("hallway", true));
 		
+		c[3][2].setContents("3");
 		
+		c[3][5].addRoom(EAST, c[3][4],new Door("room 4", true));
+		c[3][4].setContents("4");
+		
+		c[1][1].setConnection(SOUTH, c[2][1], new Door("hallway", true));
+		c[2][1].setContents("5");
+		c[1][1].setConnection(WEST, c[1][0], new Door("hallway", true));
+		c[1][0].setContents("6");
 	}
 
 
