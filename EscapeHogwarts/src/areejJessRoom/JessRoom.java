@@ -9,6 +9,7 @@ import caveExplorer.NPCRoom;
 
 public class JessRoom extends NPCRoom {
 
+	private NPC npc;
 		//press commit not commit push
 		//push branch master
 		//replace master with areejJessBranch
@@ -17,6 +18,7 @@ public class JessRoom extends NPCRoom {
 		//fetch from upstream
 		//under branches there's local and remote tracking
 		//remote tracking double click to access other branches
+<<<<<<< HEAD
 	private static Scanner inputSource = new Scanner(System.in);
 	
 	private NPCAJ npc;
@@ -25,31 +27,20 @@ public class JessRoom extends NPCRoom {
 
 	
 	
+=======
+	
+		
+>>>>>>> refs/remotes/origin/areejJessBranch
 	public JessRoom(String description) {
 		super(description);
+		//super.getContents();
 		
 	}
-	public boolean canEnter()
-	
-	{
-		return npc == null;
-	}
-	public void enterNPC(NPCAJ n)
-	{
-		this.npc = n;
-	}
-	public void leaveNPC()
-	{
-		this.npc = null;
-	}
-	public boolean containsNPC()
-	{
-		return npc != null;
-	}
+
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'w', 'a'. 's'. d'");
+		System.out.println("You can only enter 'w', 'a', 's', d' ");
 	}
 	
 	public void performAction (int direction)
@@ -64,6 +55,7 @@ public class JessRoom extends NPCRoom {
 			CaveExplorer.print("That key does nothing.");
 		}
 	}
+<<<<<<< HEAD
 	public static void userEntered() {
 		CaveExplorer.print("You've entered Jessica's cave. How unfortunate."
 				+ "\nYou just lost 25 HP.");
@@ -88,6 +80,12 @@ public class JessRoom extends NPCRoom {
 			Inventory.setHp(userHp);
 			CaveExplorer.print("Your HP is now: " + userHp + ". Get out of my room now.");
 		}
+=======
+	
+	public void enter()
+	{
+		super.enter();
+>>>>>>> refs/remotes/origin/areejJessBranch
 		
 	}
 
