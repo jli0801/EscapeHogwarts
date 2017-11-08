@@ -5,14 +5,19 @@ public class Inventory {
 	private String map;
 	private static int attack;
 	private static int hp;
+	public boolean wand;
 	
 	public Inventory()
 	{
 		updateMap();
 		hp = 100;
 		attack = (int)(Math.random()*15 +1);
+		wand = false;
 	}
 
+	public boolean hasWand() {
+		return wand;
+	}
 	public static int getHp() {
 		return hp;
 	}
