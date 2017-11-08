@@ -229,4 +229,9 @@ public class KevinRoom extends CaveRoom {
 		return doors[direction];
 	}
 
+	public static void userEntered() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

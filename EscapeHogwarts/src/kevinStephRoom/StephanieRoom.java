@@ -14,6 +14,11 @@ public class StephanieRoom extends NPCRoom {
 		
 		
 	}
+
+	public static void userEntered() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
