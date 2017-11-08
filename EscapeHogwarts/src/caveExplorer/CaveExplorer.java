@@ -40,7 +40,7 @@ public class CaveExplorer {
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
 			print(currentRoom.getDirections());
-			
+			print("HP: " + Integer.toString(inventory.getHp()) );
 			
 			
 			print("What would you like to do?");
