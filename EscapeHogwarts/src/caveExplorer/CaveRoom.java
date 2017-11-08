@@ -107,6 +107,7 @@ public class CaveRoom {
 		else
 		{
 			contents = "X";
+		
 		}
 		
 	}
@@ -304,8 +305,8 @@ public class CaveRoom {
 			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();
 			
-			
 			CaveExplorer.inventory.updateMap();
+			
 			
 			
 			
