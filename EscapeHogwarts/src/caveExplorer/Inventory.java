@@ -6,7 +6,7 @@ public class Inventory {
 	private static int attack;
 	private static int hp;
 	public boolean wand;
-	private int money;
+	private static int money;
 	
 	public Inventory()
 	{
@@ -32,12 +32,12 @@ public class Inventory {
 		Inventory.hp = hp;
 	}
 
-	public static void getMoney(){
+	public static int getMoney(){
 		return money;
 	}
 	
 	public static void setMoney(int mon){
-		Inventory.money = money;
+		Inventory.money = mon;
 	}
 	
 	public void updateMap() {
