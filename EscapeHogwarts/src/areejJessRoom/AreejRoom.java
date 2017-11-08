@@ -1,8 +1,10 @@
 package areejJessRoom;
 
-import caveExplorer.NPCRoom;
+import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
+import caveExplorer.CaveRoom;
 
-public class AreejRoom extends NPCRoom {
+public class AreejRoom extends CaveRoom {
 
 	public AreejRoom(String description) {
 		super(description);
@@ -10,7 +12,11 @@ public class AreejRoom extends NPCRoom {
 	}
 
 	public static void userEntered() {
-		// TODO Auto-generated method stub
+		CaveExplorer.print("You've entered a treasure room"
+				+ "and gained 5 galleons");
+		int userMoney = Inventory.getMoney() + 5;
+		Inventory.setMoney(userMoney);
+		CaveExplorer.print("Your now have " + userMoney + " galleons.");
 		
 	}
 
