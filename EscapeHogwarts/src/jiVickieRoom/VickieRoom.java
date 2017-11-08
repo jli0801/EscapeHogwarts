@@ -14,6 +14,7 @@ public class VickieRoom extends CaveRoom {
 	private static boolean firstEntered = true;
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
+	public CaveRoom[][] c = CaveExplorer.caves;
 	
 	public VickieRoom(String description) {
 		super(description);
@@ -256,4 +257,8 @@ public class VickieRoom extends CaveRoom {
 		//c[3][2].setConnection(NORTH, c[2][2], new Door("hallway", true));
 	}
 	
+	//public void door()
+	{
+		setConnection(NORTH, c[2][2], new Door("hallway", true));
+	}
 }
