@@ -41,36 +41,12 @@ public class CaveExplorer {
 			print(currentRoom.getDescription());
 			print(currentRoom.getDirections());
 			
-			if(currentRoom.getContents().equals("A"))
-			{
-				areejJessRoom.AreejRoom.userEntered();
-			}
-			else if(currentRoom.getContents().equals("L"))
-			{
-				areejJessRoom.JessRoom.userEntered();
-			}
-			else if(currentRoom.getContents().equals("V"))
-			{
-				jiVickieRoom.VickieRoom.userEntered();
-			}
-			else if(currentRoom.getContents().equals("J"))
-			{
-				jiVickieRoom.JiRoom.userEntered();
-			}
-			else if(currentRoom.getContents().equals("K"))
-			{
-				kevinStephRoom.KevinRoom.userEntered();
-			}
-			else if(currentRoom.getContents().equals("S"))
-			{
-				kevinStephRoom.StephanieRoom.userEntered();
-			}
-			else
-			{
+			
+			
 			print("What would you like to do?");
 			
 			currentRoom.interpretInput(in.nextLine());
-			}
+			
 			
 		}
 		

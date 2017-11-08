@@ -52,7 +52,7 @@ public class CaveRoom {
 			if(doors[i] != null) {
 				doorFound = true;
 				directions += "There is a "+doors[i].getDescription()+" to the "+
-				toDirection(i)+". "; //+doors[i].getDetails()+"\n"
+				toDirection(i)+". \n"; //+doors[i].getDetails()+"\n"
 			}
 		}
 		if(!doorFound) {
@@ -80,7 +80,35 @@ public class CaveRoom {
 
 	
 	public void enter() {
-		contents = "X";
+		if(CaveExplorer.currentRoom.getContents().equals("A"))
+		{
+			areejJessRoom.AreejRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("L"))
+		{
+			areejJessRoom.JessRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("V"))
+		{
+			jiVickieRoom.VickieRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("J"))
+		{
+			jiVickieRoom.JiRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("K"))
+		{
+			kevinStephRoom.KevinRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("S"))
+		{
+			kevinStephRoom.StephanieRoom.userEntered();
+		}
+		else
+		{
+			contents = "X";
+		}
+		
 	}
 	
 	public void leave() {
@@ -271,10 +299,14 @@ public class CaveRoom {
 		if(borderingRooms[direction] != null && doors[direction] != null &&
 				doors[direction].isOpen()) 
 		{
+			
 			CaveExplorer.currentRoom.leave();
 			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();
 			CaveExplorer.inventory.updateMap();
+			
+			
+			
 		}else {
 			//print red text
 			System.err.println("You can't do that!");
