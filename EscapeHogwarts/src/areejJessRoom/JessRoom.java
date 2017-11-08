@@ -72,7 +72,9 @@ public class JessRoom extends NPCRoom {
 		CaveExplorer.print("Your HP is now: " + userHp + ". To get it back, you have answer a riddle."
 				+ "\nWhat comes down but doesn't go up?");
 		//same bug as chatbot
-		if(inputSource.nextLine().equals("Rain") || inputSource.nextLine().equals("rain"))
+		String input = CaveExplorer.in.nextLine();
+		String inputCase = input.toLowerCase();
+		if( inputCase.equals("rain"))
 		{
 			CaveExplorer.print("Fine. You win. You can get back you 25 HP.");
 			userHp = Inventory.getHp() + 25;
