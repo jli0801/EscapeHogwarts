@@ -250,35 +250,42 @@ public class CaveRoom {
 		CaveExplorer.currentRoom.enter();
 		//Set up doors
 		
-		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));
-		c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
-		
-		c[1][2].setConnection(WEST, c[1][2], new Door("hallway", true));
+		//rooms 
 		c[0][3].setContents("1");
+		c[1][4].setContents("2");
+		c[3][2].setContents("3");
+		c[3][4].setContents("4");
+		c[2][1].setContents("5");
+		c[1][0].setContents("6");
 		
-		c[1][3].setConnection(WEST, c[1][3], new Door("hallway", true));
-	
+		//addRoom
 		c[0][3].addRoom(SOUTH, c[1][3], new Door("room 1", true));
 		c[1][4].addRoom(WEST, c[1][3], new Door("room 2", true));
-		
-		c[1][4].setContents("2");
-		
 		c[3][2].addRoom(EAST, c[3][4],new Door("room 3", true));
+		c[3][5].addRoom(EAST, c[3][4],new Door("room 4", true));
+		c[2][1].addRoom(NORTH, c[1][2],new Door("room 5", true));
+		c[1][0].addRoom(EAST, c[1][1],new Door("room 6", true));
+		
+		//connections
+		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));
+		c[1][1].setConnection(EAST, c[1][3], new Door("hallway", true));
+		
+		c[1][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
+		c[1][2].setConnection(WEST, c[1][2], new Door("hallway", true));
+		
+		c[1][3].setConnection(WEST, c[1][1], new Door("hallway", true));
 	
 		c[2][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
-		c[1][3].setConnection(NORTH, c[1][3], new Door("hallway", true));
+		c[1][3].setConnection(EAST, c[1][4], new Door("hallway", true));
+		c[1][3].setConnection(NORTH, c[0][3], new Door("hallway", true));
 		c[3][3].setConnection(EAST, c[3][4], new Door("hallway", true));
-		c[3][3].setConnection(WEST, c[3][4], new Door("hallway", true));
-		
-		c[3][2].setContents("3");
-		
-		c[3][5].addRoom(EAST, c[3][4],new Door("room 4", true));
-		c[3][4].setContents("4");
+		c[3][3].setConnection(WEST, c[3][2], new Door("hallway", true));
 		
 		c[1][1].setConnection(SOUTH, c[2][1], new Door("hallway", true));
-		c[2][1].setContents("5");
+		
 		c[1][1].setConnection(WEST, c[1][0], new Door("hallway", true));
-		c[1][0].setContents("6");
+		
+		c[2][3].setConnection(SOUTH, c[3][3], new Door("hallway", true));
 	}
 
 
