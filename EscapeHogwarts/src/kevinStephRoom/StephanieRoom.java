@@ -58,8 +58,11 @@ public class StephanieRoom extends NPCRoom {
 	
 	public static void userEntered() {
 		if(CaveExplorer.inventory.wand != true) {
-			CaveExplorer.print("You see a wand laying on the floor and you pick it up in case it comes in handy.");	
+			CaveExplorer.print("You see a wand laying on the floor and you pick it up in case it comes in handy. However, it comes with a price. You lose 10 HP.");	
 			CaveExplorer.inventory.wand = true;
+			int userHp = Inventory.getHp() - 10;
+			Inventory.setHp(userHp);
+			CaveExplorer.print("Your HP is now: " + userHp + ".");
 		}else {
 			CaveExplorer.print("There is nothing in here.");	
 		}
