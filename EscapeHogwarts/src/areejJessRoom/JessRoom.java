@@ -17,8 +17,14 @@ public class JessRoom extends NPCRoom {
 		//fetch from upstream
 		//under branches there's local and remote tracking
 		//remote tracking double click to access other branches
+	private static Scanner inputSource = new Scanner(System.in);
+	
 	private NPCAJ npc;
-		
+	
+	
+
+	
+	
 	public JessRoom(String description) {
 		super(description);
 		
@@ -64,8 +70,22 @@ public class JessRoom extends NPCRoom {
 		int userHp = Inventory.getHp() - 25;
 		Inventory.setHp(userHp);
 		CaveExplorer.print("Your HP is now: " + userHp + ". To get it back, you have answer a riddle."
-				+ "\n What comes down but doesn't go up?");
-		
+				+ "\nWhat comes down but doesn't go up?");
+		//same bug as chatbot
+		if(inputSource.nextLine().equals("Rain") || inputSource.nextLine().equals("rain"))
+		{
+			CaveExplorer.print("Fine. You win. You can get back you 25 HP.");
+			userHp = Inventory.getHp() + 25;
+			Inventory.setHp(userHp);
+			CaveExplorer.print("Your HP is now: " + userHp + ". Now leave my cave!");
+		}
+		else
+		{
+			CaveExplorer.print("HA! You got it wrong! Let me take another 25 HP from you.");
+			userHp = Inventory.getHp() - 25;
+			Inventory.setHp(userHp);
+			CaveExplorer.print("Your HP is now: " + userHp + ". Get out of my room now.");
+		}
 		
 	}
 
