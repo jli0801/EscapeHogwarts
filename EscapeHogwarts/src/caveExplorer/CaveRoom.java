@@ -268,24 +268,31 @@ public class CaveRoom {
 		
 		//connections
 		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));
-		c[1][1].setConnection(EAST, c[1][3], new Door("hallway", true));
+		//c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
+		
+		c[1][1].setConnection(SOUTH, c[2][1], new Door("hallway", true));
+		c[1][1].setConnection(WEST, c[1][0], new Door("hallway", true));
+		c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
 		
 		c[1][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
-		c[1][2].setConnection(WEST, c[1][2], new Door("hallway", true));
-		
-		c[1][3].setConnection(WEST, c[1][1], new Door("hallway", true));
-	
-		c[2][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
+		c[1][3].setConnection(WEST, c[1][2], new Door("hallway", true)); 
 		c[1][3].setConnection(EAST, c[1][4], new Door("hallway", true));
 		c[1][3].setConnection(NORTH, c[0][3], new Door("hallway", true));
+		
+		c[1][2].setConnection(WEST, c[1][1], new Door("hallway", true));
+		
+		
+	
+		c[2][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
+		c[2][3].setConnection(SOUTH, c[3][3], new Door("hallway", true));
+		c[2][3].setConnection(NORTH, c[1][3], new Door("hallway", true));
+		
 		c[3][3].setConnection(EAST, c[3][4], new Door("hallway", true));
 		c[3][3].setConnection(WEST, c[3][2], new Door("hallway", true));
 		
-		c[1][1].setConnection(SOUTH, c[2][1], new Door("hallway", true));
 		
-		c[1][1].setConnection(WEST, c[1][0], new Door("hallway", true));
 		
-		c[2][3].setConnection(SOUTH, c[3][3], new Door("hallway", true));
+		
 	}
 
 
