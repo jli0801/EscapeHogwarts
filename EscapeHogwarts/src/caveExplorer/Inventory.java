@@ -6,11 +6,13 @@ public class Inventory {
 	private static int attack;
 	private static int hp;
 	public boolean wand;
+	private int money;
 	
 	public Inventory()
 	{
 		updateMap();
 		hp = 100;
+		money = 0;
 		attack = (int)(Math.random()*15 +1);
 		wand = false;
 	}
@@ -30,6 +32,14 @@ public class Inventory {
 		Inventory.hp = hp;
 	}
 
+	public static void getMoney(){
+		return money;
+	}
+	
+	public static void setMoney(int mon){
+		Inventory.money = money;
+	}
+	
 	public void updateMap() {
 		
 		map = " ";
