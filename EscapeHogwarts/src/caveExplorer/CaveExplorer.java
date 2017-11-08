@@ -27,6 +27,10 @@ public class CaveExplorer {
 		while (playing)
 		{
 			moveNPCs();
+			print("Welcome!" +
+			" In order to get permission to go on a trip, you must visit each of " + "\nthese rooms and defeat all six of them to go." 
+					+ " Good luck!");
+			
 			print(inventory.getDescription());
 			print(currentRoom.getDescription());
 			print(currentRoom.getDirection());

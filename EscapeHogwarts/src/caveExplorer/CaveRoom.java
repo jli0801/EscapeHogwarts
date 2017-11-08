@@ -216,7 +216,7 @@ public class CaveRoom {
 		{
 			for(int col = 0; col < c[row].length; col++)
 			{
-				c[row][col] = new NPCRoom("Cave has coordinates " + row + ", " + col); //change
+				c[row][col] = new NPCRoom("You are at " + row + ", " + col); //change
 			}
 		}
 		
@@ -251,12 +251,12 @@ public class CaveRoom {
 		//Set up doors
 		
 		//rooms 
-		c[0][3].setContents("1");
-		c[1][4].setContents("2");
-		c[3][2].setContents("3");
-		c[3][4].setContents("4");
-		c[2][1].setContents("5");
-		c[1][0].setContents("6");
+		c[0][3].setContents("A");
+		c[1][4].setContents("L");
+		c[3][2].setContents("V");
+		c[3][4].setContents("J");
+		c[2][1].setContents("K");
+		c[1][0].setContents("S");
 		
 		//addRoom
 		c[0][3].addRoom(SOUTH, c[1][3], new Door("room 1", true));
