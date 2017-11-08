@@ -250,7 +250,7 @@ public class VickieRoom extends CaveRoom {
 		c[2][2].setConnection(SOUTH, c[3][2], new Door("hallway", true));
 		c[2][2].setConnection(NORTH, c[1][2], new Door("hallway", true));
 		c[1][3].setConnection(EAST, c[1][4], new Door("hallway", true));
-		
+		//fixed
 		
 		
 		//c[3][2].setConnection(NORTH, c[2][2], new Door("hallway", true));

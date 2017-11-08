@@ -5,6 +5,7 @@ import caveExplorer.NPC;
 
 public class Peeves extends NPC {
 	//ghost in HP
+	//kjk
 
 
 	private String inactiveDescription;
