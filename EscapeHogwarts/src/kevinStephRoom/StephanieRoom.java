@@ -9,4 +9,8 @@ public class StephanieRoom extends CaveRoom {
 		// TODO Auto-generated constructor stub
 	}
 
-}
+	public static void userEntered() {
+		// TODO Auto-generated method stub
+	}
+}	
+	

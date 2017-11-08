@@ -1,6 +1,7 @@
 package areejJessRoom;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
@@ -54,6 +55,14 @@ public class JessRoom extends NPCRoom {
 		}else {
 			CaveExplorer.print("That key does nothing.");
 		}
+	}
+	public static void userEntered() {
+		CaveExplorer.print("You've entered Jessica's cave. How unfortunate."
+				+ "\nYou just lost 25 HP.");
+		int userHp = Inventory.getHp() - 25;
+		Inventory.setHp(userHp);
+		CaveExplorer.print("Your HP is now: " + userHp + ". To get it back, you have to fight me.");
+		
 	}
 
 }

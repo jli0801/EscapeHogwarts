@@ -9,4 +9,9 @@ public class AreejRoom extends NPCRoom {
 		// TODO Auto-generated constructor stub
 	}
 
+	public static void userEntered() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

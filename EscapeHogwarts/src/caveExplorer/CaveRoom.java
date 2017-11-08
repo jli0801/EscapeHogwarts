@@ -52,7 +52,7 @@ public class CaveRoom {
 			if(doors[i] != null) {
 				doorFound = true;
 				directions += "There is a "+doors[i].getDescription()+" to the "+
-				toDirection(i)+". "+doors[i].getDetails()+"\n";
+				toDirection(i)+". "; //+doors[i].getDetails()+"\n"
 			}
 		}
 		if(!doorFound) {
@@ -216,6 +216,7 @@ public class CaveRoom {
 		
 		CaveExplorer.currentRoom = c[0][1];
 		CaveExplorer.currentRoom.enter();
+	
 		//Set up doors
 		
 		//rooms 
@@ -268,7 +269,8 @@ public class CaveRoom {
 	public void goToRoom(int direction) {
 		//make sure there is a room to go to:
 		if(borderingRooms[direction] != null && doors[direction] != null &&
-				doors[direction].isOpen()) {
+				doors[direction].isOpen()) 
+		{
 			CaveExplorer.currentRoom.leave();
 			CaveExplorer.currentRoom = borderingRooms[direction];
 			CaveExplorer.currentRoom.enter();

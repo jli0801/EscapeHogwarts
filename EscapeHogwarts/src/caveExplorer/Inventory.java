@@ -21,6 +21,10 @@ public class Inventory {
 		return attack;
 	}
 
+	public static void setHp(int hp) {
+		Inventory.hp = hp;
+	}
+
 	public void updateMap() {
 		
 		map = " ";
