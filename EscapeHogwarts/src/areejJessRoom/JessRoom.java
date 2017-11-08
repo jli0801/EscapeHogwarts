@@ -1,5 +1,7 @@
 package areejJessRoom;
 
+import java.util.Scanner;
+
 import caveExplorer.CaveExplorer;
 import caveExplorer.Inventory;
 import caveExplorer.NPC;
@@ -61,7 +63,9 @@ public class JessRoom extends NPCRoom {
 				+ "\nYou just lost 25 HP.");
 		int userHp = Inventory.getHp() - 25;
 		Inventory.setHp(userHp);
-		CaveExplorer.print("Your HP is now: " + userHp + ". To get it back, you have to fight me.");
+		CaveExplorer.print("Your HP is now: " + userHp + ". To get it back, you have answer a riddle."
+				+ "\n What comes down but doesn't go up?");
+		
 		
 	}
 
