@@ -59,7 +59,8 @@ public class VickieRoom extends CaveRoom {
 		}else
 		if(inputCase.equals("no"))
 		{
-			System.out.println("Hmph! Then go and be on your way! ");
+			//System.out.println("Hmph! Then go and be on your way! ");
+			door();
 		}else
 		{
 			CaveExplorer.print("Sorry, are you Harry? ");
@@ -257,8 +258,14 @@ public class VickieRoom extends CaveRoom {
 		//c[3][2].setConnection(NORTH, c[2][2], new Door("hallway", true));
 	}
 	
-	//public void door()
+	public String getDirections()
 	{
-		setConnection(NORTH, c[2][2], new Door("hallway", true));
+		return "";
+	}
+	
+	public static void door()
+	{
+		CaveRoom[][] c = CaveExplorer.caves;
+		c[3][2].setConnection(NORTH, c[2][2], new Door("hallway", true));
 	}
 }
