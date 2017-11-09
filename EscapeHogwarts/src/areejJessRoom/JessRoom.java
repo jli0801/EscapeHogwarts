@@ -70,17 +70,35 @@ public class JessRoom extends NPCRoom {
 			mergeItems();
 		}
 		
-		}
+	}
 
 	
 	private static void mergeItems() {
-		
-		
+		CaveExplorer.print("So you want to merge some items, I see. You better have all the ingredients or I'll kick you out. Are you sure you have all the items?");
+		if(inputCase.equals("yes"))
+		{
+			if(Inventory.hasBroom())
+			{
+				Inventory.setBroomP1(Inventory.getBroomP1()-1);
+				Inventory.setBroomP2(Inventory.getBroomP2()-1);
+				Inventory.setBroomP3(Inventory.getBroomP3()-1);
+			}
+			else
+			{
+				CaveExplorer.print("YOU LIED TO ME! GET OUT OF MY STORE!");
+				leaveRoom();
+			}
+		}
+		else
+		{
+			CaveExplorer.print("Get out and find me all pieces before I expell you!");
+			leaveRoom();
+		}
 	}
 
 
 	private static void buyItems() {
-		
+		CaveExplorer.print("")
 		
 	}
 
