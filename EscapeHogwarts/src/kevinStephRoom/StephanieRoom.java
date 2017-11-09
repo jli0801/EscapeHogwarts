@@ -1,21 +1,20 @@
 package kevinStephRoom;
 
+import java.util.Scanner;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
-import caveExplorer.Inventory;
 import caveExplorer.NPCRoom;
 import caveExplorer.NPC;
 
 public class StephanieRoom extends NPCRoom {
 	
-	NPC npc;
-	
+
 	public StephanieRoom(String description) {
 		super(description);
 		
 	}
 	
-	public String validMoves() {
+/**	public String validMoves() {
 		return "wdsa";
 	}
 	
@@ -38,6 +37,7 @@ public class StephanieRoom extends NPCRoom {
 		}
 		
 	}
+
 	
 	private boolean isValid(String input) {
 		return validMoves().indexOf(input) != -1 && input.length() == 1;
@@ -55,10 +55,14 @@ public class StephanieRoom extends NPCRoom {
 			CaveExplorer.print("That key does nothing.");
 		}
 	}
+**/
 	
 	public static void userEntered() {
-		CaveExplorer.print("You see a mirror in front of you");
-		
+		CaveExplorer.print("You see a mirror in front of you. Do you want to look into it?");
+		String input = CaveExplorer.in.nextLine().toLowerCase();
+		if(input.equals("yes")){
+			CaveExplorer.print("You see the exit of Hogwarts  ");
+		}
 	}
 }	
 	
