@@ -4,12 +4,10 @@ import java.util.Scanner;
 
 import areejJessRoom.AreejRoom;
 import areejJessRoom.JessRoom;
-
 import jiVickieRoom.JiRoom;
 import jiVickieRoom.VickieRoom;
 import kevinStephRoom.KevinRoom;
 import kevinStephRoom.StephanieRoom;
-
 
 public class CaveRoom {
 
@@ -271,7 +269,7 @@ public class CaveRoom {
 		//c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
 		
 		c[1][1].setConnection(SOUTH, c[2][1], new Door("hallway", true));
-		c[1][1].setConnection(WEST, c[1][0], new Door("hallway", true));
+	//	c[1][1].setConnection(WEST, c[1][0], new Door("hallway", true));
 		c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
 		
 		c[1][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
@@ -360,78 +358,13 @@ public class CaveRoom {
 	}
 
 
-	public static void setUpCaves() {
-		//Size of Caves
-		CaveExplorer.caves = new NPCRoom[4][6];
-		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
-		
-		CaveRoom AreejRoom = new AreejRoom("Room");
-		CaveExplorer.caves[2][3] = AreejRoom;
-		CaveRoom JessRoom = new JessRoom("Room");
+	public Door getDoor(int direction) {
+		return doors[direction];
+	}
 
 	
-
-		CaveRoom JiRoom = new JiRoom("Room");
-		CaveExplorer.caves[2][3] = JiRoom;
-		CaveRoom VickieRoom = new VickieRoom("Room");
-		CaveExplorer.caves[2][3] = VickieRoom;
-		
-		CaveRoom StephanieRoom = new StephanieRoom("Room");
-		CaveExplorer.caves[2][3] = StephanieRoom;
-		CaveRoom KevinRoom = new KevinRoom("Room");
-		CaveExplorer.caves[2][3] = KevinRoom;
-	}
-
-	public Door getDoor(int direction) {
-
-		//Populate with default caves
-		for(int row = 0; row < c.length; row++)
-		{
-			for(int col = 0; col < c[row].length; col++)
-			{
-				c[row][col] = new NPCRoom("This cave has coordinates "
-						+ row + ", " + col + ".");
-			}
-		}
-		
-		NPC NPCAJ = new NPC();
-		NPCAJ.setPosition(1,4);
-		CaveExplorer.npcs = new NPC[1];
-		CaveExplorer.npcs[0] = NPCAJ;
-		
-		
-		
-	/*	NPC testNPCAJ = new NPC();
-		testNPC.setPosition(1,2);
-		CaveExplorer.npcs = new NPC[1];
-		CaveExplorer.npcs[0] = testNPC; */
-		
-		//room1 : 1,4
-		//room2: 2,5
-		//room3: 4.3
-		
-		//replace default room with custom room (SAVE FOR LATER)
-		//Set starting room
-		
-		CaveExplorer.currentRoom = c[0][1];
-		CaveExplorer.currentRoom.enter();
-		//Set up doors
-		
-		c[0][1].setConnection(SOUTH, c[1][1], new Door());
-		c[1][1].setConnection(EAST, c[1][2], new Door());
-		
-		c[1][2].setConnection(WEST, c[1][2], new Door());
-		
-		c[1][3].setConnection(WEST, c[1][3], new Door());
-		c[0][3].setConnection(SOUTH, c[1][3], new Door());
-		c[1][4].setConnection(WEST, c[1][4], new Door());
-		
-		
-		c[3][3].setConnection(EAST, c[3][3], new Door());
-		c[2][3].setConnection(SOUTH, c[2][3], new Door());
-		c[1][3].setConnection(NORTH, c[1][3], new Door());
-	}
-
+	
+	
 	
 	
 	
