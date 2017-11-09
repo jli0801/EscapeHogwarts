@@ -22,8 +22,7 @@ public class JessRoom extends NPCRoom {
 	
 	private NPCAJ npc;
 	
-	static String input = CaveExplorer.in.nextLine();
-	static String inputCase = input.toLowerCase();
+
 
 	public JessRoom(String description) {
 		super(description);
@@ -75,6 +74,9 @@ public class JessRoom extends NPCRoom {
 	
 	private static void mergeItems() {
 		CaveExplorer.print("So you want to merge some items, I see. You better have all the ingredients or I'll kick you out. Are you sure you have all the items?");
+		 String input = CaveExplorer.in.nextLine();
+		 String inputCase = input.toLowerCase();
+
 		if(inputCase.equals("yes"))
 		{
 			if(Inventory.hasBroom())
