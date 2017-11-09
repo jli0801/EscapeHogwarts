@@ -5,7 +5,6 @@ public class Inventory {
 	private String map;
 	private static int attack;
 	private static int hp;
-	public boolean wand;
 	private static int money;
 	
 	public Inventory()
@@ -14,12 +13,8 @@ public class Inventory {
 		hp = 100;
 		money = 0;
 		attack = (int)(Math.random()*15 +1);
-		wand = false;
 	}
 
-	public boolean hasWand() {
-		return wand;
-	}
 	public static int getHp() {
 		return hp;
 	}

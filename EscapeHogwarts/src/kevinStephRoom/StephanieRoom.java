@@ -49,7 +49,7 @@ public class StephanieRoom extends NPCRoom {
 			if(npc != null && npc.isActive()) {
 				npc.interact();
 			}else {
-				CaveExplorer.print("There is nothing to interect with.");
+				CaveExplorer.print("There is nothing to interact with.");
 			}
 		}else {
 			CaveExplorer.print("That key does nothing.");
@@ -57,15 +57,8 @@ public class StephanieRoom extends NPCRoom {
 	}
 	
 	public static void userEntered() {
-		if(CaveExplorer.inventory.wand != true) {
-			CaveExplorer.print("You see a wand laying on the floor and you pick it up in case it comes in handy. However, it comes with a price. You lose 10 HP.");	
-			CaveExplorer.inventory.wand = true;
-			int userHp = Inventory.getHp() - 10;
-			Inventory.setHp(userHp);
-			CaveExplorer.print("Your HP is now: " + userHp + ".");
-		}else {
-			CaveExplorer.print("There is nothing in here.");	
-		}
+		CaveExplorer.print("You see a mirror in front of you");
+		
 	}
 }	
 	
