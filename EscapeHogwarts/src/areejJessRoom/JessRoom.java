@@ -22,7 +22,8 @@ public class JessRoom extends NPCRoom {
 	
 	private NPCAJ npc;
 	
-	
+	static String input = CaveExplorer.in.nextLine();
+	static String inputCase = input.toLowerCase();
 
 	public JessRoom(String description) {
 		super(description);
@@ -33,7 +34,7 @@ public class JessRoom extends NPCRoom {
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'w', 'a', 's', d' ");
+		System.out.println("You can only enter 'i', 'b', 'm', '' ");
 	}
 	
 	public void performAction (int direction)
@@ -50,32 +51,46 @@ public class JessRoom extends NPCRoom {
 	}
 
 	public static void userEntered() {
-		CaveExplorer.print("You've entered Jessica's cave. How unfortunate."
-				+ "\nYou just lost 25 HP.");
-		int userHp = Inventory.getHp() - 25;
-		Inventory.setHp(userHp);
-		CaveExplorer.print("Your HP is now: " + userHp + ". To get it back, you have answer a riddle."
-				+ "\nWhat comes down but doesn't go up?");
+		CaveExplorer.print("You've entered the merchant's store. Enter 'i' to interact, 'b' to buy, or 'm' to merge items.");
+		
+		
 		//same bug as chatbot
-		String input = CaveExplorer.in.nextLine();
-		String inputCase = input.toLowerCase();
-		if( inputCase.equals("rain"))
+		
+		if( inputCase.equals("i"))
 		{
-			CaveExplorer.print("Fine. You win. You can get back you 25 HP.");
-			userHp = Inventory.getHp() + 25;
-			Inventory.setHp(userHp);
-			CaveExplorer.print("Your HP is now: " + userHp + ". Now leave my cave!");
+			interactDialogue();
+		
 		}
-		else
+		if(inputCase.equals("b"))
 		{
-			CaveExplorer.print("HA! You got it wrong! Let me take another 25 HP from you.");
-			userHp = Inventory.getHp() - 25;
-			Inventory.setHp(userHp);
-			CaveExplorer.print("Your HP is now: " + userHp + ". Get out of my room now.");
+			buyItems();
 		}
+		if(inputCase.equals("m"))
+		{
+			mergeItems();
+		}
+		
 		}
 
 	
+	private static void mergeItems() {
+		
+		
+	}
+
+
+	private static void buyItems() {
+		
+		
+	}
+
+
+	private static void interactDialogue() {
+		
+		
+	}
+
+
 	public void enter()
 	{
 		super.enter();

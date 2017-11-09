@@ -6,6 +6,9 @@ public class Inventory {
 	private static int attack;
 	private static int hp;
 	private static int money;
+	private static int broomP1;
+	private static int broomP2;
+	private static int broomP3;
 	
 	public Inventory()
 	{
@@ -15,6 +18,14 @@ public class Inventory {
 		attack = (int)(Math.random()*15 +1);
 	}
 
+	public static boolean hasBroom()
+	{
+		if(broomP1 > 0 && broomP2 > 0 && broomP3 > 0)
+		{
+			return true;
+		}
+		return false;
+	}
 	public static int getHp() {
 		return hp;
 	}
