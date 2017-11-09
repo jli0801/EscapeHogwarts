@@ -20,7 +20,7 @@ public class StephanieRoom extends NPCRoom {
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'w', 'a', 's', or 'd'");
+		System.out.println("You can only enter 'w', 'a', 's', or 'd'");//
 	}
 	
 	public void interpretInput(String input) {
