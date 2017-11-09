@@ -9,7 +9,16 @@ public class Inventory {
 	private static int broomP1;
 	private static int broomP2;
 	private static int broomP3;
+	private static int broomW;
 	
+	public static int getBroomW() {
+		return broomW;
+	}
+
+	public static void setBroomW(int broomW) {
+		Inventory.broomW = broomW;
+	}
+
 	public Inventory()
 	{
 		updateMap();
@@ -26,6 +35,30 @@ public class Inventory {
 		}
 		return false;
 	}
+	public static int getBroomP1() {
+		return broomP1;
+	}
+
+	public static void setBroomP1(int broomP1) {
+		Inventory.broomP1 = broomP1;
+	}
+
+	public static int getBroomP2() {
+		return broomP2;
+	}
+
+	public static void setBroomP2(int broomP2) {
+		Inventory.broomP2 = broomP2;
+	}
+
+	public static int getBroomP3() {
+		return broomP3;
+	}
+
+	public static void setBroomP3(int broomP3) {
+		Inventory.broomP3 = broomP3;
+	}
+
 	public static int getHp() {
 		return hp;
 	}

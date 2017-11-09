@@ -22,8 +22,7 @@ public class JessRoom extends NPCRoom {
 	
 	private NPCAJ npc;
 	
-	static String input = CaveExplorer.in.nextLine();
-	static String inputCase = input.toLowerCase();
+
 
 	public JessRoom(String description) {
 		super(description);
@@ -34,10 +33,10 @@ public class JessRoom extends NPCRoom {
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'i', 'b', 'm', '' ");
+		System.out.println("You can only enter 'i', 'b', 'm' ");
 	}
 	
-	public void performAction (int direction)
+	/*public void performAction (int direction)
 	{
 		if(direction == 4) {
 			if(npc != null && npc.isActive()) {
@@ -48,7 +47,7 @@ public class JessRoom extends NPCRoom {
 		}else {
 			CaveExplorer.print("That key does nothing.");
 		}
-	}
+	}*/
 
 	public static void userEntered() {
 		CaveExplorer.print("You've entered the merchant's store. Enter 'i' to interact, 'b' to buy, or 'm' to merge items.");
@@ -70,17 +69,44 @@ public class JessRoom extends NPCRoom {
 			mergeItems();
 		}
 		
-		}
+	}
 
 	
 	private static void mergeItems() {
+		CaveExplorer.print("So you want to merge some items, I see. You better have all the ingredients or I'll kick you out. Are you sure you have all the items?");
+		 String input = CaveExplorer.in.nextLine();
+		 String inputCase = input.toLowerCase();
+
+		if(inputCase.equals("yes"))
+		{
+			if(Inventory.hasBroom())
+			{
+				Inventory.setBroomP1(Inventory.getBroomP1()-1);
+				Inventory.setBroomP2(Inventory.getBroomP2()-1);
+				Inventory.setBroomP3(Inventory.getBroomP3()-1);
+			}
+			else
+			{
+				CaveExplorer.print("YOU LIED TO ME! GET OUT OF MY STORE!");
+				leaveRoom();
+			}
+		}
+		else
+		{
+			CaveExplorer.print("Get out and find me all pieces before I expell you!");
+			leaveRoom();
+		}
+	}
+
+
+	private static void leaveRoom() {
 		
 		
 	}
 
 
 	private static void buyItems() {
-		
+		CaveExplorer.print("");
 		
 	}
 
