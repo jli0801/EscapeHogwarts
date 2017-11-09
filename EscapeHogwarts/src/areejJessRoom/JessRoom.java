@@ -34,10 +34,10 @@ public class JessRoom extends NPCRoom {
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'i', 'b', 'm', '' ");
+		System.out.println("You can only enter 'i', 'b', 'm' ");
 	}
 	
-	public void performAction (int direction)
+	/*public void performAction (int direction)
 	{
 		if(direction == 4) {
 			if(npc != null && npc.isActive()) {
@@ -48,7 +48,7 @@ public class JessRoom extends NPCRoom {
 		}else {
 			CaveExplorer.print("That key does nothing.");
 		}
-	}
+	}*/
 
 	public static void userEntered() {
 		CaveExplorer.print("You've entered the merchant's store. Enter 'i' to interact, 'b' to buy, or 'm' to merge items.");
@@ -97,8 +97,14 @@ public class JessRoom extends NPCRoom {
 	}
 
 
+	private static void leaveRoom() {
+		
+		
+	}
+
+
 	private static void buyItems() {
-		CaveExplorer.print("")
+		CaveExplorer.print("");
 		
 	}
 
