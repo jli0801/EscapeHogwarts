@@ -3,16 +3,11 @@ package jiVickieRoom;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
 import caveExplorer.Door;
-<<<<<<< HEAD
-import caveExplorer.NPC;
-import caveExplorer.NPCRoom;
-//import caveExplorer.Peeves;
-=======
 import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
-public class VickieRoom extends NPCRoom {
+public class VickieRoom extends CaveRoom {
 
 	public static String input;
 	public static String inputCase;
@@ -26,39 +21,6 @@ public class VickieRoom extends NPCRoom {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void printValidMoves()
-	{
-		System.out.println("You can only enter 'w', 'a'. 's'. d'" + "or you can press 'p' to interact with Peeves.");
-	}
-	
-	public String validMoves()
-	{
-		return "wdsap";
-	}
-	
-	public void performAction (int direction)
-	{
-		if(direction == 5) {
-			if(Peeves() != null && peeves.isActive()) {
-				peeves.interact();
-			}else {
-				CaveExplorer.print("There is no creatures to interect with..");
-			}
-		}else {
-			CaveExplorer.print("There is nothing to do...");
-		}
-	}
-	//dfklbjhetio;jhtiojg
-
-	public boolean containsNPC()
-	{
-		return here = true;
-	}
-	
-	public void enterNPC(NPC n)
-	{
-		this.peeves = n;
-	}
 	public static void userEntered() {
 		//Peeves.Peeves();
 		if(firstEntered) {
