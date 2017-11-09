@@ -9,7 +9,16 @@ public class Inventory {
 	private static int broomP1;
 	private static int broomP2;
 	private static int broomP3;
+	private static int broomW;
 	
+	public static int getBroomW() {
+		return broomW;
+	}
+
+	public static void setBroomW(int broomW) {
+		Inventory.broomW = broomW;
+	}
+
 	public Inventory()
 	{
 		updateMap();
