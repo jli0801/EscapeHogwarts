@@ -10,8 +10,9 @@ public class KevinRoom extends CaveRoom {
 		
 	}
 
-	public int randomRoom() {
-		int room = (int)(Math.random()*5);
+	public static int randomRoom() {
+		int room = (int)(Math.random()*4); //0 to 5
+		//0 to 4
 		return room;
 	}
 	
@@ -20,9 +21,11 @@ public class KevinRoom extends CaveRoom {
 		System.out.println("You have been teleported to a random room.");
 	}
 	
-	public void performTeleport()
+	public static void performTeleport()
 	{
-		CaveExplorer.currentRoom = CaveExplorer.caves[randomRoom()][randomRoom()];
+		//if there are bordering rooms
+		CaveExplorer.currentRoom = CaveExplorer.caves[randomRoom()][randomRoom()]; 
+		//if the coordinate has a hallway or an exit then you set the coordinate and move the user.
 		CaveExplorer.currentRoom.enter();
 	}
 	
@@ -43,5 +46,10 @@ public class KevinRoom extends CaveRoom {
 		}else {
 			CaveExplorer.print("That key does nothing.");
 		}
+	}
+
+	public static void userEntered() {
+		// TODO Auto-generated method stub
+		performTeleport();
 	}
 }
