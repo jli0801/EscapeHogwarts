@@ -1,6 +1,9 @@
 package areejJessRoom;
 
+import java.util.Scanner;
+
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
@@ -14,33 +17,23 @@ public class JessRoom extends NPCRoom {
 		//fetch from upstream
 		//under branches there's local and remote tracking
 		//remote tracking double click to access other branches
+
+	private static Scanner inputSource = new Scanner(System.in);
+	
 	private NPCAJ npc;
-		
+	
+	
+
 	public JessRoom(String description) {
 		super(description);
+		//super.getContents();
 		
 	}
-	public boolean canEnter()
-	
-	{
-		return npc == null;
-	}
-	public void enterNPC(NPCAJ n)
-	{
-		this.npc = n;
-	}
-	public void leaveNPC()
-	{
-		this.npc = null;
-	}
-	public boolean containsNPC()
-	{
-		return npc != null;
-	}
+
 	
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'w', 'a'. 's'. d'");
+		System.out.println("You can only enter 'w', 'a', 's', d' ");
 	}
 	
 	public void performAction (int direction)
@@ -54,6 +47,40 @@ public class JessRoom extends NPCRoom {
 		}else {
 			CaveExplorer.print("That key does nothing.");
 		}
+	}
+
+	public static void userEntered() {
+		CaveExplorer.print("You've entered Jessica's cave. How unfortunate."
+				+ "\nYou just lost 25 HP.");
+		int userHp = Inventory.getHp() - 25;
+		Inventory.setHp(userHp);
+		CaveExplorer.print("Your HP is now: " + userHp + ". To get it back, you have answer a riddle."
+				+ "\nWhat comes down but doesn't go up?");
+		//same bug as chatbot
+		String input = CaveExplorer.in.nextLine();
+		String inputCase = input.toLowerCase();
+		if( inputCase.equals("rain"))
+		{
+			CaveExplorer.print("Fine. You win. You can get back you 25 HP.");
+			userHp = Inventory.getHp() + 25;
+			Inventory.setHp(userHp);
+			CaveExplorer.print("Your HP is now: " + userHp + ". Now leave my cave!");
+		}
+		else
+		{
+			CaveExplorer.print("HA! You got it wrong! Let me take another 25 HP from you.");
+			userHp = Inventory.getHp() - 25;
+			Inventory.setHp(userHp);
+			CaveExplorer.print("Your HP is now: " + userHp + ". Get out of my room now.");
+		}
+		}
+
+	
+	public void enter()
+	{
+		super.enter();
+
+		
 	}
 
 }

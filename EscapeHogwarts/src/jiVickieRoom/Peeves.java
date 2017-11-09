@@ -5,7 +5,12 @@ import caveExplorer.NPC;
 
 public class Peeves extends NPC {
 	//ghost in HP
+	//kjk
 
+
+
+
+	private String inactiveDescription;
 
 	public Peeves() {
 		this.setActiveDescription("Peeves is floating in the room with you, "
@@ -15,11 +20,18 @@ public class Peeves extends NPC {
 		interact();
 	}
 
+	public void setActiveDescription(String string) {
+		CaveExplorer.print(string);
+		
+	}
+
 	public String getSymbol() {
 		return "G";
 	}
 	
+
 	public void interact() {
+
 		CaveExplorer.print("Hahahahaa, Let's play a game!!!!!!!!! Hahahhahahaa");
 		String s = CaveExplorer.in.nextLine();
 		while(!s.equalsIgnoreCase("bye")) {
@@ -29,5 +41,15 @@ public class Peeves extends NPC {
 		CaveExplorer.print("Later - I'm off to scare the otherss! Ahahahhaahhaa");
 	}
 	
-	//fghfg
+	
+	public static void Peeves() {
+		CaveExplorer.print("Hahahahaa, Let's play a game!!!!!!!!! Hahahhahahaa");
+		String s = CaveExplorer.in.nextLine();
+		while(!s.equalsIgnoreCase("bye")) {
+			CaveExplorer.print("Yeah.... Whatever..");
+			s = CaveExplorer.in.nextLine();
+		}
+		CaveExplorer.print("Later - I'm off to scare the otherss! Ahahahhaahhaa");
+	}
+	
 }

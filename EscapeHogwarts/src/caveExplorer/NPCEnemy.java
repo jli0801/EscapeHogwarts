@@ -115,7 +115,7 @@ public class NPCEnemy extends NPC {
 	}
 		
 	}
-	private int[] calculateMove() {
+	public int[] calculateMove() {
 		int[][] possibleMoves = {{-1,0}, {0,1}, {1,0}, {0, -1}};
 		//N E S W
 		int index = (int)(Math.random()*possibleMoves.length);

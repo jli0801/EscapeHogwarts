@@ -5,11 +5,13 @@ public class Inventory {
 	private String map;
 	private static int attack;
 	private static int hp;
+	private static int money;
 	
 	public Inventory()
 	{
 		updateMap();
 		hp = 100;
+		money = 0;
 		attack = (int)(Math.random()*15 +1);
 	}
 
@@ -21,6 +23,18 @@ public class Inventory {
 		return attack;
 	}
 
+	public static void setHp(int hp) {
+		Inventory.hp = hp;
+	}
+
+	public static int getMoney(){
+		return money;
+	}
+	
+	public static void setMoney(int mon){
+		Inventory.money = mon;
+	}
+	
 	public void updateMap() {
 		
 		map = " ";
