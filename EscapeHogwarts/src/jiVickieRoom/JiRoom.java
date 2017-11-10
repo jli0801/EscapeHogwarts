@@ -5,6 +5,8 @@ import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
 
 public class JiRoom extends CaveRoom {
+	
+	private boolean enteredRoom = false;
 
 	public JiRoom(String description) {
 		super(description);
@@ -33,10 +35,17 @@ public class JiRoom extends CaveRoom {
 	}
 
 	public static void userEntered() {
-		CaveExplorer.print("On a far ledge of wall, you find a dusty silver key but you did not manage to reach it.");
-		CaveExplorer.print("But when you jumped back down, you hurt yourself in the landing and lost 5 hp.");
-		int userHp = Inventory.getHp() - 5;
-		Inventory.setHp(userHp);
-		CaveExplorer.print("Your HP is now: " + userHp + ".");
+		if(enteredRoom == true) {
+			CaveExplorer.print("You glance at where the key used be.");
+		}else {
+			CaveExplorer.print("On a far ledge of wall, you find a dusty silver key.");
+			
+			if(Math.random() < .7) {
+				CaveExplorer.print("You jump on lower ledge But when you jumped back down, you hurt yourself in the landing and lost 5 hp.");
+				int userHp = Inventory.getHp() - 5;
+				Inventory.setHp(userHp);
+				CaveExplorer.print("Your HP is now: " + userHp + ".");
+			}
+		}
 	}
 }
