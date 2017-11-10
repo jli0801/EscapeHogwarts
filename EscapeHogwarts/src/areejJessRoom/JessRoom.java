@@ -47,7 +47,7 @@ public class JessRoom extends NPCRoom {
 			if(npc != null && npc.isActive()) {
 				npc.interact();
 			}else {
-				CaveExplorer.print("There is nothing to interect with.");
+				CaveExplorer.print("There is nothing to interact with.");
 			}
 		}else {
 			CaveExplorer.print("That key does nothing.");
