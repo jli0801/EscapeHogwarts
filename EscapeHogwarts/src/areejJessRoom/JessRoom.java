@@ -31,6 +31,11 @@ public class JessRoom extends NPCRoom {
 	}
 
 	
+	private static String getUserInput()
+	{
+		 String input =CaveExplorer.in.nextLine().toLowerCase();
+		 return input;
+	}
 	public void printValidMoves()
 	{
 		System.out.println("You can only enter 'i', 'b', 'm' ");
@@ -51,20 +56,20 @@ public class JessRoom extends NPCRoom {
 
 	public static void userEntered() {
 		CaveExplorer.print("You've entered the merchant's store. Enter 'i' to interact, 'b' to buy, or 'm' to merge items.");
-		
+		String input = getUserInput();
 		
 		//same bug as chatbot
 		
-		if( inputCase.equals("i"))
+		if( input.equals("i"))
 		{
 			interactDialogue();
 		
 		}
-		if(inputCase.equals("b"))
+		if(input.equals("b"))
 		{
 			buyItems();
 		}
-		if(inputCase.equals("m"))
+		if(input.equals("m"))
 		{
 			mergeItems();
 		}
@@ -74,10 +79,9 @@ public class JessRoom extends NPCRoom {
 	
 	private static void mergeItems() {
 		CaveExplorer.print("So you want to merge some items, I see. You better have all the ingredients or I'll kick you out. Are you sure you have all the items?");
-		 String input = CaveExplorer.in.nextLine();
-		 String inputCase = input.toLowerCase();
+		String input = getUserInput();
 
-		if(inputCase.equals("yes"))
+		if(input.equals("yes"))
 		{
 			if(Inventory.hasBroom())
 			{
