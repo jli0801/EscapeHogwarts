@@ -38,7 +38,7 @@ public class JessRoom extends NPCRoom {
 	}
 	public void printValidMoves()
 	{
-		System.out.println("You can only enter 'i', 'b', 'm' ");
+		System.out.println("You can only enter 'i', 'b', 'm', or 'e' ");
 	}
 	
 	/*public void performAction (int direction)
@@ -73,10 +73,20 @@ public class JessRoom extends NPCRoom {
 		{
 			mergeItems();
 		}
+		if(input.equals("e"))
+		{
+			evolveItems();
+		}
 		
 	}
 
 	
+	private static void evolveItems() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	private static void mergeItems() {
 		CaveExplorer.print("So you want to merge some items, I see. You better have all the ingredients or I'll kick you out. Are you sure you have all the items?");
 		String input = getUserInput();
@@ -103,6 +113,7 @@ public class JessRoom extends NPCRoom {
 	}
 
 
+	
 	private static void leaveRoom() {
 		
 		
