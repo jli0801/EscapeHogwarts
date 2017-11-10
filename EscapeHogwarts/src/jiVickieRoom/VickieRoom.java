@@ -74,7 +74,7 @@ public class VickieRoom extends CaveRoom {
 			
 			if(inputCase.equals("yes"))
 			{
-				//check to see if user 
+				//check to see if user v
 			}else
 			if(inputCase.equals("no")) {
 				
