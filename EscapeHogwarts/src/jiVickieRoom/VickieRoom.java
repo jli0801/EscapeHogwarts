@@ -60,7 +60,32 @@ public class VickieRoom extends CaveRoom {
 		if(inputCase.equals("no"))
 		{
 			//System.out.println("Hmph! Then go and be on your way! ");
+			//CaveRoom.print("There's a secret chamber north of here. Do you have the key to open it?");
+			/*
+			 * if response is yes, check to see if the person really does have the key. 
+			 * 		if they dont, say liar! and trap them in the room with a message from snape: even though you're not potter, you're still wandering the halls. 50 points from gryffindor.
+			 * 		if they really do have the key (picked up from ji's room, ) open the chamber, and if they go inside, trap them as well? maybe
+			 * 
+			 * if response is no, then "Hmph, go on and be on your way"
+			 */
+			CaveExplorer.print("Did you acquire the silver key?");
+			input = CaveExplorer.in.nextLine();
+			inputCase = input.toLowerCase();
+			
+			if(inputCase.equals("yes"))
+			{
+				//check to see if user 
+			}else
+			if(inputCase.equals("no")) {
+				
+			}
+			else {
+				CaveExplorer.print("Did you acquire the silver key?");
+				//put on loop or make a new method
+			}
+			
 			door();
+			
 		}else
 		{
 			CaveExplorer.print("Sorry, are you Harry? ");
@@ -160,23 +185,7 @@ public class VickieRoom extends CaveRoom {
 		//Size of Caves
 		CaveExplorer.caves = new NPCRoom[4][6];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
-		
-	/*	CaveRoom AreejRoom = new AreejRoom("Room");
-		CaveExplorer.caves[2][3] = AreejRoom;
-		CaveRoom JessRoom = new JessRoom("Room");
-		CaveExplorer.caves[2][3] = JessRoom;
-		
-		CaveRoom JiRoom = new JiRoom("Room");
-		CaveExplorer.caves[3][3] = JiRoom;
-		CaveRoom VickieRoom = new VickieRoom("Room");
-		CaveExplorer.caves[2][3] = VickieRoom;
-		
-		CaveRoom StephanieRoom = new StephanieRoom("Room");
-		CaveExplorer.caves[2][3] = StephanieRoom;
-		CaveRoom KevinRoom = new KevinRoom("Room");
-		CaveExplorer.caves[2][3] = KevinRoom; */
 
-		
 		//Populate with default caves
 		for(int row = 0; row < c.length; row++)
 		{
