@@ -10,7 +10,11 @@ public class Inventory {
 	private static int broomP2;
 	private static int broomP3;
 	private static int broomW;
+	private boolean silverKey;
 	
+	public boolean getSilverKey() {
+		return silverKey;
+	}
 	public static int getBroomW() {
 		return broomW;
 	}
@@ -25,6 +29,7 @@ public class Inventory {
 		hp = 100;
 		money = 0;
 		attack = (int)(Math.random()*15 +1);
+		silverKey = false;
 	}
 
 	public static boolean hasBroom()
