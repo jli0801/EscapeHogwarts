@@ -6,7 +6,7 @@ import caveExplorer.Inventory;
 
 public class JiRoom extends CaveRoom {
 	
-	private boolean enteredRoom = false;
+	private static boolean enteredRoom = false;
 
 	public JiRoom(String description) {
 		super(description);
