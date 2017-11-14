@@ -38,7 +38,7 @@ public class JessicaFrontEnd implements AreejSupport{
 		String userInput = waitForLetterInput("rp");
 		if(userInput.equals("r")){
 			print("Place Galleons by choosing a column from 1 to 7. Input the number of the column you want to place your "
-					+ "Galleons in. If you get FOUR in a row, either horizontally or vertically, you win. If not, I win."
+					+ "Galleons in. If you get FOUR in a row, either horizontally, vertically, or diagonally, you win. If not, I win."
 					+ "You get all the Galleons you placed down if you win. Let the best player win! Press enter to start!");
 			getUserInput();
 			menu();

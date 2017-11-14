@@ -24,17 +24,17 @@ public class AreejBackEnd implements JessicaSupport{
 		return null;
 	}
 	
-	public void checkHorizontal() {
-		
+	public boolean checkHorizontal() {
+		return false;
 	}
-	public void checkVertical() {
-		
+	public boolean checkVertical() {
+		return false;
 	}
-	public void checkDiagonalRight() {
-	
+	public boolean checkDiagonalRight() {
+		return false;
 	}
-	public void checkDiagonalLeft() {
-	
+	public boolean checkDiagonalLeft() {
+		return false;
 	}
 
 }
