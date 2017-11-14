@@ -4,7 +4,7 @@ package jiVickieRoom;
 public class JiBackEnd implements VickieSupport {
 	
 	private JiVickieBoard[][] magicSquares;
-	
+	//gh
 	
 	private JiSupport frontend;
 
