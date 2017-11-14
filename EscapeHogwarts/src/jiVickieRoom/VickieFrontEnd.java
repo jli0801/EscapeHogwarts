@@ -12,6 +12,12 @@ public class VickieFrontEnd implements JiSupport{
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public void createTheBox() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
