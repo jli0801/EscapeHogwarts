@@ -8,7 +8,7 @@ public interface VickieSupport {
 	String usedNumbers();
 	//checks throughout the string to see if the number is used, and if it is, replace the number on the game (front end)
 
-	void startGame();
+	//void startGame();
 	
 	void checkTotal();
 	

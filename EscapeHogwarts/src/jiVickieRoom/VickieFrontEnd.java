@@ -18,6 +18,24 @@ public class VickieFrontEnd implements JiSupport{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void giveDirections() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beginGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fixedNumbersInBox() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
