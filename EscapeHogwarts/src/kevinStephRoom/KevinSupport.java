@@ -2,9 +2,12 @@ package kevinStephRoom;
 
 public interface KevinSupport {
 		
-	KevinStephPlot[][] getPlots();
+	KevinStephBoard[][] getBoard();
 	
 	int[] getCoordInput();
+
+	void lightSwitch(KevinStephBoard c);
+
 	
 	
 }

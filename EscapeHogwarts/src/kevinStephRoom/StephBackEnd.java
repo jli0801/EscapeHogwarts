@@ -1,34 +1,32 @@
 package kevinStephRoom;
 
 import caveExplorer.CaveExplorer;
-import kevinStephRoom.KevinStephPlot;
+import kevinStephRoom.KevinStephBoard;
 
 public class StephBackEnd implements KevinSupport{
 
 	private StephSupport frontend;	
-	private KevinStephPlot[][] plots;
-	private int lightsOff;
+	private KevinStephBoard[][] board;
+	private int lightsOn;
 	
 	public StephBackEnd(StephSupport frontend) {
 		this.frontend = frontend;
-		plots = new KevinStephPlot[4][4];
-		createPlots();
+		board = new KevinStephBoard[4][4];
+		createBoard();
 	}
 
-	private void createPlots() {
-		for(int row = 0; row < plots.length; row++){
-			for(int col = 0; col < plots[row].length; col++){
-				plots[row][col] = new KevinStephPlot(row, col);
+	private void createBoard() {
+		for(int row = 0; row < board.length; row++){
+			for(int col = 0; col < board[row].length; col++){
+				board[row][col] = new KevinStephBoard(row, col);
 			}
 		}
 	}
 
-	@Override
-	public KevinStephPlot[][] getPlots() {
-		return plots;
+	public KevinStephBoard[][] getBoard() {
+		return board;
 	}
-
-	@Override
+	
 	public int[] getCoordInput() {
 		String input = CaveExplorer.in.nextLine();
 		int[] coords = toCoords(input);
@@ -42,6 +40,26 @@ public class StephBackEnd implements KevinSupport{
 	}
 
 	private int[] toCoords(String input) {
+		int x = Integer.parseInt(input.substring(0,1));
+		int y = Integer.parseInt(input.substring(2,3));
+		if(input.substring(1,2).equals(",") && input.length() ==3){
+			int[] coords = {x,y};
+			return coords;
+		}else{
+			return null;
+		}
+	}
+
+	public void setLights() {
+		int i = 0;
+		while(i < 5) {
+			
+		}
+	}
+	public void lightSwitch(KevinStephBoard c) {
+		
 		
 	}
+
+	
 }
