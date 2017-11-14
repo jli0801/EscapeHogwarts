@@ -16,7 +16,7 @@ public class JessicaFrontEnd implements AreejSupport{
 	}
 
 	public static void main(String[] args) {
-		public static Scanner in; //for user input
+		
 		JessicaFrontEnd demo = new JessicaFrontEnd();
 		demo.play();
 	}
@@ -50,7 +50,7 @@ public class JessicaFrontEnd implements AreejSupport{
 
 	private void startGame() {
 		AreejJessBoard[][] plots = backend.getPlots();
-		AreejJessBoard p = null;
+		
 		
 	}
 
