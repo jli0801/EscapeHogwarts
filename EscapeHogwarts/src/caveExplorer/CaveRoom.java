@@ -80,30 +80,23 @@ public class CaveRoom {
 
 	
 	public void enter() {
-		if(CaveExplorer.currentRoom.getContents().equals("A"))
+		if(CaveExplorer.currentRoom.getContents().equals("C"))
 		{
-			areejJessRoom.AreejRoom.userEntered();
+	//		areejJessRoom.JessicaFrontEnd.play();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("M"))
+		{
+	//		jiVickieRoom.VickieFrontEnd.play();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("L"))
 		{
-			areejJessRoom.JessRoom.userEntered();
-		}
-		else if(CaveExplorer.currentRoom.getContents().equals("V"))
-		{
-			jiVickieRoom.VickieRoom.userEntered();
-		}
-		else if(CaveExplorer.currentRoom.getContents().equals("J"))
-		{
-			jiVickieRoom.JiRoom.userEntered();
-		}
-		else if(CaveExplorer.currentRoom.getContents().equals("K"))
-		{
-			kevinStephRoom.KevinRoom.userEntered();
+	//		kevinStephRoom.KevinRoom.play();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("S"))
 		{
-			kevinStephRoom.StephanieRoom.userEntered();
+			areejJessRoom.JessRoom.userEntered();
 		}
+		
 		else
 		{
 			contents = "X";
@@ -189,7 +182,7 @@ public class CaveRoom {
 
 	public static void setUpCaves() {
 		//Size of Caves
-		CaveExplorer.caves = new NPCRoom[4][6];
+		CaveExplorer.caves = new NPCRoom[4][10];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
 		
 	/*	CaveRoom AreejRoom = new AreejRoom("Room");
@@ -249,20 +242,18 @@ public class CaveRoom {
 		//Set up doors
 		
 		//rooms 
-		c[0][3].setContents("A");
-		c[1][4].setContents("L");
-		c[3][2].setContents("V");
-		c[3][4].setContents("J");
-		c[2][1].setContents("K");
-		c[1][0].setContents("S");
+		c[3][1].setContents("C");
+		c[1][4].setContents("M");
+		c[3][2].setContents("L");
+		c[3][4].setContents("S");
+		
 		
 		//addRoom
-		c[0][3].addRoom(SOUTH, c[1][3], new Door("room 1", true));
+		c[3][1].addRoom(SOUTH, c[1][3], new Door("room 1", true));
 		c[1][4].addRoom(WEST, c[1][3], new Door("room 2", true));
 		c[3][2].addRoom(EAST, c[3][4],new Door("room 3", true));
 		c[3][5].addRoom(EAST, c[3][4],new Door("room 4", true));
-		c[2][1].addRoom(NORTH, c[1][2],new Door("room 5", true));
-		c[1][0].addRoom(EAST, c[1][1],new Door("room 6", true));
+		
 		
 		//connections
 		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));
@@ -288,7 +279,7 @@ public class CaveRoom {
 		c[3][3].setConnection(EAST, c[3][4], new Door("hallway", true));
 		c[3][3].setConnection(WEST, c[3][2], new Door("hallway", true));
 		
-		
+		c[3][1].setConnection(NORTH, c[2][1], new Door("hallway", true));
 		
 		
 	}
