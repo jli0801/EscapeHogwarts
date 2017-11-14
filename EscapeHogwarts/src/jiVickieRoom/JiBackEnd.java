@@ -22,11 +22,6 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-	
 	public void checkMultiples() {
 		//when adding numbers to game, add in array
 		
@@ -46,4 +41,7 @@ public class JiBackEnd implements VickieSupport {
 		
 	}
 
+	public void generateNumbers(int start, int finish) {
+		//
+	}
 }

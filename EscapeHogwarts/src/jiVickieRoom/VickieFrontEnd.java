@@ -8,16 +8,6 @@ public class VickieFrontEnd implements JiSupport{
 		backend = new JiBackEnd(this);
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void createTheBox() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void giveDirections() {
@@ -33,6 +23,13 @@ public class VickieFrontEnd implements JiSupport{
 
 	@Override
 	public void fixedNumbersInBox() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void createTheBox() {
 		// TODO Auto-generated method stub
 		
 	}
