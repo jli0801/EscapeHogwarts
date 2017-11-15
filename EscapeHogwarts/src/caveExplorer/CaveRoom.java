@@ -2,8 +2,8 @@ package caveExplorer;
 
 import java.util.Scanner;
 
-import areejJessRoom.AreejRoom;
-import areejJessRoom.JessRoom;
+import areejJessRoom.AreejJessRoom;
+import areejJessRoom.StoreRoom;
 import jiVickieRoom.JiRoom;
 import jiVickieRoom.VickieRoom;
 import kevinStephRoom.KevinRoom;
@@ -94,7 +94,7 @@ public class CaveRoom {
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("S"))
 		{
-			areejJessRoom.JessRoom.userEntered();
+			areejJessRoom.StoreRoom.userEntered();
 		}
 		
 		else
@@ -251,8 +251,8 @@ public class CaveRoom {
 		//addRoom
 		c[3][1].addRoom(NORTH, c[2][1], new Door("Connect Four", true));
 		c[1][4].addRoom(WEST, c[1][3], new Door("Magic Square", true));
-		c[3][2].addRoom(EAST, c[3][3],new Door("L", true));
-		c[3][5].addRoom(EAST, c[3][4],new Door("room 4", true));
+		c[3][2].addRoom(EAST, c[3][3],new Door("Lights Out", true));
+		c[3][5].addRoom(EAST, c[3][4],new Door("Store", true));
 		
 		
 		//connections

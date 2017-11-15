@@ -3,10 +3,10 @@ package areejJessRoom;
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
 
-public class AreejRoom extends CaveRoom {
+public class AreejJessRoom extends CaveRoom {
 
 
-	public AreejRoom(String description) {
+	public AreejJessRoom(String description) {
 		super(description);
 		// TODO Auto-generated constructor stub
 	}

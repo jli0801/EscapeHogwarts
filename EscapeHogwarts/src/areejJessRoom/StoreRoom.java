@@ -7,7 +7,7 @@ import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
 
-public class JessRoom extends NPCRoom {
+public class StoreRoom extends NPCRoom {
 
 		//press commit not commit push
 		//push branch master
@@ -29,7 +29,7 @@ public class JessRoom extends NPCRoom {
 	}
 
 
-	public JessRoom(String description) {
+	public StoreRoom(String description) {
 		super(description);
 		//super.getContents();
 		userEnter = false;
