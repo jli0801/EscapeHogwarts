@@ -66,7 +66,7 @@ public class JiBackEnd implements VickieSupport {
 
 	@Override
 	public void cheatCode() {
-		// TODO Auto-generated method stub
+		//VickieFrontEnd.endGame();
 		
 	}
 //
