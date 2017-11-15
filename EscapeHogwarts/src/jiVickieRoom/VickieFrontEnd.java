@@ -34,6 +34,13 @@ public class VickieFrontEnd implements JiSupport{
 		
 	}
 	
+	public void gameDialogue() {
+		
+	}
+	
+	public void endGame() {
+		
+	}
 	
 
 }

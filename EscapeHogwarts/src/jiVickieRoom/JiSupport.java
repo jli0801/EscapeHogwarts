@@ -11,4 +11,8 @@ public interface JiSupport {
 	//ask two questions: coordinates and number 
 	
 	void fixedNumbersInBox();//add one number from the 9 numbers and everytime it runs, the number will appear randomly.
+	
+	void gameDialogue();
+	
+	void endGame();
 }
