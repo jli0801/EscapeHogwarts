@@ -18,16 +18,21 @@ public class JessRoom extends NPCRoom {
 		//under branches there's local and remote tracking
 		//remote tracking double click to access other branches
 
-	private static Scanner inputSource = new Scanner(System.in);
+	//private static Scanner inputSource = new Scanner(System.in);
 	
 	private NPCAJ npc;
+	private static boolean userEnter;
 	
+
+	public void setUserEnter(boolean userEntered) {
+		this.userEnter = userEntered;
+	}
 
 
 	public JessRoom(String description) {
 		super(description);
 		//super.getContents();
-		
+		userEnter = false;
 	}
 
 	
@@ -55,7 +60,12 @@ public class JessRoom extends NPCRoom {
 	}*/
 
 	public static void userEntered() {
+		if(!userEnter)
+		{
 		CaveExplorer.print("You've entered the merchant's store. Enter 'i' to interact, 'b' to buy, or 'm' to merge items.");
+		userEnter = true;
+		}
+		
 		String input = getUserInput();
 		
 		//same bug as chatbot
@@ -63,7 +73,6 @@ public class JessRoom extends NPCRoom {
 		if( input.equals("i"))
 		{
 			interactDialogue();
-		
 		}
 		if(input.equals("b"))
 		{
@@ -73,18 +82,11 @@ public class JessRoom extends NPCRoom {
 		{
 			mergeItems();
 		}
-		if(input.equals("e"))
-		{
-			evolveItems();
-		}
 		
 	}
 
 	
-	private static void evolveItems() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 
 	private static void mergeItems() {
@@ -116,18 +118,23 @@ public class JessRoom extends NPCRoom {
 	
 	private static void leaveRoom() {
 		
+		//coordinate = CaveExplorer.currentRoom;
 		
 	}
 
 
 	private static void buyItems() {
-		CaveExplorer.print("");
+		CaveExplorer.print("What would you like to purchase today?"
+				+ "\nWe have freshly made Chocolate Frogs, potions, and some accessories to help with your battles.");
 		
 	}
 
 
 	private static void interactDialogue() {
-		
+		CaveExplorer.print("Welcome to Hogwart's One and Only Store! You can purchase goods to boost your health. "
+				+ "\nIf you have the pieces for to complete the broom, you can choose to merge to create the broom."
+				+ "\nTo purchase goods, enter 'b'. To merge the pieces, enter 'm'. To exit the store, enter 'e'");
+		userEntered();
 		
 	}
 
