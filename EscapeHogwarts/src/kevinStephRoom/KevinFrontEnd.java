@@ -16,8 +16,8 @@ public class KevinFrontEnd implements StephSupport{
 	}
 
 	private void play() {
-		KevinStephBoard[][] board = backend.getBoard();
-		KevinStephBoard c = null; 
+		KevinStephLight[][] board = backend.getBoard();
+		KevinStephLight c = null; 
 		
 		while () {
 			displayBoard(board);
@@ -39,8 +39,8 @@ public class KevinFrontEnd implements StephSupport{
 		
 	}
 
-	private void displayBoard(KevinStephBoard[][] board) {
-		// TODO Auto-generated method stub
+	private void displayBoard(KevinStephLight[][] board) {
+		
 		
 	}
 

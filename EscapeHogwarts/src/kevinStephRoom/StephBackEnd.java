@@ -1,31 +1,41 @@
 package kevinStephRoom;
 
 import caveExplorer.CaveExplorer;
-import kevinStephRoom.KevinStephBoard;
 
 public class StephBackEnd implements KevinSupport{
 
 	private StephSupport frontend;	
-	private KevinStephBoard[][] board;
+	private KevinStephLight[][] board;
 	private int lightsOn;
 	
 	public StephBackEnd(StephSupport frontend) {
 		this.frontend = frontend;
-		board = new KevinStephBoard[4][4];
+		board = new KevinStephLight[4][4];
 		createBoard();
 	}
 
 	private void createBoard() {
 		for(int row = 0; row < board.length; row++){
 			for(int col = 0; col < board[row].length; col++){
-				board[row][col] = new KevinStephBoard(row, col);
+				board[row][col] = new KevinStephLight(row, col);
+				board[row][col].lightOn(true);
 			}
 		}
-		//turn random lights on 
+		//turn lights on
+		
 		
 	}
-
-	public KevinStephBoard[][] getBoard() {
+	
+	public void randomLightsOff(int row, int col) {
+		for(int i = 0; i < 15; i++) {
+			row = (int)(Math.random()*4);
+			col = (int)(Math.random()*4);
+			board[row][col].lightOn(false);
+		}
+		
+	}
+	
+	public KevinStephLight[][] getBoard() {
 		return board;
 	}
 	
@@ -58,7 +68,7 @@ public class StephBackEnd implements KevinSupport{
 			
 		}
 	}
-	public void lightSwitch(KevinStephBoard c) {
+	public void lightSwitch(KevinStephLight c) {
 		
 		
 	}
