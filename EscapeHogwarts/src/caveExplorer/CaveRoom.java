@@ -104,6 +104,13 @@ public class CaveRoom {
 		{
 			kevinStephRoom.StephanieRoom.userEntered();
 		}
+		
+		
+		//TEST MINIGAME:
+		else if(CaveExplorer.currentRoom.getContents().equals("M"))
+		{
+			jiVickieRoom.VickieFrontEnd.userEntered();
+		}
 		else
 		{
 			contents = "X";
@@ -255,6 +262,7 @@ public class CaveRoom {
 		c[3][4].setContents("J");
 		c[2][1].setContents("K");
 		c[1][0].setContents("S");
+		
 		
 		//addRoom
 		c[0][3].addRoom(SOUTH, c[1][3], new Door("room 1", true));

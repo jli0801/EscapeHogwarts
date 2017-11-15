@@ -24,15 +24,8 @@ public class VickieFrontEnd implements JiSupport{
 	@Override
 	public void fixedNumbersInBox() {
 		// TODO Auto-generated method stub
-		//gjh
 	}
 
-
-	@Override
-	public void createTheBox() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public void gameDialogue() {
 		
@@ -41,6 +34,14 @@ public class VickieFrontEnd implements JiSupport{
 	public void endGame() {
 		
 	}
+
+
+	public static void userEntered() {
+		JiBackEnd.createTheBox();
+		
+	}
+
+
 	
 
 }

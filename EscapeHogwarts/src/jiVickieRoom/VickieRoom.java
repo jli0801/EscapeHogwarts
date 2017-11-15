@@ -217,10 +217,12 @@ public class VickieRoom extends CaveRoom {
 		//rooms 
 		c[1][2].setContents("A");
 		c[2][0].setContents("L");
-		//c[0][3].setContents("V");
+	
 		c[0][0].setContents("J");
 		c[1][5].setContents("K");
 		c[3][4].setContents("S");
+		
+			c[3][3].setContents("M");
 		
 		//addRoom
 		/*c[1][2].addRoom(SOUTH, c[1][3], new Door("room 1", true));

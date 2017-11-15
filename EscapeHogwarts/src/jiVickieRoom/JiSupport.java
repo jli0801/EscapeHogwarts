@@ -2,7 +2,7 @@ package jiVickieRoom;
 
 public interface JiSupport {
 
-	void createTheBox();
+	//void createTheBox();
 	//create the box: foundation of the game
 	
 	void giveDirections();
