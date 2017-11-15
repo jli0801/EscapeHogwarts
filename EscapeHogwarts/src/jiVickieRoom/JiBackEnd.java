@@ -4,7 +4,7 @@ package jiVickieRoom;
 public class JiBackEnd implements VickieSupport {
 	
 	private JiVickieBoard[][] magicSquares;
-	//gh
+	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!
 	
 	private JiSupport frontend;
 
@@ -20,8 +20,18 @@ public class JiBackEnd implements VickieSupport {
 				magicSquares[row][col] = new JiVickieBoard(row, col);
 			}
 		}
+		
+		//method for inputting number
 	}
 
+	public void setNumbers(String numbers) { //rename!!!!!
+		this.numbers = numbers;
+	}
+	
+	public String getNumbers() {
+		return numbers;
+	}
+	
 	public void checkMultiples() {
 		//when adding numbers to game, add in array
 		
