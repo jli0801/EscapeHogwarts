@@ -19,9 +19,9 @@ public class AreejBackEnd implements JessicaSupport{
 
 
 
-	public AreejJessBoard[][] getPlots() {
-		// TODO Auto-generated method stub
-		return null;
+	public AreejJessBoard[][] getBoard() {
+		
+		return board;
 	}
 	
 	public boolean checkHorizontal() {
