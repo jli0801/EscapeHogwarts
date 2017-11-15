@@ -21,6 +21,8 @@ public class StephBackEnd implements KevinSupport{
 				board[row][col] = new KevinStephBoard(row, col);
 			}
 		}
+		//turn random lights on 
+		
 	}
 
 	public KevinStephBoard[][] getBoard() {
