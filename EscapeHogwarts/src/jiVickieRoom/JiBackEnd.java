@@ -64,4 +64,10 @@ public class JiBackEnd implements VickieSupport {
 		random = (int)(Math.random() * max);
 	}
 
+	@Override
+	public void cheatCode() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

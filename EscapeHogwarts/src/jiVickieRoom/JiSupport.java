@@ -10,9 +10,11 @@ public interface JiSupport {
 	void beginGame(); //start asking questions such as what is the coordinates the user wants to put the number in
 	//ask two questions: coordinates and number 
 	
-	void fixedNumbersInBox();//add one number from the 9 numbers and everytime it runs, the number will appear randomly.
+	void fixedNumbersInBox(); //add one number from the 9 numbers and everytime it runs, the number will appear randomly.
 	
-	void gameDialogue();
+	void gameDialogue(); //dialogue during the game (theme)
 	
-	void endGame();
+	void backgroundStory(); //npc talks to harry before playing the game
+	
+	void endGame(); //ends game and gets reward
 }

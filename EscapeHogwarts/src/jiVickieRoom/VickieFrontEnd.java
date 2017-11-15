@@ -42,6 +42,11 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 
+	@Override
+	public void backgroundStory() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

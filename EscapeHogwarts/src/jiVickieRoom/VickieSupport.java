@@ -19,6 +19,7 @@ public interface VickieSupport {
 	void notifyNumbers();
 	//tells to use only numbers
 	
+	void cheatCode();
 	//cheatCode
 }
 
