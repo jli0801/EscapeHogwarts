@@ -11,6 +11,13 @@ public interface VickieSupport {
 	//void startGame();
 	
 	void checkTotal();
+	//compare rows to total
+	
+	String validNumbers();
+	//gives valid numbers
+	
+	void notifyNumbers();
+	//tells to use only numbers
 	
 	//cheatCode
 }
