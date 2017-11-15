@@ -16,5 +16,5 @@ public interface JiSupport {
 	
 	void backgroundStory(); //npc talks to harry before playing the game
 	
-	void endGame(); //ends game and gets reward
+	void endGame(); //ends game and gets reward//
 }
