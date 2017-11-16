@@ -4,12 +4,12 @@ public class KevinFrontEnd implements StephSupport{
 
 	private KevinSupport backend;
 	private int move;
-	private int lightsOff;
+	private static int lightsOff;
 	
 	public KevinFrontEnd() {
 		backend = new StephBackEnd(this);
 		move = 0;
-		lightsOff = 0; //for now until we give it a valueeeeeeeeeeeE
+		setLightsOff(0); //for now until we give it a valueeeeeeeeeeeE
 	}
 
 	public static void main(String[] args) {
@@ -21,7 +21,7 @@ public class KevinFrontEnd implements StephSupport{
 		KevinStephLight[][] board = backend.getBoard();
 		KevinStephLight c = null; 
 		
-		while (lightsOff > 0) {
+		while (getLightsOff() > 0) {
 			displayBoard(board);
 			displayMoveCount();
 		
@@ -44,6 +44,14 @@ public class KevinFrontEnd implements StephSupport{
 	private void displayBoard(KevinStephLight[][] board) {
 		
 		
+	}
+
+	public static int getLightsOff() {
+		return lightsOff;
+	}
+
+	public static void setLightsOff(int lightsOff) {
+		KevinFrontEnd.lightsOff = lightsOff;
 	}
 
 }

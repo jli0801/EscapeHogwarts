@@ -6,7 +6,6 @@ public class StephBackEnd implements KevinSupport{
 
 	private StephSupport frontend;	
 	private KevinStephLight[][] board;
-	private int lightsOff;
 	
 	public StephBackEnd(StephSupport frontend) {
 		this.frontend = frontend;
@@ -43,7 +42,6 @@ public class StephBackEnd implements KevinSupport{
 	}
 	
 	
-	
 	public KevinStephLight[][] getBoard() {
 		return board;
 	}
@@ -71,16 +69,21 @@ public class StephBackEnd implements KevinSupport{
 		}
 	}
 
-	public void setLights() {
-		int i = 0;
-		while(i < 5) {
-			
-		}
-	}
 	public void lightSwitch(KevinStephLight c) {
-		
+		while(KevinFrontEnd.getLightsOff() != 0) {
+			if(c.getLightOn() == true) {
+				c.setLightOn(false);
+				checkAdjacentLight();
+			}
+			else {
+				c.setLightOn(true);
+			}
+		}
 		
 	}
 
-	
+	public void checkAdjacentLight() {
+		
+	}
+
 }
