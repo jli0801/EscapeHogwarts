@@ -1,9 +1,13 @@
 package kevinStephRoom;
 
-public class KevinSupport {
+public interface KevinSupport {
+		
+	KevinStephLight[][] getBoard();
+	
+	int[] getCoordInput();
 
-	public KevinSupport() {
-		// TODO Auto-generated constructor stub
-	}
+	void lightSwitch(KevinStephLight c);
 
+	
+	
 }
