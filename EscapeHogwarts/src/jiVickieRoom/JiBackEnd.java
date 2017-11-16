@@ -10,6 +10,7 @@ public class JiBackEnd implements VickieSupport {
 	
 	private int total = 15;
 	private int random;
+	private String numbers = "";
 
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
@@ -35,14 +36,19 @@ public class JiBackEnd implements VickieSupport {
 		return numbers;
 	}
 	
-	public void checkMultiples() {
-		//when adding numbers to game, add in array
-		
-		
+	public void checkMultiples(int num) {
+		if(checkValid() == true) {
+			if(usedNumbers().indexOf(num) > -1) {
+				break;
+				//ask to replace, etc.
+			}else {
+				numbers += Integer.toString(num);
+			}
+		}
 	}
 	
 	public String usedNumbers() {
-		return "";
+		return numbers;
 	}
 	
 	public void notifyNumbers() {
@@ -51,6 +57,13 @@ public class JiBackEnd implements VickieSupport {
 
 	public String validNumbers() {
 		return "1234567890";
+	}
+	
+	public void checkValid(int num) {
+		if(validNumbers().indexOf(num) > -1 && num.length() == 1) {
+			return true;
+		}else {
+			return false;
 	}
 
 
@@ -69,5 +82,4 @@ public class JiBackEnd implements VickieSupport {
 		//VickieFrontEnd.endGame();
 		
 	}
-//
 }
