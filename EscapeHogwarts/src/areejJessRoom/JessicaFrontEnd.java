@@ -24,6 +24,7 @@ public class JessicaFrontEnd implements AreejSupport{
 	
 	public JessicaFrontEnd() {
 		backend = new AreejBackEnd(this);
+		
 	}
 
 	public static void main(String[] args) {
@@ -49,19 +50,22 @@ public class JessicaFrontEnd implements AreejSupport{
 	private static String[][] createBoard(int row1, int col1) {
 	//	int numCol = (col1 * 2)+1;
 	//	int numRow = row1 +1;
-		col1 = col1 + 7;
-		row1++; 
+		col1 = col1*2 +1;
+		
 		String[][] boardC4 = new String[row1][col1];
+		
+		int firstNumber = 0;
+		for(int i = 0; i < col1 ; i++){
+			if(i%2 == 1) //odd
+			{
+				boardC4[0][i] = "  ";
+			
+			}
+		} 
+		
 		
 		for(int row =0; row<boardC4.length; row++) //rows
 		{
-			if(row == 0)
-			{
-				for(int col  = 0; col <board[row][col].length(); col++)
-				{
-				boardC4[row][col] = Integer.toString(col);
-				}
-			}
 		
 			for(int col=0; col<boardC4[row].length ;col++) //columns
 			{
@@ -97,7 +101,8 @@ public class JessicaFrontEnd implements AreejSupport{
 	private static void startGame() {
 		//AreejJessBoard[][] board = backend.getBoard();
 		displayBoard(board);
-		System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
+		System.out.println("  0   1   2   3   4   5   6  \n" 
+		+ "Where would you like to place your Galleon? Pick a number from 0 to 6.");
 		boolean playingGame = true;
 		while(playingGame)
 		{
@@ -106,7 +111,8 @@ public class JessicaFrontEnd implements AreejSupport{
 			while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
 				System.out.println("You can't put the Galleon there! " 
 						+ "Column is full!");
-				System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
+				System.out.println("  0   1   2   3   4   5   6  \n" 
+						+ "Where would you like to place your Galleon? Pick a number from 0 to 6.");
 				AreejBackEnd.userMove(getUserInput());	
 			}
 			
