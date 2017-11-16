@@ -83,7 +83,7 @@ public class StephBackEnd implements KevinSupport{
 	}
 
 	public void checkAdjacentLight() {
-		
+		//
 	}
 
 }

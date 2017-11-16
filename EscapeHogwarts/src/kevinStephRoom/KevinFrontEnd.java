@@ -42,7 +42,7 @@ public class KevinFrontEnd implements StephSupport{
 	}
 
 	private void displayBoard(KevinStephLight[][] board) {
-		
+		//
 		
 	}
 
