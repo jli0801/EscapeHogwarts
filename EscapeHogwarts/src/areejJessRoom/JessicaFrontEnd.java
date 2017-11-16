@@ -101,8 +101,7 @@ public class JessicaFrontEnd implements AreejSupport{
 	private static void startGame() {
 		//AreejJessBoard[][] board = backend.getBoard();
 		displayBoard(board);
-		System.out.println("  0   1   2   3   4   5   6  \n" 
-		+ "Where would you like to place your Galleon? Pick a number from 0 to 6.");
+		System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
 		boolean playingGame = true;
 		while(playingGame)
 		{
@@ -111,8 +110,7 @@ public class JessicaFrontEnd implements AreejSupport{
 			while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
 				System.out.println("You can't put the Galleon there! " 
 						+ "Column is full!");
-				System.out.println("  0   1   2   3   4   5   6  \n" 
-						+ "Where would you like to place your Galleon? Pick a number from 0 to 6.");
+				System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
 				AreejBackEnd.userMove(getUserInput());	
 			}
 			
@@ -178,6 +176,7 @@ public class JessicaFrontEnd implements AreejSupport{
 			}
 			System.out.println();
 		}
+		System.out.println("  0   1   2   3   4   5   6  \n");
 		
 	}
 
