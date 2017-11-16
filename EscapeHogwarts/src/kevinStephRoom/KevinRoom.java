@@ -10,11 +10,13 @@ public class KevinRoom extends CaveRoom {
 		
 	}
 
+	/*
 	public static int randomRoom() {
 		int room = (int)(Math.random()*4); //0 to 5
 		//0 to 4
 		return room;
 	}
+	*/
 	
 	public void printTeleport()
 	{
@@ -24,7 +26,7 @@ public class KevinRoom extends CaveRoom {
 	public static void performTeleport()
 	{
 		//if there are bordering rooms
-		CaveExplorer.currentRoom = CaveExplorer.caves[randomRoom()][randomRoom()]; 
+		CaveExplorer.currentRoom = CaveExplorer.caves[0][1]; 
 		//if the coordinate has a hallway or an exit then you set the coordinate and move the user.
 		CaveExplorer.currentRoom.enter();
 	}
