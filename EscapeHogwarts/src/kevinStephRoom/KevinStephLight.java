@@ -2,8 +2,13 @@ package kevinStephRoom;
 
 public class KevinStephLight {
 
-	public KevinStephLight() {
-		// TODO Auto-generated constructor stub
+	private boolean lightOn;
+
+	public KevinStephLight(int row, int col) {
+		
 	}
 
+	public void lightOn(boolean lightOn) {
+		this.lightOn = lightOn;
+	}
 }
