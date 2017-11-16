@@ -8,7 +8,15 @@ public class KevinStephLight {
 		
 	}
 
-	public void lightOn(boolean lightOn) {
+	public void lightOn(boolean lightOn) { //main method
+		this.setLightOn(lightOn);
+	}
+
+	public boolean getLightOn() { //getter
+		return lightOn;
+	}
+
+	public void setLightOn(boolean lightOn) { //setter
 		this.lightOn = lightOn;
 	}
 }
