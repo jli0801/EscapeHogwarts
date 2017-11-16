@@ -6,7 +6,6 @@ public class StephBackEnd implements KevinSupport{
 
 	private StephSupport frontend;	
 	private KevinStephLight[][] board;
-	private int lightsOn;
 	
 	public StephBackEnd(StephSupport frontend) {
 		this.frontend = frontend;
@@ -17,27 +16,31 @@ public class StephBackEnd implements KevinSupport{
 	private void createBoard() {
 		for(int row = 0; row < board.length; row++){
 			for(int col = 0; col < board[row].length; col++){
-				board[row][col] = new KevinStephLight(row, col);
-				board[row][col].lightOn(true);
+				board[row][col] = new KevinStephLight(row, col); //board is created 
+				board[row][col].lightOn(true); // all lights are on
 			}
 		}
-		//turn lights on
 		
+		randomLightsOff(); //some lights turn off to start the game
 		
 	}
 	
-	public void randomLightsOff(int row, int col) {
+	public void randomLightsOff() {
 		for(int i = 0; i < 15; i++) {
-			row = (int)(Math.random()*4);
-			col = (int)(Math.random()*4);
+			int row = (int)(Math.random()*5);
+			int col = (int)(Math.random()*5);
 			board[row][col].lightOn(false);
 		}
 		
 	}
 	
 	public boolean isLightOn(int row, int col) {
-		
+		if (board[row][col].getLightOn() == true) {
+			return true;
+		}
+		return false;
 	}
+	
 	
 	public KevinStephLight[][] getBoard() {
 		return board;
@@ -66,16 +69,21 @@ public class StephBackEnd implements KevinSupport{
 		}
 	}
 
-	public void setLights() {
-		int i = 0;
-		while(i < 5) {
-			
-		}
-	}
 	public void lightSwitch(KevinStephLight c) {
-		
+		while(KevinFrontEnd.getLightsOff() != 0) {
+			if(c.getLightOn() == true) {
+				c.setLightOn(false);
+				checkAdjacentLight();
+			}
+			else {
+				c.setLightOn(true);
+			}
+		}
 		
 	}
 
-	
+	public void checkAdjacentLight() {
+		//
+	}
+
 }
