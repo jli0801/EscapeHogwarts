@@ -75,4 +75,25 @@ public class AreejBackEnd implements JessicaSupport{
 		
 	}
 
+
+
+	public static void userMove() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public static boolean getValidMove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	public static void computerMove() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

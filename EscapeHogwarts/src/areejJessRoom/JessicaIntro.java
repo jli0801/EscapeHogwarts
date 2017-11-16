@@ -12,9 +12,9 @@ public class JessicaIntro {
 	}
 
 	private void displayGameBoard() {
-		String openMessage = "You're trapped in the room until you beat me, Potter! ";
+		String openMessage = "You're trapped in the room until you beat me, Potter! The game in Connect Four using Galleons!";
 		
-		System.out.println("\n- - press enter to start the battle - -");
+		System.out.println(openMessage + "\n- - press enter to start the battle or read instructions- -");
 		
 	}
 

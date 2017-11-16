@@ -82,7 +82,7 @@ public class CaveRoom {
 	public void enter() {
 		if(CaveExplorer.currentRoom.getContents().equals("C"))
 		{
-	//		areejJessRoom.JessicaFrontEnd.play();
+			areejJessRoom.JessicaFrontEnd.play();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("M"))
 		{

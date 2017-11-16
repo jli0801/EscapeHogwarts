@@ -1,13 +1,26 @@
 package areejJessRoom;
 import caveExplorer.CaveExplorer;
-
+import caveExplorer.CaveRoom;
+import caveExplorer.Inventory;
 
 import java.util.Scanner;
 
 public class JessicaFrontEnd implements AreejSupport{
 
-	private AreejBackEnd backend;
-	
+	public static void setUserWon(boolean userWon) {
+		JessicaFrontEnd.userWon = userWon;
+	}
+
+	public static void setComputerWon(boolean compWon)
+	{
+		JessicaFrontEnd.computerWon = compWon;
+	}
+
+	private static AreejBackEnd backend;
+	private static boolean userWon = false;
+	private static boolean computerWon = false;
+	static CaveRoom[][] c = CaveExplorer.caves; 
+	private static String [][] board;
 	
 	public JessicaFrontEnd() {
 		backend = new AreejBackEnd(this);
@@ -16,7 +29,7 @@ public class JessicaFrontEnd implements AreejSupport{
 	public static void main(String[] args) {
 		
 		JessicaFrontEnd demo = new JessicaFrontEnd();
-		demo.play();
+		JessicaFrontEnd.play();
 	}
 
 	private static String getUserInput()
@@ -25,13 +38,40 @@ public class JessicaFrontEnd implements AreejSupport{
 		 return input;
 	}
 	
-	private void play() {
+	public static void play() {
+		
 		new JessicaIntro().play();
+		board = createBoard(6,7);
 		CaveExplorer.in.nextLine();
 		menu();
 	}
 
-	private void menu() {
+	private static String[][] createBoard(int row1, int col1) {
+	//	int numCol = (col1 * 2)+1;
+	//	int numRow = row1 +1;
+		col1 = col1 + 7;
+		row1++; 
+		String[][] boardC4 = new String[row1][col1];
+		
+		for(int row =0; row<boardC4.length; row++) //rows
+		{
+			for(int col=0; col<boardC4[row].length ;col++) //columns
+			{
+				
+				if(col%2==0)
+				{
+					boardC4[row][col] = "| ";
+				}
+				else{
+					if(row!=0)
+						boardC4[row][col] = "  ";
+				}
+			}
+		}
+		return boardC4;
+	}
+
+	private static void menu() {
 		System.out.println("Enter 'r' for rules or 'p' to play.");
 		String userInput = waitForLetterInput("rp");
 		if(userInput.equals("r")){
@@ -46,10 +86,40 @@ public class JessicaFrontEnd implements AreejSupport{
 		
 	}
 
-	private void startGame() {
-		AreejJessBoard[][] board = backend.getBoard();
+	private static void startGame() {
+		//AreejJessBoard[][] board = backend.getBoard();
 		displayBoard(board);
 		System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
+		boolean playingGame = true;
+	/*	while(playingGame)
+		{
+			AreejBackEnd.userMove();	
+		/*	while(!AreejBackEnd.getValidMove()&& !userWon){
+				System.out.println("You can't put the Galleon there! " 
+						+ "Column is full!");
+				AreejBackEnd.userMove();	
+			}*/
+		/*	if(userWon){
+				
+				int moneyUser  = (int)Math.random()*15 + 1;
+				displayBoard(board);
+				System.out.println("I guess you won..Keep those Galleons! Get out of my room now!");
+				Inventory.setMoney(Inventory.getMoney() + moneyUser);
+				playingGame = false;
+				CaveExplorer.currentRoom = c[2][1];
+				CaveExplorer.currentRoom.enter();
+			}
+			else{
+				AreejBackEnd.computerMove();
+				System.out.println("My turn! \n");
+				displayBoard(board);
+				if(computerWon){
+					System.out.println("I won! Now get out of my room! There'll be no prize for you!");
+					
+					playingGame =false;
+				}
+			}
+		}
 		if(checkValid(getUserInput()))
 		{
 			displayMove();
@@ -57,45 +127,38 @@ public class JessicaFrontEnd implements AreejSupport{
 		else
 		{
 			getBadRes();
-		}
+		}*/
 		
 		
 	}
 
 	
 
-	private void getBadRes() {
+	private static void getBadRes() {
 		String[] badRes = {"That's not correct,", "Please try again!", "Follow the rules!"};
 		System.out.println(badRes[(int)Math.random()*2]);
 	}
 
-	private void displayMove() {
+	private static void displayMove() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	private boolean checkValid(String userInput) {
+	private static boolean checkValid(String userInput) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	private void displayBoard(AreejJessBoard[][] board) {
+	private static void displayBoard(String[][] board2) {
 		
-		String columns = "0 1 2 3 4 5 6 ";
-		//for(int row = 0; row < board.length; row++){
-			//System.out.print(col.substring(row, row+1)+" ");
-			for(int col = 0; col < board[0].length; col++){
-				//if(board[0][col].isRevealed()){
-					if(board[0][col].placesPiece(col)){
-						System.out.print("X");
-					}
-				//}else{
-				//	System.out.print(" ");
-				//}
+		for(int row = 0; row <board2.length;row ++)
+		{
+			for(int col=0; col <board2[row].length;col++)
+			{
+				System.out.print(board2[row][col]);
 			}
-			System.out.println(" " + columns.substring(0, 0+1));
-		//}
-		System.out.println(columns.substring(0, board[0].length+2));
+			System.out.println();
+		}
 		
 	}
 
