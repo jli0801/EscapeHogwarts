@@ -105,13 +105,18 @@ public class JessicaFrontEnd implements AreejSupport{
 		boolean playingGame = true;
 		while(playingGame)
 		{
-			AreejBackEnd.userMove(getUserInput());	
 			int userInt = Integer.parseInt(getUserInput());
+			if(checkValid(userInt))
+			{
+			AreejBackEnd.userMove(userInt);	
+			}
 			while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
 				System.out.println("You can't put the Galleon there! " 
 						+ "Column is full!");
+				
+				
 				System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
-				AreejBackEnd.userMove(getUserInput());	
+				AreejBackEnd.userMove(userInt);	
 			}
 			
 			if(userWon) //user turn
@@ -137,15 +142,7 @@ public class JessicaFrontEnd implements AreejSupport{
 				}
 			}
 		}
-		if(checkValid(getUserInput()))
-		{
-			displayMove();
-		}
-		else
-		{
-			getBadRes();
-		}
-	
+		
 		
 	}
 
@@ -161,9 +158,8 @@ public class JessicaFrontEnd implements AreejSupport{
 		
 	}
 
-	private static boolean checkValid(String userInput) {
-		// TODO Auto-generated method stub
-		return false;
+	private static boolean checkValid(int userInput) {
+		return userNumber >= 0 && userNumber <= 6;
 	}
 
 	private static void displayBoard(String[][] board2) {

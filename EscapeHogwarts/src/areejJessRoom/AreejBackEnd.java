@@ -53,8 +53,8 @@ public class AreejBackEnd implements JessicaSupport{
 		return false;
 	}
 
-	public static void userMove(String userIn) {
-		int numberUser = Integer.parseInt(userIn);
+	public static void userMove(int userIn) {
+		
 	
 			for(int i = board.length ; i <0;i--) {
 				if(board[i][numberUser] == 0)
