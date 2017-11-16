@@ -35,6 +35,10 @@ public class StephBackEnd implements KevinSupport{
 		
 	}
 	
+	public boolean isLightOn(int row, int col) {
+		
+	}
+	
 	public KevinStephLight[][] getBoard() {
 		return board;
 	}

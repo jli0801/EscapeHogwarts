@@ -35,7 +35,7 @@ public class KevinFrontEnd implements StephSupport{
 	}
 
 	private void displayMoveCount() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
