@@ -16,7 +16,7 @@ public class KevinStephLight {
 		return lightOn;
 	}
 
-	public void setLightOn(boolean lightOn) { //setter
+	public void setLightOn(boolean lightOn) { //setters
 		this.lightOn = lightOn;
 	}
 }
