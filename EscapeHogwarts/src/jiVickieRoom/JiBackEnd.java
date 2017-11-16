@@ -1,5 +1,6 @@
 package jiVickieRoom;
 
+import caveExplorer.CaveExplorer;
 
 public class JiBackEnd implements VickieSupport {
 	
@@ -10,7 +11,11 @@ public class JiBackEnd implements VickieSupport {
 	
 	private int total = 15;
 	private int random;
-	private String numbers = "";
+	private String currentNumber;
+	private int newNumber;
+	private String usedNumbers;
+	private String[] outerNumbers = {};
+	private String[] innerNumbers = {};
 
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
@@ -35,49 +40,46 @@ public class JiBackEnd implements VickieSupport {
 	public String getNumbers() {
 		return numbers;
 	}
+
+	public boolean checkValid(String character) {
+		if(validNumbers().indexOf(character) > -1 && character.length() == 1) {
+			currentNumber = character;
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
-	public void checkMultiples(int num) {
-		if(checkValid() == true) {
-			if(usedNumbers().indexOf(num) > -1) {
-				break;
-				//ask to replace, etc.
+	public void checkMultiples(String character) {
+		if(checkValid(character) == true) {
+			newNumber = Integer.parseInt(currentNumber);
+			if(usedNumbers().indexOf(newNumber) > -1) {
+				//replace original number with space
+				//add number in new space
 			}else {
-				numbers += Integer.toString(num);
+				usedNumbers += Integer.toString(newNumber);
+				//add number in new space
 			}
 		}
 	}
 	
 	public String usedNumbers() {
-		return numbers;
-	}
-	
-	public void notifyNumbers() {
-		System.out.println("You can only type a number.");
+		return usedNumbers;
 	}
 
 	public String validNumbers() {
 		return "1234567890";
 	}
-	
-	public void checkValid(int num) {
-		if(validNumbers().indexOf(num) > -1 && num.length() == 1) {
-			return true;
-		}else {
-			return false;
-	}
 
-
-	@Override
 	public void checkTotal() {
-		// TODO Auto-generated method stub
-	
+		//check each row, column, diagonal == 15
+		
 	}
 
 	public void generateNumbers(int max) {;
 		random = (int)(Math.random() * max);
 	}
 
-	@Override
 	public void cheatCode() {
 		//VickieFrontEnd.endGame();
 		

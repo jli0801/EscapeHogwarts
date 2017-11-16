@@ -2,7 +2,7 @@ package jiVickieRoom;
 
 public interface VickieSupport {
 
-	void checkMultiples();
+	void checkMultiples(String character);
 	//when adding numbers to game, add in array
 	
 	String usedNumbers();
@@ -16,8 +16,13 @@ public interface VickieSupport {
 	String validNumbers();
 	//gives valid numbers
 	
-	void notifyNumbers();
+	//*** FRONT END
+	//void notifyNumbers(); 
 	//tells to use only numbers
+	//*** FRONT END
+	//public void notifyNumbers() {
+		//	System.out.println("You can only type a number.");
+		//}
 	
 	void cheatCode();
 	//cheatCode
