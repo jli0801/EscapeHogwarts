@@ -55,6 +55,14 @@ public class JessicaFrontEnd implements AreejSupport{
 		
 		for(int row =0; row<boardC4.length; row++) //rows
 		{
+			if(row == 0)
+			{
+				for(int col  = 0; col <board[row][col].length(); col++)
+				{
+				boardC4[row][col] = Integer.toString(col);
+				}
+			}
+		
 			for(int col=0; col<boardC4[row].length ;col++) //columns
 			{
 				
@@ -91,15 +99,19 @@ public class JessicaFrontEnd implements AreejSupport{
 		displayBoard(board);
 		System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
 		boolean playingGame = true;
-	/*	while(playingGame)
+		while(playingGame)
 		{
-			AreejBackEnd.userMove();	
-		/*	while(!AreejBackEnd.getValidMove()&& !userWon){
+			AreejBackEnd.userMove(getUserInput());	
+			int userInt = Integer.parseInt(getUserInput());
+			while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
 				System.out.println("You can't put the Galleon there! " 
 						+ "Column is full!");
-				AreejBackEnd.userMove();	
-			}*/
-		/*	if(userWon){
+				System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
+				AreejBackEnd.userMove(getUserInput());	
+			}
+			
+			if(userWon) //user turn
+			{
 				
 				int moneyUser  = (int)Math.random()*15 + 1;
 				displayBoard(board);
@@ -109,7 +121,8 @@ public class JessicaFrontEnd implements AreejSupport{
 				CaveExplorer.currentRoom = c[2][1];
 				CaveExplorer.currentRoom.enter();
 			}
-			else{
+			else //our turn
+			{
 				AreejBackEnd.computerMove();
 				System.out.println("My turn! \n");
 				displayBoard(board);
@@ -127,8 +140,8 @@ public class JessicaFrontEnd implements AreejSupport{
 		else
 		{
 			getBadRes();
-		}*/
-		
+		}
+	
 		
 	}
 
@@ -212,8 +225,11 @@ public class JessicaFrontEnd implements AreejSupport{
 		System.out.println(printString);
 	}
 
-	public static void notPossiblePlace() {
-		// TODO Auto-generated method stub
+	
+
+	public static void placeCoord(int row, int column , String input) {
 		
+		displayBoard();
 	}
+
 }

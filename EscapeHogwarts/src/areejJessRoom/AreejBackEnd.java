@@ -3,14 +3,15 @@ package areejJessRoom;
 public class AreejBackEnd implements JessicaSupport{
 
 	private AreejSupport frontend;
-	private static AreejJessBoard[][] board;
-
+	private static int[][] board;
+	private static String user;
+	private static String computer;
 	public AreejBackEnd(AreejSupport frontend) {
 		this.frontend = frontend;
-		board = new AreejJessBoard[6][7];
-	}
+		user = "U";
+		computer = "C";
+			}
 
-	
 
 	public static void main(String[] args) {
 		
@@ -19,21 +20,20 @@ public class AreejBackEnd implements JessicaSupport{
 
 
 
-	public AreejJessBoard[][] getBoard() {
+	public int[][] getBoard() {
 		
 		return board;
 	}
 	//create for loops
 	
 	//check for both user and AI
-	public String checkWinner()
+	public void checkWinner()
 	{
 		if(checkHorizontal() || checkVertical() ||
 				checkDiagonalRight() || checkDiagonalLeft())
 		{
 			
 		}
-		return "I have won!";
 		
 		
 	}
@@ -53,47 +53,42 @@ public class AreejBackEnd implements JessicaSupport{
 		return false;
 	}
 
-
-
-	public static void putPiece(int column) {
+	public static void userMove(String userIn) {
+		int numberUser = Integer.parseInt(userIn);
 	
-		for(int row  = 0; row < board.length; row++)
-		{
-			for(int i =0; i <column; i++)
-			{
-				if( board[row][column] == null)
+			for(int i = board.length ; i <0;i--) {
+				if(board[i][numberUser] == 0)
 				{
-					
+					board[i][numberUser] = 1;
+					JessicaFrontEnd.placeCoord(i,numberUser,user);
 				}
-				else
-				{
-					JessicaFrontEnd.notPossiblePlace();
-				}
+				
 			}
-		}
 	
-		
 	}
-
-
-
-	public static void userMove() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	public static boolean getValidMove() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
 
 	public static void computerMove() {
-		// TODO Auto-generated method stub
+		int compInt = (int)(Math.random()* 6);
+		while(!validateMove(compInt))
+		{
+			compInt = (int)(Math.random()* 6);
+		}
+		for(int i = board.length ; i <0;i--) {
+			if(board[i][compInt] == 0)
+			{
+				board[i][compInt] = 1;
+				JessicaFrontEnd.placeCoord(i,compInt,user);
+			}
+			
+		}
+		}
+	
+
+
+
+	public static boolean validateMove(int column) {
 		
+		return false;
 	}
 
 }
