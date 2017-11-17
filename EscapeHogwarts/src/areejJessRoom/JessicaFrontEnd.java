@@ -127,6 +127,7 @@ public class JessicaFrontEnd implements AreejSupport{
 			if(checkValid(userInt))
 			{
 			AreejBackEnd.userMove(userInt);	
+		//	placeCoord(userInt);
 			}
 			else
 			{
@@ -250,15 +251,17 @@ public class JessicaFrontEnd implements AreejSupport{
 	
 
 	public static void placeCoord(int row, int column , String input) {
-		createBoard(6,7);
+		
+		
 		if(input.equals("user"))
 		{
 			board[row][column] = "U";
 		}
-		else
+		if(input.equals("computer"))
 		{
 			board[row][column] = "C";
 		}
+		createBoard(6,7);
 		
 	}
 

@@ -2,9 +2,10 @@ package areejJessRoom;
 
 public class AreejJessBoard {
 
-	private static String[][] board;
+	private static int[][] board;
+	
 	public AreejJessBoard() {
-		board = new String[6][7];
+		board = new int[6][7];
 		populateBoard(board);
 	}
 
@@ -32,13 +33,18 @@ public class AreejJessBoard {
 
 	
 	
-	private void populateBoard(String[][] board2) {
-		for(int i = 0; i < board.length; i++) {
-			for(int j =0; j < board[i].length; j++) {
-				board[i][j] = "";
+	private void populateBoard(int[][] board2) {
+		for(int i = 0; i < board2.length; i++) {
+			for(int j =0; j < board2[i].length; j++) {
+				board2[i][j] = 0;
 			}
 		}
 		
+	}
+	
+	public static int[][] getBoard()
+	{
+		return board;
 	}
 	
 	/*public static String[][] makeBoard(int r, int c){
