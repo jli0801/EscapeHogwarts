@@ -5,7 +5,7 @@ import caveExplorer.CaveExplorer;
 public class JiBackEnd implements VickieSupport {
 	
 	private static JiVickieBoard[][] magicSquares;
-	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!
+	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!kjk
 	
 	private JiSupport frontend;
 	
@@ -83,6 +83,11 @@ public class JiBackEnd implements VickieSupport {
 	public void cheatCode() {
 		//VickieFrontEnd.endGame();
 		
+	}
+
+	@Override
+	public JiVickieBoard[][] getBoxes() {
+		return magicSquares;
 	}
 	
 }

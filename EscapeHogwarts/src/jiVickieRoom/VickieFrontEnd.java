@@ -1,31 +1,14 @@
 package jiVickieRoom;
 
-import caveExplorer.CaveExplorer;
 import java.util.Scanner;
 
+import caveExplorer.CaveExplorer;
 
 public class VickieFrontEnd implements JiSupport{
 
-	/*
-	 * 1) Game starts
-	 * 2) Provide the rules
-	 * 3) Game starts:
-	 * 		a grid of nine boxes are created,
-	 * 		ask the user which coordinates they want to place a number in, and ask what number they want to type;
-	 * 		put it in
-	 * 
-	 * 		if all the nine slots are filled, ask wheether we should check if its correct
-	 * 
-	 * 		and reward is.....
-	 * 
-	 * 
-	 * 
-	 * 		STORYYY: ...... unknown
-	 * 
-	 * 		innovate: if they have the correct number in the correct place something magical will happen
-	 */
 	private VickieSupport backend;
 	private String input;
+	private String grid;
 	
 	public static final void main(String[] args){
 		VickieFrontEnd game = new VickieFrontEnd();
@@ -35,22 +18,12 @@ public class VickieFrontEnd implements JiSupport{
 	public VickieFrontEnd() {
 		backend = new JiBackEnd(this);
 		CaveExplorer.in = new Scanner(System.in);
-		//or use the cave explorer version
-		/*
-		 * input = CaveExplorer.in.nextLine();
-		inputCase = input.toLowerCase();
-		 */
 	}
 
-	@Override
 	public void startGame() {
-		//some dialogue, 
 		directions();
-	
 	}
 
-
-	
 	public void directions() {
 		CaveExplorer.print("Welcome to Magic Squares! Play in order to ...... (we'll fill it in later).....");
 		CaveExplorer.print("");
@@ -64,9 +37,33 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("When you're ready to play, press enter!");
 		CaveExplorer.in.nextLine();
 		CaveExplorer.print("When you're ready to play, press enter!");
+		JiVickieBoard[][] magicSquares = backend.getBoxes();
+		displayTheGrid(magicSquares);
 	}
 
+	public void displayTheGrid(JiVickieBoard[][] magicSquares) {
+		CaveExplorer.print("SHOW GRID!");
+		String rows = "0123456789";
+		String columns = "  0123456789";
+		
+		for(int row = 0; row < magicSquares.length; row++)
+		{
+			System.out.print(rows.substring(row, row+1)+" ");
+			for(int col = 0; col < magicSquares[row].length; col++)
+			{
+					System.out.print(".");
+			}
+			System.out.println(" " + rows.substring(row, row+1));
+		}
+		System.out.println(columns.substring(0, magicSquares[0].length+2));
 
+	}
+	
+}
+	
+
+			
+	
 	/*public void setNumber(int row, int col, int num)
 	/*public void fixedNumbersInBox() {
 		// TODO Auto-generated method stub
@@ -94,5 +91,24 @@ public class VickieFrontEnd implements JiSupport{
 		
 	}*/
 	
+
+/*
+ * 1) Game starts
+ * 2) Provide the rules
+ * 3) Game starts:
+ * 		a grid of nine boxes are created,
+ * 		ask the user which coordinates they want to place a number in, and ask what number they want to type;
+ * 		put it in
+ * 
+ * 		if all the nine slots are filled, ask wheether we should check if its correct
+ * 
+ * 		and reward is.....
+ * 
+ * 
+ * 
+ * 		STORYYY: ...... unknown
+ * 
+ * 		innovate: if they have the correct number in the correct place something magical will happen
+ */
 //
-}
+

@@ -26,5 +26,7 @@ public interface VickieSupport {
 	
 	void cheatCode();
 	//cheatCode
+
+	JiVickieBoard[][] getBoxes();
 }
 //
