@@ -1,12 +1,18 @@
 package kevinStephRoom;
 
 import caveExplorer.CaveExplorer;
+import java.util.Scanner;
 
 public class StephFrontEnd implements StephSupport{
 
 	private KevinSupport backend;
 	private int move;
 	private static int lightsOff;
+	private static String [][] board;
+	
+	public static String[][] getBoard() {
+		return board;
+	}
 	
 	public StephFrontEnd() {
 		backend = new KevinBackEnd(this);
