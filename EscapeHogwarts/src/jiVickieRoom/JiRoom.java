@@ -56,7 +56,9 @@ public class JiRoom extends CaveRoom {
 					Inventory.setHp(userHp);
 					CaveExplorer.print("Your HP is now: " + userHp + ".");
 				}else {
-					CaveExplorer.print("Congratulations! You receive a silver key.");
+					CaveExplorer.print("Congratulations! You receive a silver key. (Press enter)");
+					CaveExplorer.in.nextLine();
+					CaveExplorer.print("The key magically gleams in your touch.");
 					CaveExplorer.print("Maybe you can use it for something..?");
 					gotKey = true;
 					Inventory.setSilverKey(true);
