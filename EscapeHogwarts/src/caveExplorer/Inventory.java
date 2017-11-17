@@ -10,11 +10,16 @@ public class Inventory {
 	private static int broomP2;
 	private static int broomP3;
 	private static int broomW;
-	private boolean silverKey;
+	private static boolean silverKey;
 	
 	public boolean getSilverKey() {
 		return silverKey;
 	}
+
+	public static void setSilverKey(boolean input) {
+		silverKey = input;
+	}
+	
 	public static int getBroomW() {
 		return broomW;
 	}
