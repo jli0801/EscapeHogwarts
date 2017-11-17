@@ -18,10 +18,22 @@ public class VickieFrontEnd implements JiSupport{
 	public VickieFrontEnd() {
 		backend = new JiBackEnd(this);
 		CaveExplorer.in = new Scanner(System.in);
+		
 	}
 
 	public void startGame() {
 		directions();
+		CaveExplorer.print("Which coordinates do you want to put a number in?");
+		input = CaveExplorer.in.nextLine();
+		placeNumbers(input);
+	}
+
+	private void placeNumbers(String nums) {
+		int len = nums.length();
+		 if(len > 5 || len <5) {
+			 CaveExplorer.print("Which coordinates do you want to put a number in?");
+		 }
+		
 	}
 
 	public void directions() {
@@ -36,26 +48,42 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("");
 		CaveExplorer.print("When you're ready to play, press enter!");
 		CaveExplorer.in.nextLine();
-		CaveExplorer.print("When you're ready to play, press enter!");
 		JiVickieBoard[][] magicSquares = backend.getBoxes();
 		displayTheGrid(magicSquares);
 	}
 
 	public void displayTheGrid(JiVickieBoard[][] magicSquares) {
-		CaveExplorer.print("SHOW GRID!");
+		CaveExplorer.print(" ________ ________ ________ ");
 		String rows = "0123456789";
 		String columns = "  0123456789";
 		
-		for(int row = 0; row < magicSquares.length; row++)
+		for(int row = 0; row < 9; row++)
 		{
-			System.out.print(rows.substring(row, row+1)+" ");
-			for(int col = 0; col < magicSquares[row].length; col++)
+			System.out.print("|");
+			if (row == 2 || row == 5 || row == 8)
 			{
-					System.out.print(".");
+				for(int col = 0; col < 3; col++)
+				{
+						System.out.print("________|");
+				}
+			}else
+			{
+				if (row == 1 || row == 4 || row == 7)
+				{
+					for(int col = 0; col < 3; col++)
+					{
+							System.out.print("    X   |");
+					}
+				} else {
+					for(int col = 0; col < 3; col++)
+					{
+							System.out.print("        |");
+					}
+				}
 			}
 			System.out.println(" " + rows.substring(row, row+1));
 		}
-		System.out.println(columns.substring(0, magicSquares[0].length+2));
+		CaveExplorer.print("");
 
 	}
 	
