@@ -75,7 +75,7 @@ public class JessicaFrontEnd implements AreejSupport{
 		for(int i = 0; i < col1 ; i++){
 			if(i%2 == 1) //odd
 			{
-				boardC4[0][i] = "  ";
+				boardC4[0][i] = "   ";
 			
 			}
 		} 
@@ -93,7 +93,7 @@ public class JessicaFrontEnd implements AreejSupport{
 				}
 				else{
 					if(row!=0)
-						boardC4[row][col] = "  ";
+						boardC4[row][col] = "   ";
 				}
 			}
 		}
@@ -193,7 +193,7 @@ public class JessicaFrontEnd implements AreejSupport{
 			}
 			System.out.println();
 		}
-		System.out.println("  0   1   2   3   4   5   6  \n");
+		System.out.println("   0    1    2    3    4    5    6   \n");
 		
 	}
 
