@@ -20,6 +20,17 @@ public class JessicaFrontEnd implements AreejSupport{
 	private static boolean userWon = false;
 	private static boolean computerWon = false;
 	static CaveRoom[][] c = CaveExplorer.caves; 
+	
+	public static boolean isUserWon(boolean res) {
+		userWon = res;
+		return userWon;
+	}
+
+	public static boolean isComputerWon(boolean res) {
+		computerWon = res;
+		return computerWon;
+	}
+
 	private static String [][] board;
 	
 	public JessicaFrontEnd() {

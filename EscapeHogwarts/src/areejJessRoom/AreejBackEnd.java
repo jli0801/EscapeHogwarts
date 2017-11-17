@@ -39,10 +39,10 @@ public class AreejBackEnd implements JessicaSupport{
 				String place = Integer.toString(board[i][j]);
 				
 				if(place.equals("U")) {
-					JessicaFrontEnd.printWinner();
+					JessicaFrontEnd.isUserWon(true);
 				}
 				else if(place.equals("C")) {
-					JessicaFrontEnd.printWinnerComp();
+					JessicaFrontEnd.isComputerWon(true);
 				}
 			}
 		}
