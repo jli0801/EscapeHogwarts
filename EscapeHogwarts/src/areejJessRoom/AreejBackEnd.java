@@ -35,7 +35,9 @@ public class AreejBackEnd implements JessicaSupport{
 			if(checkHorizontal() || checkVertical() ||
 					checkDiagonalRight() || checkDiagonalLeft())
 			{
+				//i have no idea if this logic even makes sense
 				String place = Integer.toString(board[i][j]);
+				
 				if(place.equals("U")) {
 					JessicaFrontEnd.printWinner();
 				}
