@@ -53,14 +53,14 @@ public class AreejBackEnd implements JessicaSupport{
 		return false;
 	}
 
-	public static void userMove(int userIn) {
+	public static void userMove(int userInt) {
 		
 	
 			for(int i = board.length ; i <0;i--) {
-				if(board[i][numberUser] == 0)
+				if(board[i][userInt] == 0)
 				{
-					board[i][numberUser] = 1;
-					JessicaFrontEnd.placeCoord(i,numberUser,user);
+					board[i][userInt] = 1;
+					JessicaFrontEnd.placeCoord(i,userInt,user);
 				}
 				
 			}

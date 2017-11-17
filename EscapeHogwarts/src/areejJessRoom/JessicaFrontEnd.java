@@ -153,13 +153,10 @@ public class JessicaFrontEnd implements AreejSupport{
 		System.out.println(badRes[(int)Math.random()*2]);
 	}
 
-	private static void displayMove() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	private static boolean checkValid(int userInput) {
-		return userNumber >= 0 && userNumber <= 6;
+		return userInput >= 0 && userInput <= 6;
 	}
 
 	private static void displayBoard(String[][] board2) {
