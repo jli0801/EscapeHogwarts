@@ -10,7 +10,7 @@ public class AreejBackEnd implements JessicaSupport{
 		this.frontend = frontend;
 		user = "U";
 		computer = "C";
-			}
+	}
 
 
 	public static void main(String[] args) {
@@ -29,10 +29,23 @@ public class AreejBackEnd implements JessicaSupport{
 	//check for both user and AI
 	public void checkWinner()
 	{
-		if(checkHorizontal() || checkVertical() ||
-				checkDiagonalRight() || checkDiagonalLeft())
-		{
-			
+		for(int i =0; i< board.length; i ++) {
+			for(int j = 0; j <board[i].length; j++) {
+				
+			if(checkHorizontal() || checkVertical() ||
+					checkDiagonalRight() || checkDiagonalLeft())
+			{
+				//i have no idea if this logic even makes sense
+				String place = Integer.toString(board[i][j]);
+				
+				if(place.equals("U")) {
+					JessicaFrontEnd.isUserWon(true);
+				}
+				else if(place.equals("C")) {
+					JessicaFrontEnd.isComputerWon(true);
+				}
+			}
+		}
 		}
 		
 		
@@ -55,11 +68,11 @@ public class AreejBackEnd implements JessicaSupport{
 
 	public static void userMove(int userInt) {
 		
-	
-			for(int i = board.length ; i <0;i--) {
-				if(board[i][userInt] == 0)
+		String[][] board = JessicaFrontEnd.getBoard();
+			for(int i = board.length - 1 ; i <0; i--) {
+				if(board[i][userInt].equals(""))
 				{
-					board[i][userInt] = 1;
+					board[i][userInt] = "1";
 					JessicaFrontEnd.placeCoord(i,userInt,user);
 				}
 				
@@ -83,8 +96,6 @@ public class AreejBackEnd implements JessicaSupport{
 		}
 		}
 	
-
-
 
 	public static boolean validateMove(int column) {
 		

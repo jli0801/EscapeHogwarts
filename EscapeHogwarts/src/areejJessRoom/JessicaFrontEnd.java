@@ -22,6 +22,22 @@ public class JessicaFrontEnd implements AreejSupport{
 	static CaveRoom[][] c = CaveExplorer.caves; 
 	private static String [][] board;
 	
+	public static String[][] getBoard() {
+		return board;
+	}
+
+	public static boolean isUserWon(boolean res) {
+		userWon = res;
+		return userWon;
+	}
+
+	public static boolean isComputerWon(boolean res) {
+		computerWon = res;
+		return computerWon;
+	}
+
+	
+	
 	public JessicaFrontEnd() {
 		backend = new AreejBackEnd(this);
 		
@@ -42,6 +58,7 @@ public class JessicaFrontEnd implements AreejSupport{
 	public static void play() {
 		
 		new JessicaIntro().play();
+
 		board = createBoard(6,7);
 		CaveExplorer.in.nextLine();
 		menu();
@@ -102,6 +119,7 @@ public class JessicaFrontEnd implements AreejSupport{
 		//AreejJessBoard[][] board = backend.getBoard();
 		displayBoard(board);
 		System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
+		
 		boolean playingGame = true;
 		while(playingGame)
 		{
@@ -110,14 +128,20 @@ public class JessicaFrontEnd implements AreejSupport{
 			{
 			AreejBackEnd.userMove(userInt);	
 			}
-			while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
+			else
+			{
+				System.out.println("Only pick numbers from 0 to 6! Try again!");
+				AreejBackEnd.userMove(userInt);	
+			}
+			
+		/*	while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
 				System.out.println("You can't put the Galleon there! " 
 						+ "Column is full!");
 				
 				
 				System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
 				AreejBackEnd.userMove(userInt);	
-			}
+			}*/
 			
 			if(userWon) //user turn
 			{
@@ -156,7 +180,7 @@ public class JessicaFrontEnd implements AreejSupport{
 
 
 	private static boolean checkValid(int userInput) {
-		return userInput >= 0 && userInput <= 6;
+		return userInput <= 6 && userInput >= 0;
 	}
 
 	private static void displayBoard(String[][] board2) {
@@ -226,8 +250,16 @@ public class JessicaFrontEnd implements AreejSupport{
 	
 
 	public static void placeCoord(int row, int column , String input) {
+		createBoard(6,7);
+		if(input.equals("user"))
+		{
+			board[row][column] = "U";
+		}
+		else
+		{
+			board[row][column] = "C";
+		}
 		
-		displayBoard();
 	}
 
 }
