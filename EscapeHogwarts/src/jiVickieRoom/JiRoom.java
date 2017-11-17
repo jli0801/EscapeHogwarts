@@ -6,7 +6,9 @@ import caveExplorer.Inventory;
 
 public class JiRoom extends CaveRoom {
 	
-	private static boolean enteredRoom = false;
+	private static boolean gotKey = false;
+	private static String input;
+	private static String inputCase;
 
 	public JiRoom(String description) {
 		super(description);
@@ -26,7 +28,7 @@ public class JiRoom extends CaveRoom {
 	public void performAction(int direction) {
 		if(direction == 5) {
 			//what happens when o is pressed
-			CaveExplorer.print("The ancient walls loom over you.");
+			CaveExplorer.print("The mysterious ancient walls loom over you.");
 
 		}else {
 			//when o is not pressed
@@ -34,17 +36,31 @@ public class JiRoom extends CaveRoom {
 		}
 	}
 
-	public static void userEntered() {
-		if(enteredRoom == true) {
+	public static void userEntered() {//
+		if(gotKey == true) {
 			CaveExplorer.print("You glance at where the key used be.");
 		}else {
 			CaveExplorer.print("On a far ledge of wall, you find a dusty silver key.");
-			
-			if(Math.random() < .7) {
-				CaveExplorer.print("You jump on lower ledge But when you jumped back down, you hurt yourself in the landing and lost 5 hp.");
-				int userHp = Inventory.getHp() - 5;
-				Inventory.setHp(userHp);
-				CaveExplorer.print("Your HP is now: " + userHp + ".");
+			CaveExplorer.print("Would you like to attempt to reach it?");
+			input = CaveExplorer.in.nextLine();
+			inputCase = input.toLowerCase();
+			if(inputCase.equals("yes")) {
+				if(Math.random() < .7) {
+					CaveExplorer.print("You jump on lower ledge to try to reach it and.. (Press enter)");
+					CaveExplorer.in.nextLine();
+					CaveExplorer.print("OOOOOOF! (Press enter)");
+					CaveExplorer.in.nextLine();
+					CaveExplorer.print("You slip off and hurt yourself in the landing.");
+					CaveExplorer.print("You lose 30 hp.");
+					int userHp = Inventory.getHp() - 30;
+					Inventory.setHp(userHp);
+					CaveExplorer.print("Your HP is now: " + userHp + ".");
+				}else {
+					CaveExplorer.print("Congratulations! You receive a silver key.");
+					CaveExplorer.print("Maybe you can use it for something..?");
+					gotKey = true;
+					Inventory.setSilverKey(true);
+				}
 			}
 		}
 	}
