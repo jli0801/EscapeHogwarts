@@ -1,23 +1,25 @@
 package kevinStephRoom;
 
-public class KevinFrontEnd implements StephSupport{
+import caveExplorer.CaveExplorer;
+
+public class StephFrontEnd implements StephSupport{
 
 	private KevinSupport backend;
 	private int move;
 	private static int lightsOff;
 	
-	public KevinFrontEnd() {
-		backend = new StephBackEnd(this);
+	public StephFrontEnd() {
+		backend = new KevinBackEnd(this);
 		move = 0;
-		setLightsOff(0); //for now until we give it a valueeeeeeeeeeeE
+		setLightsOff(0); //for now until we give it a value
 	}
 
 	public static void main(String[] args) {
-		KevinFrontEnd game = new KevinFrontEnd();
+		StephFrontEnd game = new StephFrontEnd();
 		game.play();
 	}
 
-	private void play() {
+	public void play() {
 		KevinStephLight[][] board = backend.getBoard();
 		KevinStephLight c = null; 
 		
@@ -33,17 +35,23 @@ public class KevinFrontEnd implements StephSupport{
 			move++;
 		}
 		
-		System.out.println("Congratulations, you");
+		System.out.println("Congratulations, you win!");
 	}
 
 	private void displayMoveCount() {
-		
-		
+				
 	}
 
 	private void displayBoard(KevinStephLight[][] board) {
-		//
-		
+		for(int row = 0; row < board.length; row++){
+			for(int col = 0; col < board[row].length; col++){
+				if(board[row][col].getLightOn() == true) {
+					System.out.println("O");
+				}else {
+					System.out.println("X");
+				}	
+			}
+		}
 	}
 
 	public static int getLightsOff() {
@@ -51,7 +59,6 @@ public class KevinFrontEnd implements StephSupport{
 	}
 
 	public static void setLightsOff(int lightsOff) {
-		KevinFrontEnd.lightsOff = lightsOff;
+		StephFrontEnd.lightsOff = lightsOff;
 	}
-
 }

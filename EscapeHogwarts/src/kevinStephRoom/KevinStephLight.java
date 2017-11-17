@@ -10,6 +10,14 @@ public class KevinStephLight {
 		this.row = row;
 		this.col = col;
 	}
+	
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
 
 	public void lightOn(boolean lightOn) { //main method
 		this.setLightOn(lightOn);
