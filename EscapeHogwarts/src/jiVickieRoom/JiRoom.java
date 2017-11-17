@@ -36,7 +36,7 @@ public class JiRoom extends CaveRoom {
 		}
 	}
 
-	public static void userEntered() {
+	public static void userEntered() {//
 		if(gotKey == true) {
 			CaveExplorer.print("You glance at where the key used be.");
 		}else {
