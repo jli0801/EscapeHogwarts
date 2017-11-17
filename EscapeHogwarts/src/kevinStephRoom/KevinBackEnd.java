@@ -27,8 +27,8 @@ public class KevinBackEnd implements KevinSupport{
 	
 	public void randomLightsOff() {
 		for(int i = 0; i < 15; i++) {
-			int row = (int)(Math.random()*5);
-			int col = (int)(Math.random()*5);
+			int row = (int)(Math.random()*4);
+			int col = (int)(Math.random()*4);
 			board[row][col].lightOn(false);
 		}
 		
