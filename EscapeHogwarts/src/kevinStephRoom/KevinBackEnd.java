@@ -21,7 +21,7 @@ public class KevinBackEnd implements KevinSupport{
 			}
 		}
 		
-		randomLightsOff(); //turn off some lights to start the game
+		randomLightsOff(); //turn off some lights to start the games
 		
 	}
 	
