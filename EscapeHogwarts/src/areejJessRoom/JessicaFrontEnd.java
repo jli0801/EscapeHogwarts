@@ -110,6 +110,11 @@ public class JessicaFrontEnd implements AreejSupport{
 			{
 			AreejBackEnd.userMove(userInt);	
 			}
+			else
+			{
+				System.out.println("Only pick numbers from 0 to 6! Try again!");
+				AreejBackEnd.userMove(userInt);	
+			}
 			while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
 				System.out.println("You can't put the Galleon there! " 
 						+ "Column is full!");
@@ -226,8 +231,16 @@ public class JessicaFrontEnd implements AreejSupport{
 	
 
 	public static void placeCoord(int row, int column , String input) {
+		createBoard(6,7);
+		if(input.equals("user"))
+		{
+			board[row][column] = "U";
+		}
+		else
+		{
+			board[row][column] = "C";
+		}
 		
-		displayBoard();
 	}
 
 }
