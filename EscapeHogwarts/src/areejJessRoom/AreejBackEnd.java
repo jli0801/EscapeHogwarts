@@ -29,10 +29,21 @@ public class AreejBackEnd implements JessicaSupport{
 	//check for both user and AI
 	public void checkWinner()
 	{
-		if(checkHorizontal() || checkVertical() ||
-				checkDiagonalRight() || checkDiagonalLeft())
-		{
-			
+		for(int i =0; i< board.length; i ++) {
+			for(int j = 0; j <board[i].length; j++) {
+				
+			if(checkHorizontal() || checkVertical() ||
+					checkDiagonalRight() || checkDiagonalLeft())
+			{
+				String place = Integer.toString(board[i][j]);
+				if(place.equals("U")) {
+					JessicaFrontEnd.printWinner();
+				}
+				else if(place.equals("C")) {
+					JessicaFrontEnd.printWinnerComp();
+				}
+			}
+		}
 		}
 		
 		
@@ -57,7 +68,7 @@ public class AreejBackEnd implements JessicaSupport{
 		
 	
 			for(int i = board.length ; i <0;i--) {
-				if(board[i][userInt] == 0)
+				if(board[i][userInt] == 1)
 				{
 					board[i][userInt] = 1;
 					JessicaFrontEnd.placeCoord(i,userInt,user);
@@ -83,8 +94,6 @@ public class AreejBackEnd implements JessicaSupport{
 		}
 		}
 	
-
-
 
 	public static boolean validateMove(int column) {
 		
