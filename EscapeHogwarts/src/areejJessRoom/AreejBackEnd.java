@@ -10,7 +10,7 @@ public class AreejBackEnd implements JessicaSupport{
 		this.frontend = frontend;
 		user = "U";
 		computer = "C";
-			}
+	}
 
 
 	public static void main(String[] args) {
@@ -68,11 +68,11 @@ public class AreejBackEnd implements JessicaSupport{
 
 	public static void userMove(int userInt) {
 		
-	
+		String[][] board = JessicaFrontEnd.getBoard();
 			for(int i = board.length - 1 ; i <0; i--) {
-				if(board[i][userInt] == 1)
+				if(board[i][userInt].equals(""))
 				{
-					board[i][userInt] = 1;
+					board[i][userInt] = "1";
 					JessicaFrontEnd.placeCoord(i,userInt,user);
 				}
 				
