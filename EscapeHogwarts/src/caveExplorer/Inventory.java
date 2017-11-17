@@ -6,6 +6,7 @@ public class Inventory {
 	private static int attack;
 	private static int hp;
 	private static int money;
+	private static boolean silverKey;
 	
 	public Inventory()
 	{
@@ -13,6 +14,7 @@ public class Inventory {
 		hp = 100;
 		money = 0;
 		attack = (int)(Math.random()*15 +1);
+		silverKey = false;
 	}
 
 	public static int getHp() {
@@ -93,6 +95,14 @@ public class Inventory {
 	public String getDescription()
 	{
 		return map;
+	}
+
+	public boolean getSilverKey() {
+		return silverKey;
+	}
+
+	public static void setSilverKey(boolean input) {
+		silverKey = input;
 	}
 
 

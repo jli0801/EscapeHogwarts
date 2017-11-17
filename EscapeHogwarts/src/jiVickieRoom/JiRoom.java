@@ -56,6 +56,7 @@ public class JiRoom extends CaveRoom {
 					CaveExplorer.print("Congratulations!");
 					CaveExplorer.print("You receive a silver key.");
 					gotKey = true;
+					Inventory.setSilverKey(true);
 				}
 			}
 		}
