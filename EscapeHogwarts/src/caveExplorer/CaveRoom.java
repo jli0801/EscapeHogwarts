@@ -109,7 +109,7 @@ public class CaveRoom {
 		//TEST MINIGAME:
 		else if(CaveExplorer.currentRoom.getContents().equals("M"))
 		{
-			jiVickieRoom.VickieFrontEnd.userEntered();
+			//jiVickieRoom.VickieFrontEnd.userEntered();
 		}
 		else
 		{

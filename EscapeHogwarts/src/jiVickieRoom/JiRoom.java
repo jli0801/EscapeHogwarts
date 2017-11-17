@@ -46,15 +46,18 @@ public class JiRoom extends CaveRoom {
 			inputCase = input.toLowerCase();
 			if(inputCase.equals("yes")) {
 				if(Math.random() < .7) {
-					CaveExplorer.print("You jump on lower ledge.");
-					CaveExplorer.print("But when you jumped back down, you hurt yourself in the landing");
+					CaveExplorer.print("You jump on lower ledge to try to reach it and.. (Press enter)");
+					CaveExplorer.in.nextLine();
+					CaveExplorer.print("OOOOOOF! (Press enter)");
+					CaveExplorer.in.nextLine();
+					CaveExplorer.print("You slip off and hurt yourself in the landing.");
 					CaveExplorer.print("You lose 30 hp.");
 					int userHp = Inventory.getHp() - 30;
 					Inventory.setHp(userHp);
 					CaveExplorer.print("Your HP is now: " + userHp + ".");
 				}else {
-					CaveExplorer.print("Congratulations!");
-					CaveExplorer.print("You receive a silver key.");
+					CaveExplorer.print("Congratulations! You receive a silver key.");
+					CaveExplorer.print("Maybe you can use it for something..?");
 					gotKey = true;
 					Inventory.setSilverKey(true);
 				}
