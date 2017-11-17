@@ -31,7 +31,7 @@ public class StephFrontEnd implements StephSupport{
 			int[] coords = backend.getCoordInput();
 			c = board[coords[0]][coords[1]];
 			backend.lightSwitch(c);
-		
+			
 			move++;
 		}
 		
@@ -39,7 +39,7 @@ public class StephFrontEnd implements StephSupport{
 	}
 
 	private void displayMoveCount() {
-				
+		//var
 	}
 
 	private void displayBoard(KevinStephLight[][] board) {
