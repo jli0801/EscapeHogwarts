@@ -90,7 +90,7 @@ public class CaveRoom {
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("L"))
 		{
-	//		kevinStephRoom.KevinFrontEnd.play();
+			kevinStephRoom.StephFrontEnd.play();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("S"))
 		{
