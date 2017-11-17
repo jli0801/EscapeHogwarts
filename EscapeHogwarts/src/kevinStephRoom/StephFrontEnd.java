@@ -89,10 +89,6 @@ public class StephFrontEnd implements StephSupport{
 			}
 		}
 	}
-	
-	private static boolean checkValid(int userInput) {
-		return userInput >= 0 && userInput <= 4;
-	}
 
 	public static int getLightsOff() {
 		return lightsOff;
