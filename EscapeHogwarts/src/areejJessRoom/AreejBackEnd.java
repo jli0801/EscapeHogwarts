@@ -1,6 +1,7 @@
 package areejJessRoom;
 
 import java.util.Arrays;
+import areejJessRoom.JessicaFrontEnd;
 
 public class AreejBackEnd implements JessicaSupport{
 
@@ -83,12 +84,14 @@ public class AreejBackEnd implements JessicaSupport{
 		return false;
 	}
 
-	public static void userMove(int userInt) {
+	public static void moveUser(int userInt) {
 		
 	//	int[][] board = AreejJessBoard.getBoard();
 	//	populateBoard(board);
+		String[][] boardFront = JessicaFrontEnd.getBoard();
 		board = new int[6][7];
 		populateBoard(board);
+		//maybe no boolean arr but just string array
 		
 				if(board[5][userInt] == 0)
 				{

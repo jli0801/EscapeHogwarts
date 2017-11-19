@@ -110,6 +110,7 @@ public class JessicaFrontEnd implements AreejSupport{
 			CaveExplorer.in.nextLine();
 			menu();
 		}else{
+			board = createBoard(6,7);
 			startGame();
 		}
 		
@@ -126,13 +127,13 @@ public class JessicaFrontEnd implements AreejSupport{
 			int userInt = Integer.parseInt(getUserInput());
 			if(checkValid(userInt))
 			{
-			AreejBackEnd.userMove(userInt);	
+			AreejBackEnd.moveUser(userInt);	
 		//	placeCoord(userInt);
 			}
 			else
 			{
 				System.out.println("Only pick numbers from 0 to 6! Try again!");
-				AreejBackEnd.userMove(userInt);	
+				AreejBackEnd.moveUser(userInt);	
 			}
 			
 		/*	while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
