@@ -27,6 +27,7 @@ public class AreejBackEnd implements JessicaSupport{
 	public static void setUserMove(boolean userMove) {
 		AreejBackEnd.userMove = userMove;
 	}
+	
 	private int row;
 	private int col;
 
@@ -38,32 +39,51 @@ public class AreejBackEnd implements JessicaSupport{
 		return col;
 	}
 	
-	public static void main(String[] args) {
+	//public static void main(String[] args) {}
 		
 
-	}
 	
-	public void compMove(){
-		int[][] arr = getBoard();
-		int compMove = (int)(Math.random()*6);
-		for(int i =0; i < arr.length; i++){
-		if(arr[i][compMove] = 0){
-			JessicaFrontEnd.placeCoord(i,compMove, "comp");
+	public static void compMove(){
+	//	int[][] arr = getBoard();
+		int comp = (int)(Math.random()*6);
+		System.out.println("My turn now! I'll place a Galleon here!");
+		int i = board.length -1;
+		while (i > 0)
+		{
+		if(board[1][comp] != 0)
+		{
+			comp = (int)(Math.random()*6);	
+		//	compMove();
 		}
-		else{
-			compMove = (int)(Math.random()*6);	
-		}
+		
+			if(board[i][comp] == 0){
+				board[i][comp] = 2;
+				JessicaFrontEnd.placeCoord(i,comp, "computer");
+				setUserMove(true);
+				System.out.println("Your turn now! Enter a number from 0 to 6.");
+				System.out.println((board[i][comp]));
+				moveUser();
+				
+				//checkWinner();
+				break;
+			}
+			else
+			{
+				
+				i--;
+				
+			}
 		}
 		
 	}
-	public int[][] getBoard() {
+	public static int[][] getBoard() {
 		
 		return board;
 	}
 	//create for loops
 	
 	//check for both user and AI
-	public void checkWinner()
+	public static void checkWinner()
 	{
 		for(int i =0; i< board.length; i ++) {
 			for(int j = 0; j <board[i].length; j++) {
@@ -88,10 +108,6 @@ public class AreejBackEnd implements JessicaSupport{
 		
 	}
 	
-	public boolean checkHorizontal() {
-		
-		return false;
-	}
 	private boolean checkVertical(char user, char ai, int row, int column) {
 		int possibleBottom = Math.max(0, row - 3);
 		int possibleTop = possibleBottom + 4;
@@ -108,21 +124,22 @@ public class AreejBackEnd implements JessicaSupport{
 		}
 		return false;
 	}
-	public boolean checkDiagonalRight() {
+	public static boolean checkDiagonalRight() {
 		return false;
 	}
-	public boolean checkDiagonalLeft() {
+	public static boolean checkDiagonalLeft() {
 		return false;
 	}
-
+	public static boolean checkHorizontal() {
+		return false;
+	}
+	
 	public static void moveUser() {
 		
 
 	//	String[][] boardFront = JessicaFrontEnd.getBoard();
 		
 		String userInput = CaveExplorer.in.nextLine();
-
-		
 		board = new int[6][7];
 		populateBoard(board);
 		
@@ -136,18 +153,19 @@ public class AreejBackEnd implements JessicaSupport{
 		else
 		{
 		
+			
 	//		int userInt = Integer.parseInt(userInput);
-			if(checkValid(userInput) )
+			if(checkValid(userInput))
 			{
 				int userInt = Integer.parseInt(userInput);
 			//	System.out.println("in");
-				int i = board.length -1;
+				
 				if (board[1][userInt] == 1 && !JessicaFrontEnd.isUserWon())
 				{
 					System.out.println("The column is full. Pick another column!");
-				//	moveUser();
+					moveUser();
 				}
-				
+				int i = board.length -1;
 				while (i > 0)
 				{
 				//	System.out.println("for");
@@ -157,6 +175,7 @@ public class AreejBackEnd implements JessicaSupport{
 						board[i][userInt] = 1;
 						JessicaFrontEnd.placeCoord(i,userInt, "user");
 						setUserMove(false);
+						
 						break;
 					//	System.out.print(Arrays.toString(board));
 					}
@@ -166,8 +185,13 @@ public class AreejBackEnd implements JessicaSupport{
 					}
 					
 				}
+				if(userMove == false) {
+					compMove();
+				}
 				
 			}
+	
+		
 			else
 			{
 				
@@ -227,5 +251,6 @@ public class AreejBackEnd implements JessicaSupport{
 		
 		return false;
 	}
-
+	
+	
 }

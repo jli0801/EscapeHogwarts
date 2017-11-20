@@ -27,10 +27,6 @@ public class JessicaFrontEnd implements AreejSupport{
 		return board;
 	}
 
-	
-
-	
-	
 	public static boolean isUserWon() {
 		return userWon;
 	}
@@ -126,25 +122,13 @@ public class JessicaFrontEnd implements AreejSupport{
 		boolean playingGame = true;
 		while(playingGame)
 		{
-		/*	int userInt = Integer.parseInt(getUserInput());
-			System.out.println(getUserInput());*/
-	/*		if(checkValid(userInt))
-			{
-			AreejBackEnd.moveUser();	
-		//	placeCoord(userInt);
-			}
-			else
-			{
-				System.out.println("Only pick numbers from 0 to 6! Try again!");
-				AreejBackEnd.moveUser();	
-			}*/
 			AreejBackEnd.moveUser();
 			
-			if(userWon) //user turn
+			if(userWon) 
 			{
 				
 				int moneyUser  = (int)Math.random()*15 + 1;
-			//	displayBoard(board);
+	
 				System.out.println("I guess you won..Keep those Galleons! Get out of my room now!");
 				Inventory.setMoney(Inventory.getMoney() + moneyUser);
 				playingGame = false;
@@ -153,13 +137,12 @@ public class JessicaFrontEnd implements AreejSupport{
 			}
 			else //our turn
 			{
-				AreejBackEnd.computerMove();
-				System.out.println("My turn! \n");
-				displayBoard(board);
+				
 				if(computerWon){
 					System.out.println("I won! Now get out of my room! There'll be no prize for you!");
-					
 					playingGame =false;
+					CaveExplorer.currentRoom = c[2][1];
+					CaveExplorer.currentRoom.enter();
 				}
 			}
 		}
@@ -245,8 +228,6 @@ public class JessicaFrontEnd implements AreejSupport{
 	
 
 	public static void placeCoord(int row, int column , String input) {
-		
-		board = createBoard(6,7);
 		
 		int col = column*2 +1;
 		if(input.equals("user"))
