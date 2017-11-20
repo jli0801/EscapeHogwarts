@@ -16,6 +16,7 @@ public class JessicaFrontEnd implements AreejSupport{
 		JessicaFrontEnd.computerWon = compWon;
 	}
 
+	public static Scanner in;
 	private static AreejBackEnd backend;
 	private static boolean userWon = false;
 	private static boolean computerWon = false;
@@ -26,18 +27,18 @@ public class JessicaFrontEnd implements AreejSupport{
 		return board;
 	}
 
-	public static boolean isUserWon(boolean res) {
-		userWon = res;
+	
+
+	
+	
+	public static boolean isUserWon() {
 		return userWon;
 	}
 
-	public static boolean isComputerWon(boolean res) {
-		computerWon = res;
+	public static boolean isComputerWon() {
 		return computerWon;
 	}
 
-	
-	
 	public JessicaFrontEnd() {
 		backend = new AreejBackEnd(this);
 		
@@ -49,7 +50,7 @@ public class JessicaFrontEnd implements AreejSupport{
 		JessicaFrontEnd.play();
 	}
 
-	private static String getUserInput()
+	static String getUserInput()
 	{
 		 String input = CaveExplorer.in.nextLine().toLowerCase();
 		 return input;
@@ -110,7 +111,7 @@ public class JessicaFrontEnd implements AreejSupport{
 			CaveExplorer.in.nextLine();
 			menu();
 		}else{
-			board = createBoard(6,7);
+		//	board = createBoard(6,7);
 			startGame();
 		}
 		
@@ -118,38 +119,32 @@ public class JessicaFrontEnd implements AreejSupport{
 
 	private static void startGame() {
 		//AreejJessBoard[][] board = backend.getBoard();
+		in = new Scanner(System.in);
 		displayBoard(board);
 		System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
 		
 		boolean playingGame = true;
 		while(playingGame)
 		{
-			int userInt = Integer.parseInt(getUserInput());
-			if(checkValid(userInt))
+		/*	int userInt = Integer.parseInt(getUserInput());
+			System.out.println(getUserInput());*/
+	/*		if(checkValid(userInt))
 			{
-			AreejBackEnd.moveUser(userInt);	
+			AreejBackEnd.moveUser();	
 		//	placeCoord(userInt);
 			}
 			else
 			{
 				System.out.println("Only pick numbers from 0 to 6! Try again!");
-				AreejBackEnd.moveUser(userInt);	
-			}
-			
-		/*	while(!AreejBackEnd.validateMove(userInt)&& !userWon){ 
-				System.out.println("You can't put the Galleon there! " 
-						+ "Column is full!");
-				
-				
-				System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
-				AreejBackEnd.userMove(userInt);	
+				AreejBackEnd.moveUser();	
 			}*/
+			AreejBackEnd.moveUser();
 			
 			if(userWon) //user turn
 			{
 				
 				int moneyUser  = (int)Math.random()*15 + 1;
-				displayBoard(board);
+			//	displayBoard(board);
 				System.out.println("I guess you won..Keep those Galleons! Get out of my room now!");
 				Inventory.setMoney(Inventory.getMoney() + moneyUser);
 				playingGame = false;
@@ -181,9 +176,7 @@ public class JessicaFrontEnd implements AreejSupport{
 
 
 
-	private static boolean checkValid(int userInput) {
-		return userInput <= 6 && userInput >= 0;
-	}
+	
 
 	private static void displayBoard(String[][] board2) {
 		
@@ -253,16 +246,18 @@ public class JessicaFrontEnd implements AreejSupport{
 
 	public static void placeCoord(int row, int column , String input) {
 		
+		board = createBoard(6,7);
 		
+		int col = column*2 +1;
 		if(input.equals("user"))
 		{
-			board[row][column] = "U";
+			board[row][col] = " U ";
 		}
 		if(input.equals("computer"))
 		{
-			board[row][column] = "C";
+			board[row][col] = " C ";
 		}
-		createBoard(6,7);
+		displayBoard(board);
 		
 	}
 
