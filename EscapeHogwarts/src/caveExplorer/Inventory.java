@@ -12,7 +12,7 @@ public class Inventory {
 	private static int broomW;
 	private static boolean silverKey;
 	
-	public boolean getSilverKey() {
+	public static boolean getSilverKey() {
 		return silverKey;
 	}
 

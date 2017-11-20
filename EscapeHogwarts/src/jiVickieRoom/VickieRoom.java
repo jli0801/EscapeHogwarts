@@ -68,23 +68,7 @@ public class VickieRoom extends CaveRoom {
 			 * 
 			 * if response is no, then "Hmph, go on and be on your way"
 			 */
-			CaveExplorer.print("Did you acquire the silver key?");
-			input = CaveExplorer.in.nextLine();
-			inputCase = input.toLowerCase();
-			
-			if(inputCase.equals("yes"))
-			{
-				//check to see if user v
-			}else
-			if(inputCase.equals("no")) {
-				
-			}
-			else {
-				CaveExplorer.print("Did you acquire the silver key?");
-				//put on loop or make a new method
-			}
-			
-			door();
+			notHarry();
 			
 		}else
 		{
@@ -93,32 +77,37 @@ public class VickieRoom extends CaveRoom {
 		}
 	}
 	
+	public static void notHarry() {
+		CaveExplorer.print("Did you acquire the silver key?");
+		input = CaveExplorer.in.nextLine();
+		inputCase = input.toLowerCase();
+		
+		if(inputCase.equals("yes"))
+		{
+			//check to see if user v
+			if(Inventory.getSilverKey())
+			{
+				//hallway opens
+			}else
+			{
+				//trap em
+			}
+		}else
+		if(inputCase.equals("no")) {
+			CaveExplorer.print("Hmph! Then be on your way!");
+		}
+		else {
+			notHarry();
+		}
+		
+		door();
+		
+	}
+
 	public void setConnection(int direction, CaveRoom anotherRoom, Door door) {
 		addRoom(direction, anotherRoom, door);
 		anotherRoom.addRoom(oppositeDirection(direction), this, door);
 	}
-	/*public void printValidMoves()
-	{
-		System.out.println("You can only enter 'w', 'a'. 's'. d'" + "or you can press 'p' to interact with Peeves.");
-	}
-	
-	public String validMoves()
-	{
-		return "wdsap";
-	}
-	
-	public void performAction (int direction)
-	{
-		if(direction == 5) {
-			if(Peeves() != null && Peeves.isActive()) {
-				Peeves.interact();
-			}else {
-				CaveExplorer.print("There is no creatures to interect with..");
-			}
-		}else {
-			CaveExplorer.print("There is nothing to do...");
-		}
-	}*/
 	
 	public static void setUpCaves()
 	{
@@ -149,16 +138,7 @@ public class VickieRoom extends CaveRoom {
 		
 		
 	}
-	
-	/*public boolean containsNPC()
-	{
-		return here = true;
-	}
-	
-	public void enterNPC(NPC n)
-	{
-		this.peeves = n;
-	}*/
+
 	public void goToRoom(int direction) {
 		//make sure there is a room to go to:
 		if(borderingRooms[direction] != null && doors[direction] != null &&

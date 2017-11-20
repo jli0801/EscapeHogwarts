@@ -18,9 +18,9 @@ public class VickieFrontEnd implements JiSupport{
 	private int iRow;
 	private int iCol;
 	private int iNum;
-	private JiVickieBoard[][] magicSquares;
+	//private JiVickieBoard[][] magicSquares;
 	
-	//private int JiVickieBoard[][] magicSquares;
+	private int [][] magicSquares;
 
 	
 	public static final void main(String[] args){
@@ -31,7 +31,7 @@ public class VickieFrontEnd implements JiSupport{
 	public VickieFrontEnd() {
 		backend = new JiBackEnd(this);
 		CaveExplorer.in = new Scanner(System.in);
-		magicSquares = backend.getBoxes();
+		magicSquares =  backend.getBoxes();
 	}
 
 	public void startGame() {
@@ -59,13 +59,16 @@ public class VickieFrontEnd implements JiSupport{
 				//turn str into num
 				iRow = Integer.parseInt(SRow);
 				iCol = Integer.parseInt(SCol);
-				//iNum = Integer.parseInt(SNum);
+				iNum = Integer.parseInt(SNum);
 				
 				
 				//turn the Snum to int
 				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
-					//magicSquares[iRow][iCol] = iNum;
-					//display board!!
+					magicSquares[iRow][iCol] = iNum;
+					System.out.println(iNum);
+					System.out.println(magicSquares[iRow][iCol]);
+					//displayField();
+					
 				}else
 				{
 					error();
@@ -112,7 +115,7 @@ public class VickieFrontEnd implements JiSupport{
 		displayTheGrid(magicSquares);
 	}
 
-	public void displayTheGrid(JiVickieBoard[][] magicSquares) {
+	public void displayTheGrid(int[][] magicSquares) {
 		CaveExplorer.print("    0         1        2    ");
 		CaveExplorer.print(" ________ ________ ________ ");
 		String rows = "0123456789";
