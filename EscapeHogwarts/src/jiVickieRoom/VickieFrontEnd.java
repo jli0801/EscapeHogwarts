@@ -9,6 +9,19 @@ public class VickieFrontEnd implements JiSupport{
 	private VickieSupport backend;
 	private String input;
 	private String grid;
+	private String SRow;
+	private String SCol;
+	private String SNum;
+	
+	private boolean startGame = true;
+	
+	private int iRow;
+	private int iCol;
+	private int iNum;
+	private JiVickieBoard[][] magicSquares;
+	
+	//private int JiVickieBoard[][] magicSquares;
+
 	
 	public static final void main(String[] args){
 		VickieFrontEnd game = new VickieFrontEnd();
@@ -18,12 +31,13 @@ public class VickieFrontEnd implements JiSupport{
 	public VickieFrontEnd() {
 		backend = new JiBackEnd(this);
 		CaveExplorer.in = new Scanner(System.in);
-		
+		magicSquares = backend.getBoxes();
 	}
 
 	public void startGame() {
+		System.out.println(iNum);
 		directions();
-		CaveExplorer.print("Which coordinates do you want to put a number in?");
+		CaveExplorer.print("\nWhich coordinates do you want to put a number in?");
 		input = CaveExplorer.in.nextLine();
 		placeNumbers(input);
 	}
@@ -31,11 +45,58 @@ public class VickieFrontEnd implements JiSupport{
 	private void placeNumbers(String nums) {
 		int len = nums.length();
 		 if(len > 5 || len <5) {
-			 CaveExplorer.print("Which coordinates do you want to put a number in?");
+			error();
+		 }else {
+			 //make sure the numbers are numbers
+			 SRow = nums.substring(0, 1);
+			 SCol = nums.substring(2, 3);
+			 SNum = nums.substring(4, 5);
+			 
+			 CaveExplorer.print(SRow + SCol + SNum);
+		
+			if(isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum) ){
+				CaveExplorer.print("true");
+				//turn str into num
+				iRow = Integer.parseInt(SRow);
+				iCol = Integer.parseInt(SCol);
+				//iNum = Integer.parseInt(SNum);
+				
+				
+				//turn the Snum to int
+				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
+					//magicSquares[iRow][iCol] = iNum;
+					//display board!
+				}else
+				{
+					error();
+				}
+				
+			}else {
+				error();
+			}
 		 }
 		
 	}
+	
+	public static boolean isNumeric(String str)  
+	{  
+	  try  
+	  {  
+	    Double.parseDouble(str);  
+	  }  
+	  catch(NumberFormatException nfe)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
+	}
 
+	public void error() {
+		CaveExplorer.print("You entered an invalid response: \n	Ex: x,y,z \n		  x = row\n		  y = column\n		  z = num\n \nWhich coordinates do you want to put a number in?");
+		input = CaveExplorer.in.nextLine();
+		placeNumbers(input);
+	}
+	
 	public void directions() {
 		CaveExplorer.print("Welcome to Magic Squares! Play in order to ...... (we'll fill it in later).....");
 		CaveExplorer.print("");
@@ -48,11 +109,11 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("");
 		CaveExplorer.print("When you're ready to play, press enter!");
 		CaveExplorer.in.nextLine();
-		JiVickieBoard[][] magicSquares = backend.getBoxes();
 		displayTheGrid(magicSquares);
 	}
 
 	public void displayTheGrid(JiVickieBoard[][] magicSquares) {
+		CaveExplorer.print("    0         1        2    ");
 		CaveExplorer.print(" ________ ________ ________ ");
 		String rows = "0123456789";
 		String columns = "  0123456789";
@@ -60,28 +121,31 @@ public class VickieFrontEnd implements JiSupport{
 		for(int row = 0; row < 9; row++)
 		{
 			System.out.print("|");
-			if (row == 2 || row == 5 || row == 8)
-			{
-				for(int col = 0; col < 3; col++)
-				{
-						System.out.print("________|");
-				}
-			}else
-			{
-				if (row == 1 || row == 4 || row == 7)
+				if (row == 2 || row == 5 || row == 8)
 				{
 					for(int col = 0; col < 3; col++)
 					{
-							System.out.print("    X   |");
+							System.out.print("________|");
 					}
-				} else {
-					for(int col = 0; col < 3; col++)
+				}else
+				{
+					if (row == 1 || row == 4 || row == 7)
 					{
-							System.out.print("        |");
+						for(int col = 0; col < 3; col++)
+						{
+								if(col ==2) {
+									System.out.print("    7   |");
+								}else {
+							System.out.print("    X   |");}
+						}
+					} else {
+						for(int col = 0; col < 3; col++)
+						{
+								System.out.print("        |");
+						}
 					}
 				}
-			}
-			System.out.println(" " + rows.substring(row, row+1));
+				System.out.println(" " + rows.substring(row, row+1));
 		}
 		CaveExplorer.print("");
 
