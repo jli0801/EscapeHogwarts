@@ -7,6 +7,7 @@ import areejJessRoom.StoreRoom;
 import jiVickieRoom.JiRoom;
 import jiVickieRoom.VickieRoom;
 import kevinStephRoom.KevinRoom;
+import kevinStephRoom.StephFrontEnd;
 import kevinStephRoom.StephanieRoom;
 
 public class CaveRoom {
@@ -90,7 +91,7 @@ public class CaveRoom {
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("L"))
 		{
-			kevinStephRoom.StephFrontEnd.play();
+			StephFrontEnd.main(null);
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("S"))
 		{

@@ -2,18 +2,18 @@ package kevinStephRoom;
 
 import caveExplorer.CaveExplorer;
 
-public class KevinBackEnd implements KevinSupport{
+public class KevinBackEnd implements StephSupport{
 
-	private StephSupport frontend;	
+	private KevinSupport frontend;	
 	private KevinStephLight[][] board;
 	
-	public KevinBackEnd(StephSupport frontend) {
+	public KevinBackEnd(KevinSupport frontend) {
 		this.frontend = frontend;
 		board = new KevinStephLight[4][4];
 		createBoard();
 	}
 
-	private void createBoard() {
+	public KevinStephLight[][] createBoard() {
 		for(int row = 0; row < board.length; row++){
 			for(int col = 0; col < board[row].length; col++){
 				board[row][col] = new KevinStephLight(row, col); //board is created 
@@ -22,6 +22,7 @@ public class KevinBackEnd implements KevinSupport{
 		}
 		
 		randomLightsOff(); //turn off some lights to start the games
+		return board;
 		
 	}
 	
@@ -70,7 +71,7 @@ public class KevinBackEnd implements KevinSupport{
 	}
 
 	public void lightSwitch(KevinStephLight c) {
-		while(StephFrontEnd.getLightsOff() != 0) {
+		while(frontend.getLightsOff() != 0) {
 			if(c.getLightOn() == true) {
 				c.setLightOn(false);
 				checkAdjacentLight(c);
@@ -82,7 +83,7 @@ public class KevinBackEnd implements KevinSupport{
 		
 	}
 
-	private void checkAdjacentLight(KevinStephLight c) {
+	private void checkAdjacentLight(KevinStephLight c) { //jhkvhkvjhcyjcyjcyjc
 		// TODO Auto-generated method stub
 		
 	}

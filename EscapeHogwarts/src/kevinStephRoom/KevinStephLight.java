@@ -30,4 +30,5 @@ public class KevinStephLight {
 	public void setLightOn(boolean lightOn) { //setters
 		this.lightOn = lightOn;
 	}
+
 }

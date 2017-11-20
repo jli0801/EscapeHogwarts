@@ -3,14 +3,14 @@ package kevinStephRoom;
 import caveExplorer.CaveExplorer;
 import java.util.Scanner;
 
-public class StephFrontEnd implements StephSupport{
+public class StephFrontEnd implements KevinSupport{
 
-	private static KevinSupport backend;
-	private static int move;
-	private static int lightsOff;
-	private static String [][] board;
+	private  StephSupport backend;
+	private  int move;
+	private  int lightsOff;
+	private  KevinStephLight[][] board;
 	
-	public static String[][] getBoard() {
+	public KevinStephLight[][] getBoard() {
 		return board;
 	}
 	
@@ -26,13 +26,13 @@ public class StephFrontEnd implements StephSupport{
 		game.play();
 	}
 
-	public static void play() {
+	public void play() {
 		new StephIntro().play();
 		CaveExplorer.in.nextLine();
 		menu();
 	}
 	
-	private static void menu() {
+	private void menu() {
 		System.out.println("Enter 'r' for rules or 'p' to play.");
 		String command = waitForLetterInput("rp");
 		if(command.equals("r")){
@@ -82,13 +82,13 @@ public class StephFrontEnd implements StephSupport{
 		System.out.println(printString);
 	}
 	
-	public static String waitForLetterInput(String letters){
+	public String waitForLetterInput(String letters){
 		String input = CaveExplorer.in.nextLine();
 		while(input.length() <1 || letters.toLowerCase().indexOf(input.toLowerCase().substring(0, 1))<0){
 			System.out.print("That entry is not allowed. Please type on of the following: ");
 			String list = "";
 			for(int i = 0 ; i < letters.length()-1; i++){
-				list += letters.substring(i, i+1)+",";
+				list += letters.substring(i, i+1);
 			}
 			list += " or "+letters.substring(letters.length()-1); 
 			System.out.println(list);
@@ -97,8 +97,8 @@ public class StephFrontEnd implements StephSupport{
 		return input.toLowerCase().substring(0, 1);
 	}
 
-	private static void startGame() {
-		KevinStephLight[][] board = backend.getBoard();
+	private void startGame() { //START GAME
+		board = backend.createBoard();
 		KevinStephLight c = null; 
 		
 		while (getLightsOff() > 0) {
@@ -116,27 +116,44 @@ public class StephFrontEnd implements StephSupport{
 		print("Congratulations, you win!");
 	}
 	
-	private static void displayMoveCount() {
+	private void displayMoveCount() {
 		print("You have taken " + move + " moves.");
 	}
 
-	private static void displayBoard(KevinStephLight[][] board) {
+	private void displayBoard(KevinStephLight[][] board) {
 		for(int row = 0; row < board.length; row++){
 			for(int col = 0; col < board[row].length; col++){
+				
+				System.out.print(" | ");
+				
 				if(board[row][col].getLightOn() == true) {
-					System.out.println("O");
+					System.out.print("O");
 				}else {
-					System.out.println("X");
+					System.out.print("X");
 				}	
+				
+				System.out.print(" ");
 			}
+			
+			System.out.print("|\n");
 		}
 	}
 
-	public static int getLightsOff() {
-		return lightsOff;
+	public  int getLightsOff() {
+		int counter = 0;
+		
+		for(int row = 0; row < board.length; row++){
+			for(int col = 0; col < board[row].length; col++){
+				if(board[row][col].getLightOn()) {
+					counter++;
+				}
+			}
+		}
+		return counter;
 	}
 
-	public static void setLightsOff(int lightsOff) {
-		StephFrontEnd.lightsOff = lightsOff;
+	public void setLightsOff(int lightsOff) {
+		this.lightsOff = lightsOff;
 	}
+
 }
