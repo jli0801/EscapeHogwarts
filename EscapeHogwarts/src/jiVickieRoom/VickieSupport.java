@@ -30,12 +30,15 @@ public interface VickieSupport {
 	boolean isOuterNumber();
 	//returns true if outer else false
 	
+	void chooseStartingPoint();
+	//chooses starting box for first fixed number
+	
 	int getMid();
 	//outlier method when number not outer or inner, mid can only equal 5
 	
 	void cheatCode();
 	//cheatCode
 
-	JiVickieBoard[][] getBoxes();
+	//JiVickieBoard[][] getBoxes();
 }
 //
