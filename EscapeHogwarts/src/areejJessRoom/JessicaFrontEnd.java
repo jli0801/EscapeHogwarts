@@ -251,11 +251,11 @@ public class JessicaFrontEnd implements AreejSupport{
 		int col = column*2 +1;
 		if(input.equals("user"))
 		{
-			board[row][col] = "U";
+			board[row][col] = "U ";
 		}
 		if(input.equals("computer"))
 		{
-			board[row][col] = "C";
+			board[row][col] = "C ";
 		}
 		displayBoard(board);
 		

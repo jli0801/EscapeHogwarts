@@ -10,6 +10,7 @@ public class AreejBackEnd implements JessicaSupport{
 	private static int[][] board;
 	private static boolean userMove;
 	
+	
 	//0 EQUALS NULL
 	//1 EQUALS USER
 	//2 EQUALS COMPUTER
@@ -60,12 +61,13 @@ public class AreejBackEnd implements JessicaSupport{
 					checkDiagonalRight() || checkDiagonalLeft())
 			{
 				//i have no idea if this logic even makes sense
-				String place = Integer.toString(board[i][j]);
 				
-				if(place.equals("U")) {
+				String place = Integer.toString(board[i][j*2 +1]);
+				
+				if(place.equals("U ")) {
 					JessicaFrontEnd.setUserWon(true);
 				}
-				else if(place.equals("C")) {
+				else if(place.equals("C ")) {
 					JessicaFrontEnd.setComputerWon(true);
 				}
 			}
@@ -112,7 +114,7 @@ public class AreejBackEnd implements JessicaSupport{
 		{
 		
 	//		int userInt = Integer.parseInt(userInput);
-			if(checkValid(userInput))
+			if(checkValid(userInput) && userMove)
 			{
 				int userInt = Integer.parseInt(userInput);
 			//	System.out.println("in");
@@ -131,6 +133,7 @@ public class AreejBackEnd implements JessicaSupport{
 					//	System.out.println("empty");
 						board[i][userInt] = 1;
 						JessicaFrontEnd.placeCoord(i,userInt, "user");
+						setUserMove(false);
 						break;
 					//	System.out.print(Arrays.toString(board));
 					}
@@ -144,8 +147,15 @@ public class AreejBackEnd implements JessicaSupport{
 			}
 			else
 			{
+				if(!userMove)
+				{
+					//Computer Moves
+				}
+				else
+				{
 				System.out.println("Pick a number between 0 and 6!");
 				moveUser();
+				}
 			}
 		}
 	
