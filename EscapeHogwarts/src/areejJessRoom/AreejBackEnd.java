@@ -42,9 +42,20 @@ public class AreejBackEnd implements JessicaSupport{
 		
 
 	}
-
-
-
+	
+	public void compMove(){
+		int[][] arr = getBoard();
+		int compMove = (int)(Math.random()*6);
+		for(int i =0; i < arr.length; i++){
+		if(arr[i][compMove] = 0){
+			JessicaFrontEnd.placeCoord(i,compMove, "comp");
+		}
+		else{
+			compMove = (int)(Math.random()*6);	
+		}
+		}
+		
+	}
 	public int[][] getBoard() {
 		
 		return board;
@@ -81,8 +92,20 @@ public class AreejBackEnd implements JessicaSupport{
 		
 		return false;
 	}
-	public boolean checkVertical() {
+	private boolean checkVertical(char user, char ai, int row, int column) {
+		int possibleBottom = Math.max(0, row - 3);
+		int possibleTop = possibleBottom + 4;
+		int playerCount = 0;
+		int opponentCount = 0;
 		
+
+		for (int checkRow = possibleBottom; checkRow < possibleTop; checkRow++){
+			if (board[checkRow][column] == ai){
+				opponentCount = opponentCount + 1;
+			} else if (board[checkRow][column] == user){
+				playerCount = playerCount + 1;
+			}
+		}
 		return false;
 	}
 	public boolean checkDiagonalRight() {
