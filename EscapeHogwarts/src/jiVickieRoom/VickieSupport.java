@@ -27,6 +27,8 @@ public interface VickieSupport {
 	int generateNumber(int max);
 	//generates number based on maximum integer
 	
+	void createInitiateNum();
+	
 	boolean isOuterNumber();
 	//returns true if outer else false
 	
@@ -39,6 +41,6 @@ public interface VickieSupport {
 	void cheatCode();
 	//cheatCode
 
-	//JiVickieBoard[][] getBoxes();
+	int[][] getBoxes();
 }
 //

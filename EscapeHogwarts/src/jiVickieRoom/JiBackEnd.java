@@ -4,7 +4,7 @@ import caveExplorer.CaveExplorer;
 
 public class JiBackEnd implements VickieSupport {
 	
-	private static int[][] magicSquares;
+	private int[][] magicSquares;
 	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!kjk
 	
 	private JiSupport frontend;
@@ -22,7 +22,7 @@ public class JiBackEnd implements VickieSupport {
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
 		//magicSquares = magicSquares[3][3];
-		int[][] magicSquares = new int[3][3];
+		magicSquares = new int[3][3];
 		//createTheBox();
 	}
 /*
@@ -72,29 +72,46 @@ public class JiBackEnd implements VickieSupport {
 			if(isOuterNumber()) {
 				//randomize outer starting box
 				// (0,0) (0,2) (2,0) (2,2)
-				boolean findRow = false;
-				boolean findCol = false;
-				
-				int count = 2;
-				while(count > 0) {
-					if (findRow == false) {
-						if(Math.random() < .5) {
-						
-						}
-					}
+				int rowNum;
+				int colNum;
+				if(Math.random() < .5) {
+					rowNum = 0;
+				}else {
+					rowNum = 2;
 				}
 				
-				//magicSquares;
+				if(Math.random() < .5) {
+					colNum = 0;
+				}else {
+					colNum = 2;
+				}
+				magicSquares[rowNum][colNum] = initiatedNum;
 			}
 			else {
 				//randomize inner starting box
 				// (0,1) (1,0) (1,2) (2,1)
+				generateNumber(4);
+				if(random == 1) {
+					magicSquares[0][1] = initiatedNum;
+				}else {
+					if(random == 2) 
+					{
+						magicSquares[1][0] = initiatedNum;
+					}
+					else {
+						if(random == 3) {
+							magicSquares[1][2] = initiatedNum;
+						}else {
+							magicSquares[2][1] = initiatedNum;
+						}
+					}
+				
+				}
 			}
 		}
 	}
 	
 	public boolean isOuterNumber() {
-		initiatedNum = generateNumber(9);
 		StrInitiatedNum = Integer.toString(initiatedNum);
 		if(outerNumbers.indexOf(StrInitiatedNum) > -1) {
 			return true;
@@ -106,6 +123,10 @@ public class JiBackEnd implements VickieSupport {
 			}
 		}
 		return false;
+	}
+	
+	public void createInitiateNum() {
+		initiatedNum = generateNumber(9);
 	}
 
 	public int generateNumber(int max) {;
@@ -141,10 +162,7 @@ public class JiBackEnd implements VickieSupport {
 		
 	}
 
-	/*
-	public JiVickieBoard[][] getBoxes() {
+	public int[][] getBoxes() {
 		return magicSquares;
 	}
-	*/
-	
 }
