@@ -114,7 +114,7 @@ public class AreejBackEnd implements JessicaSupport{
 		{
 		
 	//		int userInt = Integer.parseInt(userInput);
-			if(checkValid(userInput) && userMove)
+			if(checkValid(userInput) )
 			{
 				int userInt = Integer.parseInt(userInput);
 			//	System.out.println("in");
@@ -147,15 +147,10 @@ public class AreejBackEnd implements JessicaSupport{
 			}
 			else
 			{
-				if(!userMove)
-				{
-					//Computer Moves
-				}
-				else
-				{
+				
 				System.out.println("Pick a number between 0 and 6!");
 				moveUser();
-				}
+				
 			}
 		}
 	
