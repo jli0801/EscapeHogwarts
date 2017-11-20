@@ -65,7 +65,7 @@ public class VickieFrontEnd implements JiSupport{
 				//turn the Snum to int
 				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
 					//magicSquares[iRow][iCol] = iNum;
-					//display board!
+					//display board!!
 				}else
 				{
 					error();
