@@ -8,7 +8,7 @@ public class AreejBackEnd implements JessicaSupport{
 
 	private AreejSupport frontend;
 	private static int[][] board;
-
+	private static boolean userMove;
 	
 	//0 EQUALS NULL
 	//1 EQUALS USER
@@ -17,10 +17,14 @@ public class AreejBackEnd implements JessicaSupport{
 	public AreejBackEnd(AreejSupport frontend) {
 		this.frontend = frontend;
 		board = new int[6][7];
+		userMove = true;
 	//	board = AreejJessBoard.getBoard();
 		populateBoard(board);
 	
 		
+	}
+	public static void setUserMove(boolean userMove) {
+		AreejBackEnd.userMove = userMove;
 	}
 	private int row;
 	private int col;
@@ -111,22 +115,30 @@ public class AreejBackEnd implements JessicaSupport{
 			if(checkValid(userInput))
 			{
 				int userInt = Integer.parseInt(userInput);
-				System.out.println("in");
-				for(int i = board.length - 1; i > 0; i--)
+			//	System.out.println("in");
+				int i = board.length -1;
+				if (board[1][userInt] == 1 && !JessicaFrontEnd.isUserWon())
 				{
-					System.out.println("for");
+					System.out.println("The column is full. Pick another column!");
+				//	moveUser();
+				}
+				
+				while (i > 0)
+				{
+				//	System.out.println("for");
 					if(board[i][userInt] == 0)
 					{
-						System.out.println("empty");
+					//	System.out.println("empty");
 						board[i][userInt] = 1;
 						JessicaFrontEnd.placeCoord(i,userInt, "user");
+						break;
 					//	System.out.print(Arrays.toString(board));
 					}
-					while (board[6][userInt] != 0 && !JessicaFrontEnd.isUserWon())
+					else
 					{
-						System.out.println("The column is full. Pick another column!");
-						moveUser();
+						i--;
 					}
+					
 				}
 				
 			}

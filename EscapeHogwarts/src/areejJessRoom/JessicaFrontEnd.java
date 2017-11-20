@@ -247,13 +247,15 @@ public class JessicaFrontEnd implements AreejSupport{
 	public static void placeCoord(int row, int column , String input) {
 		
 		board = createBoard(6,7);
+		
+		int col = column*2 +1;
 		if(input.equals("user"))
 		{
-			board[row][column] = "U";
+			board[row][col] = "U";
 		}
 		if(input.equals("computer"))
 		{
-			board[row][column] = "C";
+			board[row][col] = "C";
 		}
 		displayBoard(board);
 		
