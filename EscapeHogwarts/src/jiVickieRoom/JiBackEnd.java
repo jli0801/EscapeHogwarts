@@ -91,7 +91,7 @@ public class JiBackEnd implements VickieSupport {
 			else {
 				//randomize inner starting box
 				// (0,1) (1,0) (1,2) (2,1)
-				generateNumber(3); 
+				generateNumber(4); 
 				if(random == 0) {
 					magicSquares[0][1] = initiatedNum;
 				}else {
@@ -103,6 +103,7 @@ public class JiBackEnd implements VickieSupport {
 						if(random == 2) {
 							magicSquares[1][2] = initiatedNum;
 						}else {
+							if(random == 3)
 							magicSquares[2][1] = initiatedNum;
 						}
 					}
