@@ -7,6 +7,7 @@ import caveExplorer.CaveExplorer;
 public class VickieFrontEnd implements JiSupport{
 
 	private VickieSupport backend;
+	
 	private String input;
 	private String grid;
 	private String SRow;
@@ -19,7 +20,6 @@ public class VickieFrontEnd implements JiSupport{
 	private int iCol;
 	private int iNum;
 	private int modRow;
-	//private JiVickieBoard[][] magicSquares;
 	
 	private int [][] magicSquares;
 
@@ -46,7 +46,11 @@ public class VickieFrontEnd implements JiSupport{
 			}
 		}*/
 		
-		backend.chooseStartingPoint();
+		/*backend.chooseStartingPoint();
+		displayTheGrid(magicSquares);
+		CaveExplorer.in.nextLine();
+		startGame();
+		*/
 		
 		/*System.out.println(iNum);
 		magicSquares[0][0] = 5;
@@ -55,6 +59,8 @@ public class VickieFrontEnd implements JiSupport{
 		magicSquares[0][1] = 3;
 		magicSquares[2][2] = 6;
 		System.out.print(magicSquares[2][2]);*/
+		
+		backend.chooseStartingPoint();
 		directions();
 		getInput();
 	}
