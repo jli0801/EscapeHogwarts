@@ -162,13 +162,11 @@ public class AreejBackEnd implements JessicaSupport{
 				//	System.out.println("for");
 					if(board[i][userInt] == 0)
 					{
-					//	System.out.println("empty");
 						board[i][userInt] = 1;
 						JessicaFrontEnd.placeCoord(i,userInt, "user");
 						setUserMove(false);
 						
 						break;
-					//	System.out.print(Arrays.toString(board));
 					}
 					else
 					{
@@ -179,10 +177,8 @@ public class AreejBackEnd implements JessicaSupport{
 				if(userMove == false) {
 					compMove();
 				}
-				
 			}
 	
-		
 			else
 			{
 				
@@ -221,7 +217,6 @@ public class AreejBackEnd implements JessicaSupport{
 		}
 		
 	}
-
 	public static boolean validateMove(int column) {
 		
 		return false;
