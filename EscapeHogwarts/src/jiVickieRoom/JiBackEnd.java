@@ -66,10 +66,12 @@ public class JiBackEnd implements VickieSupport {
 	}
 	
 	public void chooseStartingPoint() {
+		createInitiateNum();
+		isOuterNumber(initiatedNum);
 		if(initiatedNum == 5) {
 			magicSquares[1][1] = 5;
 		}else {
-			if(isOuterNumber()) {
+			if(isOuterNumber(initiatedNum)) {
 				//randomize outer starting box
 				// (0,0) (0,2) (2,0) (2,2)
 				int rowNum;
@@ -111,8 +113,8 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 	
-	public boolean isOuterNumber() {
-		StrInitiatedNum = Integer.toString(initiatedNum);
+	public boolean isOuterNumber(int num) {
+		StrInitiatedNum = Integer.toString(num);
 		if(outerNumbers.indexOf(StrInitiatedNum) > -1) {
 			return true;
 		}else {
@@ -126,10 +128,10 @@ public class JiBackEnd implements VickieSupport {
 	}
 	
 	public void createInitiateNum() {
-		initiatedNum = generateNumber(9);
+		initiatedNum = (int)(Math.random() * 9) + 1;
 	}
 
-	public int generateNumber(int max) {;
+	public int generateNumber(int max) {
 		random = (int)(Math.random() * max);
 		return random;
 	}
@@ -154,7 +156,13 @@ public class JiBackEnd implements VickieSupport {
 	
 	public void checkTotal() {
 		//check each row, column, diagonal == 15
-		
+		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15) {
+			if(magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15) {
+				if(magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15) {
+					
+				}
+			}
+		}
 	}
 
 	public void cheatCode() {
@@ -165,4 +173,5 @@ public class JiBackEnd implements VickieSupport {
 	public int[][] getBoxes() {
 		return magicSquares;
 	}
+
 }
