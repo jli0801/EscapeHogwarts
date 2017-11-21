@@ -67,7 +67,6 @@ public class JiBackEnd implements VickieSupport {
 	
 	public void chooseStartingPoint() {
 		createInitiateNum();
-		isOuterNumber(initiatedNum);
 		if(initiatedNum == 5) {
 			magicSquares[1][1] = 5;
 		}else {
@@ -92,16 +91,16 @@ public class JiBackEnd implements VickieSupport {
 			else {
 				//randomize inner starting box
 				// (0,1) (1,0) (1,2) (2,1)
-				generateNumber(4);
-				if(random == 1) {
+				generateNumber(3); 
+				if(random == 0) {
 					magicSquares[0][1] = initiatedNum;
 				}else {
-					if(random == 2) 
+					if(random == 1) 
 					{
 						magicSquares[1][0] = initiatedNum;
 					}
 					else {
-						if(random == 3) {
+						if(random == 2) {
 							magicSquares[1][2] = initiatedNum;
 						}else {
 							magicSquares[2][1] = initiatedNum;
@@ -120,8 +119,6 @@ public class JiBackEnd implements VickieSupport {
 		}else {
 			if(innerNumbers.indexOf(StrInitiatedNum) > -1) {
 				return false;
-			}else {
-				getMid();
 			}
 		}
 		return false;
@@ -135,12 +132,12 @@ public class JiBackEnd implements VickieSupport {
 		random = (int)(Math.random() * max);
 		return random;
 	}
-	
+	/*
 	public int getMid() {
 		initiatedNum = 5;
 		return initiatedNum;
 	}
-	
+	*/
 	public static boolean isNumeric(String str)  
 	{  
 	  try  
@@ -154,14 +151,16 @@ public class JiBackEnd implements VickieSupport {
 	  return true;  
 	}
 	
-	public void checkTotal() {
+	public boolean checkTotal() {
 		//check each row, column, diagonal == 15
-		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15) {
-			if(magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15) {
-				if(magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15) {
-					
-				}
-			}
+		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
+			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
+			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
+			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15 &&
+			magicSquares[2][0] + magicSquares[1][1] + magicSquares[0][2] == 15) {
+			return true;
+		}else {
+			return false;
 		}
 	}
 
