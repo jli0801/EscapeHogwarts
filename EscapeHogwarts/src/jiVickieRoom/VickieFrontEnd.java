@@ -36,6 +36,18 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void startGame() {
+		/*int i = 0;
+		while (iRow == 0) {
+			i++;
+			=backend.createInitiateNum();
+			System.out.println(backend.initiatedNum);
+			if (i == 50) {
+				iRow++;
+			}
+		}*/
+		
+		backend.chooseStartingPoint();
+		
 		/*System.out.println(iNum);
 		magicSquares[0][0] = 5;
 		magicSquares[1][0] = 9;
@@ -49,7 +61,7 @@ public class VickieFrontEnd implements JiSupport{
 	
 	public void getInput()
 	{
-		CaveExplorer.print("\nWhich coordinates do you want to put a number in?");
+		CaveExplorer.print("\nWhich coordinates do you want to put a number in, and which number do you have in mind?");
 		input = CaveExplorer.in.nextLine();
 		placeNumbers(input);
 	}
@@ -151,19 +163,17 @@ public class VickieFrontEnd implements JiSupport{
 				}
 			}
 				
-			if (row == 1 )
-			{
+			if (row == 1 ){
 				modRow = 0;
-				 placeNumOnGrid();
+				placeNumOnGrid();
 			}
-			if (row == 4 )
-			{
+			
+			if (row == 4 ){
 				modRow = 1;
 				placeNumOnGrid();
 			}
 			
-			if (row == 7)
-			{
+			if (row == 7){
 				modRow = 2;
 				placeNumOnGrid();
 			}
@@ -174,11 +184,10 @@ public class VickieFrontEnd implements JiSupport{
 	}
 	
 	public void placeNumOnGrid() {
-		for(int col = 0; col < 3; col++)
-		{
-			if(magicSquares[modRow][col]==0) 
-			{
-					System.out.print("    X   |");
+		for(int col = 0; col < 3; col++){
+			
+			if(magicSquares[modRow][col]==0) {
+				System.out.print("    X   |");
 			}else {
 				int val = magicSquares[modRow][col];
 				System.out.print("    "+val+"   |");
@@ -202,7 +211,7 @@ public class VickieFrontEnd implements JiSupport{
 	}
 	
 	public void endGame() {
-		
+		backend.checkTotal();
 	}*/
 
 

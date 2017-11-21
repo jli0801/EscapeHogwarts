@@ -10,7 +10,7 @@ public interface VickieSupport {
 
 	//void startGame();
 	
-	void checkTotal();
+	boolean checkTotal();
 	//compare rows to total
 	
 	String validNumbers();
@@ -27,11 +27,17 @@ public interface VickieSupport {
 	int generateNumber(int max);
 	//generates number based on maximum integer
 	
-	boolean isOuterNumber();
+	boolean isOuterNumber(int num);
 	//returns true if outer else false
 	
-	int getMid();
+	//int getMid();
 	//outlier method when number not outer or inner, mid can only equal 5
+	
+	void chooseStartingPoint();
+	//choose first fixed number
+	
+	void createInitiateNum();
+	//create first num
 	
 	void cheatCode();
 	//cheatCode
