@@ -27,7 +27,7 @@ public class KevinBackEnd implements StephSupport{
 	}
 	
 	public void randomLightsOff() {
-		for(int i = 0; i < 15; i++) {
+		for(int i = 0; i < 10; i++) {
 			int row = (int)(Math.random()*4);
 			int col = (int)(Math.random()*4);
 			board[row][col].lightOn(false);

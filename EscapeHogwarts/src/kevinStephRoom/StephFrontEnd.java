@@ -38,7 +38,7 @@ public class StephFrontEnd implements KevinSupport{
 		if(command.equals("r")){
 			print("To win this game, you must turn off all the lights. The O's represent the lights that are on the and X's "
 					+ "represent the lights that are off. Type out a coordinate in the form of (row, column) to toggle"
-					+ "the light and its adjacent lights. Turn all the O's into X's to win the game. \n\n      - - press enter - -");
+					+ " the light and its adjacent lights. Turn all the O's into X's to win the game. \n\n      - - press enter - -");
 			CaveExplorer.in.nextLine();
 			menu();
 		}else{
@@ -47,56 +47,6 @@ public class StephFrontEnd implements KevinSupport{
 
 	}
 	
-	public static void print(String s){
-		//create a multi-line String
-		String printString = "";
-		int cutoff = 55;
-		//check to see if there are words to add
-		//(IOW, is the length of s > 0
-		while(s.length() > 0){
-			String currentLine = "";
-			String nextWord = "";
-			//while the currentLine and nextWord are less
-			//than the cuttoff, AND there are still 
-			//words to add do the following loop
-			while(currentLine.length() + 
-					nextWord.length() <= cutoff &&
-					s.length() > 0){
-				//add the next word to the line
-				currentLine += nextWord;
-				//remove that word
-				s = s.substring(nextWord.length());
-				//get the following word
-				int endOfWord = s.indexOf(" ");
-				//check to see if this is the last word
-				if(endOfWord == -1){
-					endOfWord = s.length() -1;
-				}
-				//get the next word and space
-				nextWord = s.substring(0, endOfWord+1);
-			}
-			printString += currentLine +"\n";
-
-		}
-
-		System.out.println(printString);
-	}
-	
-	public String waitForLetterInput(String letters){
-		String input = CaveExplorer.in.nextLine();
-		while(input.length() <1 || letters.toLowerCase().indexOf(input.toLowerCase().substring(0, 1))<0){
-			System.out.print("That entry is not allowed. Please type on of the following: ");
-			String list = "";
-			for(int i = 0 ; i < letters.length()-1; i++){
-				list += letters.substring(i, i+1);
-			}
-			list += " or "+letters.substring(letters.length()-1); 
-			System.out.println(list);
-			input = CaveExplorer.in.nextLine();
-		}
-		return input.toLowerCase().substring(0, 1);
-	}
-
 	private void startGame() { //START GAME
 		board = backend.createBoard();
 		KevinStephLight c = null; 
@@ -155,6 +105,55 @@ public class StephFrontEnd implements KevinSupport{
 	public void setLightsOff(int lightsOff) {
 		this.lightsOff = lightsOff;
 	}
+	
+	public static void print(String s){
+		//create a multi-line String
+		String printString = "";
+		int cutoff = 55;
+		//check to see if there are words to add
+		//(IOW, is the length of s > 0
+		while(s.length() > 0){
+			String currentLine = "";
+			String nextWord = "";
+			//while the currentLine and nextWord are less
+			//than the cuttoff, AND there are still 
+			//words to add do the following loop
+			while(currentLine.length() + 
+					nextWord.length() <= cutoff &&
+					s.length() > 0){
+				//add the next word to the line
+				currentLine += nextWord;
+				//remove that word
+				s = s.substring(nextWord.length());
+				//get the following word
+				int endOfWord = s.indexOf(" ");
+				//check to see if this is the last word
+				if(endOfWord == -1){
+					endOfWord = s.length() -1;
+				}
+				//get the next word and space
+				nextWord = s.substring(0, endOfWord+1);
+			}
+			printString += currentLine +"\n";
 
-	//fk kevin
+		}
+
+		System.out.println(printString);
+	}
+	
+	public String waitForLetterInput(String letters){
+		String input = CaveExplorer.in.nextLine();
+		while(input.length() <1 || letters.toLowerCase().indexOf(input.toLowerCase().substring(0, 1))<0){
+			System.out.print("That entry is not allowed. Please type on of the following: ");
+			String list = "";
+			for(int i = 0 ; i < letters.length()-1; i++){
+				list += letters.substring(i, i+1);
+			}
+			list += " or "+letters.substring(letters.length()-1); 
+			System.out.println(list);
+			input = CaveExplorer.in.nextLine();
+		}
+		return input.toLowerCase().substring(0, 1);
+	}
+
 }
