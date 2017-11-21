@@ -67,6 +67,7 @@ public class JiBackEnd implements VickieSupport {
 	
 	public void chooseStartingPoint() {
 		createInitiateNum();
+		isOuterNumber(initiatedNum);
 		if(initiatedNum == 5) {
 			magicSquares[1][1] = 5;
 		}else {
