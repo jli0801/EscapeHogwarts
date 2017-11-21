@@ -118,7 +118,7 @@ public class VickieFrontEnd implements JiSupport{
 	  {  
 	    Double.parseDouble(str);  
 	  }  
-	  catch(NumberFormatException nfe)  
+	  catch(NumberFormatException nfe)  //fsgfsd
 	  {  
 	    return false;  
 	  }  
