@@ -9,8 +9,6 @@ public class AreejBackEnd implements JessicaSupport{
 	private AreejSupport frontend;
 	private static int[][] board;
 	private static boolean userMove;
-	
-	
 	//0 EQUALS NULL
 	//1 EQUALS USER
 	//2 EQUALS COMPUTER
@@ -38,11 +36,7 @@ public class AreejBackEnd implements JessicaSupport{
 	public int getCol() {
 		return col;
 	}
-	
-	//public static void main(String[] args) {}
-		
 
-	
 	public static void compMove(){
 	//	int[][] arr = getBoard();
 		int comp = (int)(Math.random()*6);
@@ -80,7 +74,6 @@ public class AreejBackEnd implements JessicaSupport{
 		
 		return board;
 	}
-	//create for loops
 	
 	//check for both user and AI
 	public static void checkWinner()
@@ -108,7 +101,7 @@ public class AreejBackEnd implements JessicaSupport{
 		
 	}
 	
-	private boolean checkVertical(char user, char ai, int row, int column) {
+	private boolean checkVertical(char user, char comp, int row, int column) {
 		int possibleBottom = Math.max(0, row - 3);
 		int possibleTop = possibleBottom + 4;
 		int playerCount = 0;
@@ -116,13 +109,13 @@ public class AreejBackEnd implements JessicaSupport{
 		
 
 		for (int checkRow = possibleBottom; checkRow < possibleTop; checkRow++){
-			if (board[checkRow][column] == ai){
+			if (board[checkRow][column] == comp){
 				opponentCount = opponentCount + 1;
 			} else if (board[checkRow][column] == user){
 				playerCount = playerCount + 1;
 			}
 		}
-		return false;
+		 if(playerCount)
 	}
 	public static boolean checkDiagonalRight() {
 		return false;
@@ -136,7 +129,6 @@ public class AreejBackEnd implements JessicaSupport{
 	
 	public static void moveUser() {
 		
-
 	//	String[][] boardFront = JessicaFrontEnd.getBoard();
 		
 		String userInput = CaveExplorer.in.nextLine();
@@ -153,7 +145,6 @@ public class AreejBackEnd implements JessicaSupport{
 		else
 		{
 		
-			
 	//		int userInt = Integer.parseInt(userInput);
 			if(checkValid(userInput))
 			{
@@ -230,27 +221,10 @@ public class AreejBackEnd implements JessicaSupport{
 		}
 		
 	}
-	public static void computerMove() {
-		int compInt = (int)(Math.random()* 6);
-		while(!validateMove(compInt))
-		{
-			compInt = (int)(Math.random()* 6);
-		}
-		for(int i = board.length ; i <0;i--) {
-			if(board[i][compInt] == 0)
-			{
-				board[i][compInt] = 1;
-				//JessicaFrontEnd.placeCoord(i,compInt, "computer");
-			}
-			
-		}
-		}
-	
 
 	public static boolean validateMove(int column) {
 		
 		return false;
 	}
-	
 	
 }
