@@ -7,18 +7,21 @@ import caveExplorer.CaveExplorer;
 public class AreejBackEnd implements JessicaSupport{
 
 	private AreejSupport frontend;
-	private static int[][] board;
+	private static int[][] mainBoard;
 	private static boolean userMove;
+	private static int[][]tempBoard;
 	//0 EQUALS NULL
 	//1 EQUALS USER
 	//2 EQUALS COMPUTER
 	
 	public AreejBackEnd(AreejSupport frontend) {
 		this.frontend = frontend;
-		board = new int[6][7];
+		mainBoard = new int[6][7];
 		userMove = true;
 	//	board = AreejJessBoard.getBoard();
-		populateBoard(board);
+		populateBoard(mainBoard);
+		
+		
 	
 		
 	}
@@ -26,36 +29,33 @@ public class AreejBackEnd implements JessicaSupport{
 		AreejBackEnd.userMove = userMove;
 	}
 	
-	private int row;
-	private int col;
-
-	public int getRow() {
-		return row;
+	public static int[][] getMainBoard()
+	{
+		
+		return mainBoard;
 	}
-
-	public int getCol() {
-		return col;
-	}
-
 	public static void compMove(){
-	//	int[][] arr = getBoard();
+		int[][] mainBoard1 = getBoard();
 		int comp = (int)(Math.random()*6);
 		System.out.println("My turn now! I'll place a Galleon here!");
-		int i = board.length -1;
-		while (i > 0)
-		{
-		if(board[1][comp] != 0)
+		int y = mainBoard1.length - 1;
+		if(mainBoard1[1][comp] != 0)
 		{
 			comp = (int)(Math.random()*6);	
 		//	compMove();
 		}
+		while (y > 0)
+		{
 		
-			if(board[i][comp] == 0){
-				board[i][comp] = 2;
-				JessicaFrontEnd.placeCoord(i,comp, "computer");
+		
+			if(mainBoard1[y][comp] == 0)
+			{
+				mainBoard1[y][comp] = 2;
+				
+				JessicaFrontEnd.placeCoord(y,comp, "computer");
 				setUserMove(true);
 				System.out.println("Your turn now! Enter a number from 0 to 6.");
-				System.out.println((board[i][comp]));
+				System.out.println((mainBoard1[y][comp]));
 				moveUser();
 				
 				//checkWinner();
@@ -64,7 +64,7 @@ public class AreejBackEnd implements JessicaSupport{
 			else
 			{
 				
-				i--;
+				y--;
 				
 			}
 		}
@@ -72,11 +72,11 @@ public class AreejBackEnd implements JessicaSupport{
 	}
 	public static int[][] getBoard() {
 		
-		return board;
+		return mainBoard;
 	}
 	
 	//check for both user and AI
-	public static void checkWinner()
+	/*public static void checkWinner()
 	{
 		for(int i =0; i< board.length; i ++) {
 			for(int j = 0; j <board[i].length; j++) {
@@ -126,14 +126,14 @@ public class AreejBackEnd implements JessicaSupport{
 	public static boolean checkHorizontal() {
 		return false;
 	}
-	
+	*/
 	public static void moveUser() {
 		
 	//	String[][] boardFront = JessicaFrontEnd.getBoard();
 		
 		String userInput = CaveExplorer.in.nextLine();
-		board = new int[6][7];
-		populateBoard(board);
+		
+	//	int[][] mainBoard1 = getBoard();
 		
 	//	System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
 		
@@ -150,19 +150,22 @@ public class AreejBackEnd implements JessicaSupport{
 			{
 				int userInt = Integer.parseInt(userInput);
 			//	System.out.println("in");
+				int[][]tempBoard = getMainBoard();
 				
-				if (board[1][userInt] == 1 && !JessicaFrontEnd.isUserWon())
+				if (tempBoard[1][userInt] == 1 && !JessicaFrontEnd.isUserWon())
 				{
 					System.out.println("The column is full. Pick another column!");
 					moveUser();
 				}
-				int i = board.length -1;
+				int i = tempBoard.length -1;
 				while (i > 0)
 				{
 				//	System.out.println("for");
-					if(board[i][userInt] == 0)
+					if(tempBoard[i][userInt] == 0 ) 
 					{
-						board[i][userInt] = 1;
+						tempBoard[i][userInt] = 1;
+					//	mainBoard1[i][userInt] = 1;
+					//	board1[i][userInt] = 1;
 						JessicaFrontEnd.placeCoord(i,userInt, "user");
 						setUserMove(false);
 						
@@ -175,10 +178,42 @@ public class AreejBackEnd implements JessicaSupport{
 					
 				}
 				if(userMove == false) {
-					compMove();
+					
+					int comp = (int)(Math.random()*6);
+					System.out.println("My turn now! I'll place a Galleon here!");
+					int y = tempBoard.length - 1;
+					if(tempBoard[1][comp] != 0)
+					{
+						comp = (int)(Math.random()*6);	
+					//	compMove();
+					}
+					while (y >= 0)
+					{
+					
+					
+						if(tempBoard[y][comp] == 0)
+						{
+							tempBoard[y][comp] = 2;
+							
+							JessicaFrontEnd.placeCoord(y,comp, "computer");
+							setUserMove(true);
+							System.out.println("Your turn now! Enter a number from 0 to 6.");
+							System.out.println((tempBoard[y][comp]));
+							moveUser();
+							
+							//checkWinner();
+							break;
+						}
+						else
+						{
+							
+							y--;
+							
+						}
+					}
 				}
 			}
-	
+	 
 			else
 			{
 				
