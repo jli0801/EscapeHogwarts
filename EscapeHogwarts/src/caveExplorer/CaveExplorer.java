@@ -18,7 +18,6 @@ public class CaveExplorer {
 		startExploring();
 
 	}
-	
 	public static void print(String s)
 	{
 		System.out.println(s);

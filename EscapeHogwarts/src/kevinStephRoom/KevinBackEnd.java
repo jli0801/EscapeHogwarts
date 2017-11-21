@@ -60,12 +60,16 @@ public class KevinBackEnd implements StephSupport{
 	}
 
 	private int[] toCoords(String input) {
-		int x = Integer.parseInt(input.substring(0,1));
-		int y = Integer.parseInt(input.substring(2,3));
-		if(input.substring(1,2).equals(",") && input.length() ==3){
-			int[] coords = {x,y};
-			return coords;
-		}else{
+		try{
+			int a = Integer.parseInt(input.substring(0,1));
+			int b = Integer.parseInt(input.substring(2,3));
+			if(input.substring(1,2).equals(",") && input.length() ==3){
+				int[] coords = {a,b};
+				return coords;
+			}else{
+				return null;
+			}
+		}catch(Exception e){
 			return null;
 		}
 	}
@@ -74,7 +78,8 @@ public class KevinBackEnd implements StephSupport{
 		while(frontend.getLightsOff() != 0) {
 			if(c.getLightOn() == true) {
 				c.setLightOn(false);
-				checkAdjacentLight(c);
+				switchAdjacentLight(c);
+				
 			}
 			else {
 				c.setLightOn(true);
@@ -83,9 +88,18 @@ public class KevinBackEnd implements StephSupport{
 		
 	}
 
-	private void checkAdjacentLight(KevinStephLight c) { //jhkvhkvjhcyjcyjcyjc
-		// TODO Auto-generated method stub
-		
+	private void switchAdjacentLight(KevinStephLight c) {
+		for(int row = c.getRow()-1; row < c.getRow()+2; row++){
+			for(int col = c.getCol()-1; col < c.getCol()+2; col++){
+				if(row >= 0 && row < board.length && col >= 0 && col < board[row].length){
+					if(board[row][col].getLightOn()) {
+						board[row][col].setLightOn(false);
+					} else if(!board[row][col].getLightOn()) {
+						board[row][col].setLightOn(true);
+					}
+				}
+			}
+		}
 	}
 
 }
