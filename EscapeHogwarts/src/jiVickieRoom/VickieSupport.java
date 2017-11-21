@@ -27,7 +27,7 @@ public interface VickieSupport {
 	int generateNumber(int max);
 	//generates number based on maximum integer
 	
-	boolean isOuterNumber();
+	boolean isOuterNumber(int num);
 	//returns true if outer else false
 	
 	int getMid();

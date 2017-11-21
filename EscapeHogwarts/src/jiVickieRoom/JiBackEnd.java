@@ -67,11 +67,10 @@ public class JiBackEnd implements VickieSupport {
 	
 	public void chooseStartingPoint() {
 		createInitiateNum();
-		isOuterNumber(initiatedNum);
 		if(initiatedNum == 5) {
 			magicSquares[1][1] = 5;
 		}else {
-			if(isOuterNumber()) {
+			if(isOuterNumber(initiatedNum)) {
 				//randomize outer starting box
 				// (0,0) (0,2) (2,0) (2,2)
 				int rowNum;
@@ -173,4 +172,5 @@ public class JiBackEnd implements VickieSupport {
 	public int[][] getBoxes() {
 		return magicSquares;
 	}
+
 }
