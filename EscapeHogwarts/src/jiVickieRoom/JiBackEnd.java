@@ -9,7 +9,7 @@ public class JiBackEnd implements VickieSupport {
 	
 	private JiSupport frontend;
 	
-	private int total = 15;
+	//private int total = 15;
 	private int random;
 	private int currentNumber;
 	private int newNumber;
@@ -18,6 +18,8 @@ public class JiBackEnd implements VickieSupport {
 	private String innerNumbers = "7931";
 	private int initiatedNum;
 	private String StrInitiatedNum;
+	private int rowNum = 1;
+	private int colNum = 1;
 
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
@@ -34,12 +36,12 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 */
-
+	
 	public void checkMultiples(String character) {
 		if(checkValid(character) == true) {
 			newNumber = currentNumber;
 			if(usedNumbers().indexOf(newNumber) > -1) {
-				//replace original number with space or 'x' (FRONT END)
+				//replace original number 'x' (FRONT END)
 				//add number in new box (FRONT END)
 			}else {
 				usedNumbers += Integer.toString(newNumber);
@@ -48,6 +50,8 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 	
+	
+	/*
 	public boolean checkValid(String character) {
 		if(validNumbers().indexOf(character) > -1 && character.length() == 1) {
 			currentNumber = Integer.parseInt(character);
@@ -57,24 +61,26 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 	
+	public String validNumbers() {
+		return "1234567890";
+	}
+	*/
+	
 	public String usedNumbers() {
 		return usedNumbers;
 	}
 
-	public String validNumbers() {
-		return "1234567890";
-	}
+	
 	
 	public void chooseStartingPoint() {
 		createInitiateNum();
 		if(initiatedNum == 5) {
-			magicSquares[1][1] = 5;
+			magicSquares[rowNum][colNum] = 5;
 		}else {
 			if(isOuterNumber(initiatedNum)) {
 				//randomize outer starting box
 				// (0,0) (0,2) (2,0) (2,2)
-				int rowNum;
-				int colNum;
+				
 				if(Math.random() < .5) {
 					rowNum = 0;
 				}else {
@@ -94,23 +100,44 @@ public class JiBackEnd implements VickieSupport {
 				generateNumber(4); 
 				if(random == 0) {
 					magicSquares[0][1] = initiatedNum;
+					rowNum = 0;
+					colNum = 1;
+					
 				}else {
 					if(random == 1) 
 					{
 						magicSquares[1][0] = initiatedNum;
+						rowNum = 1;
+						colNum = 0;
 					}
 					else {
 						if(random == 2) {
 							magicSquares[1][2] = initiatedNum;
+							rowNum = 1;
+							colNum = 2;
 						}else {
 							if(random == 3)
 							magicSquares[2][1] = initiatedNum;
+							rowNum = 2;
+							colNum = 1;
 						}
 					}
 				
 				}
 			}
 		}
+	}
+	
+	public int getInitiateNum() {
+		return initiatedNum;
+	}
+	
+	public int getRowNum() {
+		return rowNum;
+	}
+	
+	public int getColNum() {
+		return colNum;
 	}
 	
 	public boolean isOuterNumber(int num) {
@@ -158,7 +185,10 @@ public class JiBackEnd implements VickieSupport {
 			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
 			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
 			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15 &&
-			magicSquares[2][0] + magicSquares[1][1] + magicSquares[0][2] == 15) {
+			magicSquares[2][0] + magicSquares[1][1] + magicSquares[0][2] == 15 &&
+			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
+			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
+			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15) {
 			return true;
 		}else {
 			return false;
