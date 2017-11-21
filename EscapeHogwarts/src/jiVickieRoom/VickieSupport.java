@@ -33,6 +33,9 @@ public interface VickieSupport {
 	int getMid();
 	//outlier method when number not outer or inner, mid can only equal 5
 	
+	void chooseStartingPoint();
+	//choose first fixed number
+	
 	void cheatCode();
 	//cheatCode
 
