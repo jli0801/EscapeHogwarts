@@ -27,7 +27,7 @@ public class StephFrontEnd implements KevinSupport{
 	}
 
 	public void play() {
-		new StephIntro(null).play();
+		new StephIntro().play();
 		CaveExplorer.in.nextLine();
 		menu();
 	}
