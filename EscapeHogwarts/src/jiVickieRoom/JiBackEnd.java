@@ -4,14 +4,14 @@ import caveExplorer.CaveExplorer;
 
 public class JiBackEnd implements VickieSupport {
 	
-	private static JiVickieBoard[][] magicSquares;
+	private int[][] magicSquares;
 	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!kjk
 	
 	private JiSupport frontend;
 	
 	private int total = 15;
 	private int random;
-	private String currentNumber;
+	private int currentNumber;
 	private int newNumber;
 	private String usedNumbers;
 	private String outerNumbers = "2648";
@@ -21,37 +21,39 @@ public class JiBackEnd implements VickieSupport {
 
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
-		magicSquares = new JiVickieBoard[3][3];
-		createTheBox();
+		//magicSquares = magicSquares[3][3];
+		magicSquares = new int[3][3];
+		//createTheBox();
 	}
-
+/*
 	public static void createTheBox() {
 		for(int row = 0; row < magicSquares.length; row++){
 			for(int col = 0; col < magicSquares[row].length; col++){
-				magicSquares[row][col] = new JiVickieBoard(row, col);
+				magicSquares[row][col] = new magicSquares(row, col);
 			}
 		}
 	}
+*/
 
-	public boolean checkValid(String character) {
-		if(validNumbers().indexOf(character) > -1 && character.length() == 1) {
-			currentNumber = character;
-			return true;
-		}else {
-			return false;
+	public void checkMultiples(String character) {
+		if(checkValid(character) == true) {
+			newNumber = currentNumber;
+			if(usedNumbers().indexOf(newNumber) > -1) {
+				//replace original number with space or 'x' (FRONT END)
+				//add number in new box (FRONT END)
+			}else {
+				usedNumbers += Integer.toString(newNumber);
+				//add number in new box (FRONT END)
+			}
 		}
 	}
 	
-	public void checkMultiples(String character) {
-		if(checkValid(character) == true) {
-			newNumber = Integer.parseInt(currentNumber);
-			if(usedNumbers().indexOf(newNumber) > -1) {
-				//replace original number with space (FRONT END)
-				//add number in new space (FRONT END)
-			}else {
-				usedNumbers += Integer.toString(newNumber);
-				//add number in new space (FRONT END)
-			}
+	public boolean checkValid(String character) {
+		if(validNumbers().indexOf(character) > -1 && character.length() == 1) {
+			currentNumber = Integer.parseInt(character);
+			return true;
+		}else {
+			return false;
 		}
 	}
 	
@@ -62,19 +64,54 @@ public class JiBackEnd implements VickieSupport {
 	public String validNumbers() {
 		return "1234567890";
 	}
-
-	public void checkTotal() {
-		//check each row, column, diagonal == 15
-		
-	}
-
-	public int generateNumber(int max) {;
-		random = (int)(Math.random() * max);
-		return random;
+	
+	public void chooseStartingPoint() {
+		if(initiatedNum == 5) {
+			magicSquares[1][1] = 5;
+		}else {
+			if(isOuterNumber()) {
+				//randomize outer starting box
+				// (0,0) (0,2) (2,0) (2,2)
+				int rowNum;
+				int colNum;
+				if(Math.random() < .5) {
+					rowNum = 0;
+				}else {
+					rowNum = 2;
+				}
+				
+				if(Math.random() < .5) {
+					colNum = 0;
+				}else {
+					colNum = 2;
+				}
+				magicSquares[rowNum][colNum] = initiatedNum;
+			}
+			else {
+				//randomize inner starting box
+				// (0,1) (1,0) (1,2) (2,1)
+				generateNumber(4);
+				if(random == 1) {
+					magicSquares[0][1] = initiatedNum;
+				}else {
+					if(random == 2) 
+					{
+						magicSquares[1][0] = initiatedNum;
+					}
+					else {
+						if(random == 3) {
+							magicSquares[1][2] = initiatedNum;
+						}else {
+							magicSquares[2][1] = initiatedNum;
+						}
+					}
+				
+				}
+			}
+		}
 	}
 	
 	public boolean isOuterNumber() {
-		initiatedNum = generateNumber(9);
 		StrInitiatedNum = Integer.toString(initiatedNum);
 		if(outerNumbers.indexOf(StrInitiatedNum) > -1) {
 			return true;
@@ -88,8 +125,36 @@ public class JiBackEnd implements VickieSupport {
 		return false;
 	}
 	
+	public void createInitiateNum() {
+		initiatedNum = generateNumber(9);
+	}
+
+	public int generateNumber(int max) {;
+		random = (int)(Math.random() * max);
+		return random;
+	}
+	
 	public int getMid() {
-		return 5;
+		initiatedNum = 5;
+		return initiatedNum;
+	}
+	
+	public static boolean isNumeric(String str)  
+	{  
+	  try  
+	  {  
+	    Double.parseDouble(str);  
+	  }  
+	  catch(NumberFormatException nfe)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
+	}
+	
+	public void checkTotal() {
+		//check each row, column, diagonal == 15
+		
 	}
 
 	public void cheatCode() {
@@ -97,9 +162,7 @@ public class JiBackEnd implements VickieSupport {
 		
 	}
 
-	@Override
-	public JiVickieBoard[][] getBoxes() {
+	public int[][] getBoxes() {
 		return magicSquares;
 	}
-	
 }

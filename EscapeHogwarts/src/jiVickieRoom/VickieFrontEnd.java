@@ -18,6 +18,7 @@ public class VickieFrontEnd implements JiSupport{
 	private int iRow;
 	private int iCol;
 	private int iNum;
+	private int modRow;
 	//private JiVickieBoard[][] magicSquares;
 	
 	private int [][] magicSquares;
@@ -35,8 +36,19 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void startGame() {
-		System.out.println(iNum);
+		/*System.out.println(iNum);
+		magicSquares[0][0] = 5;
+		magicSquares[1][0] = 9;
+		magicSquares[2][0] = 8;
+		magicSquares[0][1] = 3;
+		magicSquares[2][2] = 6;
+		System.out.print(magicSquares[2][2]);*/
 		directions();
+		getInput();
+	}
+	
+	public void getInput()
+	{
 		CaveExplorer.print("\nWhich coordinates do you want to put a number in?");
 		input = CaveExplorer.in.nextLine();
 		placeNumbers(input);
@@ -52,10 +64,10 @@ public class VickieFrontEnd implements JiSupport{
 			 SCol = nums.substring(2, 3);
 			 SNum = nums.substring(4, 5);
 			 
-			 CaveExplorer.print(SRow + SCol + SNum);
+			// CaveExplorer.print(SRow + SCol + SNum); debugging purposes
 		
 			if(isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum) ){
-				CaveExplorer.print("true");
+				//CaveExplorer.print("true");debugging purposes
 				//turn str into num
 				iRow = Integer.parseInt(SRow);
 				iCol = Integer.parseInt(SCol);
@@ -65,9 +77,10 @@ public class VickieFrontEnd implements JiSupport{
 				//turn the Snum to int
 				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
 					magicSquares[iRow][iCol] = iNum;
-					System.out.println(iNum);
-					System.out.println(magicSquares[iRow][iCol]);
-					//displayField();
+					//System.out.println(iNum); debugging purposes
+					//System.out.println(magicSquares[iRow][iCol]);debugging purposes
+					displayTheGrid(magicSquares);
+					getInput();
 					
 				}else
 				{
@@ -95,7 +108,7 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void error() {
-		CaveExplorer.print("You entered an invalid response: \n	Ex: x,y,z \n		  x = row\n		  y = column\n		  z = num\n \nWhich coordinates do you want to put a number in?");
+		CaveExplorer.print("You entered an invalid response: \n	Ex: x,y,z \n		  x = row (0-2)\n		  y = column (0-2)\n		  z = num (1-9)\n \nWhich coordinates do you want to put a number in?");
 		input = CaveExplorer.in.nextLine();
 		placeNumbers(input);
 	}
@@ -118,40 +131,59 @@ public class VickieFrontEnd implements JiSupport{
 	public void displayTheGrid(int[][] magicSquares) {
 		CaveExplorer.print("    0         1        2    ");
 		CaveExplorer.print(" ________ ________ ________ ");
-		String rows = "0123456789";
-		String columns = "  0123456789";
+		//String rows = "0123456789";
+		String rows = " 0  1  2  ";
 		
 		for(int row = 0; row < 9; row++)
 		{
 			System.out.print("|");
-				if (row == 2 || row == 5 || row == 8)
-				{
-					for(int col = 0; col < 3; col++)
-					{
-							System.out.print("________|");
-					}
-				}else
-				{
-					if (row == 1 || row == 4 || row == 7)
-					{
-						for(int col = 0; col < 3; col++)
-						{
-								if(col ==2) {
-									System.out.print("    7   |");
-								}else {
-							System.out.print("    X   |");}
-						}
-					} else {
-						for(int col = 0; col < 3; col++)
-						{
-								System.out.print("        |");
-						}
-					}
+				
+			if (row == 2 || row == 5 || row == 8){
+				
+				for(int col = 0; col < 3; col++){
+					System.out.print("________|");
 				}
-				System.out.println(" " + rows.substring(row, row+1));
+			}
+			if(row == 0 || row == 3 || row == 6){
+				
+				for(int col = 0; col < 3; col++){
+					System.out.print("        |");
+				}
+			}
+				
+			if (row == 1 )
+			{
+				modRow = 0;
+				 placeNumOnGrid();
+			}
+			if (row == 4 )
+			{
+				modRow = 1;
+				placeNumOnGrid();
+			}
+			
+			if (row == 7)
+			{
+				modRow = 2;
+				placeNumOnGrid();
+			}
+			System.out.println(" " + rows.substring(row, row+1));
 		}
 		CaveExplorer.print("");
 
+	}
+	
+	public void placeNumOnGrid() {
+		for(int col = 0; col < 3; col++)
+		{
+			if(magicSquares[modRow][col]==0) 
+			{
+					System.out.print("    X   |");
+			}else {
+				int val = magicSquares[modRow][col];
+				System.out.print("    "+val+"   |");
+			}
+		} 
 	}
 	
 }
