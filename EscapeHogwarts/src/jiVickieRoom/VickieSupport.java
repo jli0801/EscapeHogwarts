@@ -5,7 +5,7 @@ public interface VickieSupport {
 	//void checkMultiples(String character);
 	//when adding numbers to game, add in array
 	
-	String usedNumbers();
+	//void usedNumbers();
 	//checks throughout the string to see if the number is used, and if it is, replace the number on the game (front end)
 
 	//void startGame();
@@ -57,6 +57,10 @@ public interface VickieSupport {
 	 boolean isNumeric(String str);
 	 //checks if character is num
 
+	 void placeNumbers(String nums);
+	 
 	int[][] getBoxes();
+
+	int getiRow();
 }
 //

@@ -27,4 +27,30 @@ public interface JiSupport {
 	
 	
 	//void endGame(); //ends game and gets reward//
+	
+	void getInput();
+	
+	void placeNumOnGrid();
+	
+	void displayTheGrid();
+	
+	//void placeNumbers(String nums);
+	
+	void complete();
+	
+	 void doNotOverride();
+	 
+	 void error();
+	 
+	  String getSRow();
+
+		 String getSCol() ;
+
+		 String getSNum() ;
+
+		 int getiRow() ;
+
+		 int getiCol() ;
+
+		 int getiNum() ;
 }

@@ -52,22 +52,35 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.in.nextLine();
 		startGame();
 		*/
-		
-		
-		/*System.out.println(iNum);
-		magicSquares[0][0] = 5;
-		magicSquares[1][0] = 9;
-		magicSquares[2][0] = 8;
-		magicSquares[0][1] = 3;
-		magicSquares[2][2] = 6;
-		System.out.print(magicSquares[2][2]);*/
-		
-		
 		backend.chooseStartingPoint();
 		directions();
 		getInput();
 	}
 	
+	public void setSRow(String sRow) {
+		SRow = sRow;
+	}
+
+	public void setSCol(String sCol) {
+		SCol = sCol;
+	}
+
+	public void setSNum(String sNum) {
+		SNum = sNum;
+	}
+
+	public void setiRow(int iRow) {
+		this.iRow = iRow;
+	}
+
+	public void setiCol(int iCol) {
+		this.iCol = iCol;
+	}
+
+	public void setiNum(int iNum) {
+		this.iNum = iNum;
+	}
+
 	public void directions() {
 		CaveExplorer.print("Welcome to Magic Squares! Play in order to ...... (we'll fill it in later).....");
 		CaveExplorer.print("");
@@ -140,49 +153,14 @@ public class VickieFrontEnd implements JiSupport{
 	public void getInput(){
 		CaveExplorer.print("\nWhich coordinates do you want to put a number in, and which number do you have in mind?");
 		input = CaveExplorer.in.nextLine();
-		placeNumbers(input);
+		input= input.toLowerCase();
+		if(input == "skip") {
+			backend.cheatCode();
+		}else {
+		backend.placeNumbers(input);
+		}
 	}
 
-	public void placeNumbers(String nums) {
-		int len = nums.length();
-		 if(len > 5 || len <5) {
-			error();
-		 }else {
-			 //make sure the numbers are numbers
-			 SRow = nums.substring(0, 1);
-			 SCol = nums.substring(2, 3);
-			 SNum = nums.substring(4, 5);
-			 
-			// CaveExplorer.print(SRow + SCol + SNum); debugging purposes
-		
-			if(isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum) ){
-				//CaveExplorer.print("true");debugging purposes
-				//turn str into num
-				iRow = Integer.parseInt(SRow);
-				iCol = Integer.parseInt(SCol);
-				iNum = Integer.parseInt(SNum);
-				
-				doNotOverride();
-				
-				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
-					checkMultiples(iNum);
-					magicSquares[iRow][iCol] = iNum; //create method in backend
-					//System.out.println(iNum); debugging purposes
-					//System.out.println(magicSquares[iRow][iCol]);debugging purposes
-					displayTheGrid();
-					complete();
-					//getInput();
-				}else
-				{
-					error();
-				}
-				
-			}else {
-				error();
-			}
-		 }
-		
-	}
 	
 	public void complete() {
 		String numbersUsed = "";
@@ -205,6 +183,8 @@ public class VickieFrontEnd implements JiSupport{
 			if(input == "no") {
 				getInput();
 			}
+		}else {
+			getInput();
 		}
 	}
 
@@ -213,7 +193,7 @@ public class VickieFrontEnd implements JiSupport{
 		fixedRow = backend.getRowNum();
 		fixedCol = backend.getColNum();
 		
-		if(fixedRow == iRow && fixedCol == iCol) {
+		if(fixedRow == backend.getiRow() && fixedCol == iCol) {
 			System.out.println("	That coordinate already has a fixed value from the beginning!");
 			System.out.println("	Sorry, but you have to enter another set of coordinates.");
 			getInput();
@@ -226,29 +206,6 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 	
-	public void checkMultiples(int num) {
-		for(int row = 0; row < 3; row++) {
-			for(int col = 0; col < 3; col++) {
-				int same = magicSquares[row][col];
-				
-				if(iNum == same) {
-					magicSquares[row][col]= 0;
-				}
-			}
-		}
-		
-	}
-
-	public static boolean isNumeric(String str)  {  
-	  try  {  
-	    Double.parseDouble(str);  
-	  }  
-	  catch(NumberFormatException nfe) {  
-	    return false;  
-	  }  
-	  return true;  
-	}
-
 	public void error() {
 		CaveExplorer.print("	You entered an invalid response: \n		Ex: x,y,z \n		  	x = row (0-2)\n		  	y = column (0-2)\n		  	z = num (1-9)");
 		getInput();
@@ -263,16 +220,34 @@ public class VickieFrontEnd implements JiSupport{
 		 * else say congrats: you get money and part of the broom!
 		 */
 	}
+
+	public String getSRow() {
+		return SRow;
+	}
+
+	public String getSCol() {
+		return SCol;
+	}
+
+	public String getSNum() {
+		return SNum;
+	}
+
+	public int getiRow() {
+		return iRow;
+	}
+
+	public int getiCol() {
+		return iCol;
+	}
+
+	public int getiNum() {
+		return iNum;
+	}
 }
 
 
-	/*public static void userEntered() {
-		JiBackEnd.createTheBox();
-		
-	}
-
-
-	@Override
+	/*@Override
 	public void backgroundStory() {
 		// TODO Auto-generated method stub
 		
@@ -299,3 +274,257 @@ public class VickieFrontEnd implements JiSupport{
  */
 //
 
+package jiVickieRoom;
+
+import caveExplorer.CaveExplorer;
+
+public class JiBackEnd implements VickieSupport {
+	
+	private int[][] magicSquares;
+	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!kjk
+	
+	private JiSupport frontend;
+	
+	//private int total = 15;
+	private int random;
+	private int currentNumber;
+	private int newNumber;
+	private String usedNumbers;
+	private String outerNumbers = "2648";
+	private String innerNumbers = "7931";
+	private int initiatedNum;
+	private String StrInitiatedNum;
+	private int rowNum = 1;
+	private int colNum = 1;
+	
+	private String SRow; //String Row #
+	private String SCol; //String Col #
+	private String SNum; //String Number #
+
+	private int iRow;  //Integer Row #
+	private int iCol;  //Integer Col #
+	private int iNum;  //Integer Number #
+
+	public JiBackEnd(JiSupport frontend) {
+		this.frontend = frontend;
+		//magicSquares = magicSquares[3][3];
+		magicSquares = new int[3][3];
+		//createTheBox();
+	}
+	
+	/*public String usedNumbers() {
+		return usedNumbers;
+	}*/
+
+	
+	
+	public void chooseStartingPoint() {
+		createInitiateNum();
+		if(initiatedNum == 5) {
+			magicSquares[rowNum][colNum] = 5;
+		}else {
+			if(isOuterNumber(initiatedNum)) {
+				//randomize outer starting box
+				// (0,0) (0,2) (2,0) (2,2)
+				
+				if(Math.random() < .5) {
+					rowNum = 0;
+				}else {
+					rowNum = 2;
+				}
+				
+				if(Math.random() < .5) {
+					colNum = 0;
+				}else {
+					colNum = 2;
+				}
+				magicSquares[rowNum][colNum] = initiatedNum;
+			}
+			else {
+				//randomize inner starting box
+				// (0,1) (1,0) (1,2) (2,1)
+				generateNumber(4); 
+				if(random == 0) {
+					magicSquares[0][1] = initiatedNum;
+					rowNum = 0;
+					colNum = 1;
+					
+				}else {
+					if(random == 1) 
+					{
+						magicSquares[1][0] = initiatedNum;
+						rowNum = 1;
+						colNum = 0;
+					}
+					else {
+						if(random == 2) {
+							magicSquares[1][2] = initiatedNum;
+							rowNum = 1;
+							colNum = 2;
+						}else {
+							if(random == 3)
+							magicSquares[2][1] = initiatedNum;
+							rowNum = 2;
+							colNum = 1;
+						}//2123fgdf
+					}
+				
+				}
+			}
+		}
+	}
+	
+	
+	public void placeNumbers(String nums) {
+		int len = nums.length();
+		 if(len > 5 || len <5) {
+			frontend.error();
+		 }else {
+			  SRow = nums.substring(0, 1);
+			  SCol = nums.substring(2, 3);
+			  SNum = nums.substring(4, 5);
+
+			if(isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum) ){
+				 iRow = Integer.parseInt(SRow);
+				 iCol = Integer.parseInt(SCol);
+				 iNum = Integer.parseInt(SNum);
+				
+				frontend.doNotOverride();
+				
+				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
+					checkMultiples(iNum);
+					magicSquares[iRow][iCol] = iNum; //create method in backend
+					frontend.displayTheGrid();
+					frontend.complete();
+					//getInput();
+				}else
+				{
+					frontend.error();
+				}
+				
+			}else {
+				frontend.error();
+			}
+		 }
+		
+	}
+	//STOP
+	public String getSRow() {
+		return SRow;
+	}
+
+	public String getSCol() {
+		return SCol;
+	}
+
+	public String getSNum() {
+		return SNum;
+	}
+
+	public int getiRow() {
+		return iRow;
+	}
+
+	public int getiCol() {
+		return iCol;
+	}
+
+	public int getiNum() {
+		return iNum;
+	}
+ //STOP
+	public int getInitiateNum() {
+		return initiatedNum;
+	}
+	
+	public int getRowNum() {
+		return rowNum;
+	}
+	
+	public int getColNum() {
+		return colNum;
+	}
+	
+	public boolean isOuterNumber(int num) {
+		StrInitiatedNum = Integer.toString(num);
+		if(outerNumbers.indexOf(StrInitiatedNum) > -1) {
+			return true;
+		}else {
+			if(innerNumbers.indexOf(StrInitiatedNum) > -1) {
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	public void createInitiateNum() {
+		initiatedNum = (int)(Math.random() * 9) + 1;
+	}
+
+	public int generateNumber(int max) {
+		random = (int)(Math.random() * max);
+		return random;
+	}
+
+	public boolean isNumeric(String str) {  
+	  try  
+	  {  
+	    Double.parseDouble(str);  
+	  }  
+	  catch(NumberFormatException nfe)  
+	  {  
+	    return false;  
+	  }  
+	  return true;  
+	}
+	
+	public void checkMultiples(int num) {
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				int same = magicSquares[row][col];
+				
+				if(num == same) {
+					magicSquares[row][col]= 0;
+				}
+			}
+		}
+		
+	}
+	
+	public boolean checkTotal() {
+		//check each row, column, diagonal == 15
+		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
+			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
+			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
+			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15 &&
+			magicSquares[2][0] + magicSquares[1][1] + magicSquares[0][2] == 15 &&
+			magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
+			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
+			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public void cheatCode() {
+		
+	
+		/*
+		for(int col = 0; col < magicSquares[row].length; col++) {
+			if(col ==)
+		}
+	
+		for(int row = 0; row < magicSquares.length; row++){
+			for(int col = 0; col < magicSquares[row].length; col++){
+				if()
+			}
+		}
+	*/
+	}
+
+	public int[][] getBoxes() {
+		return magicSquares;
+	}
+
+}
