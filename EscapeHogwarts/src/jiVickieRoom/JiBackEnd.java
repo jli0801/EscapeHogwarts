@@ -56,7 +56,8 @@ public class JiBackEnd implements VickieSupport {
 				//replace original number 'x' (FRONT END)
 				//add number in new box (FRONT END)
 			}else {
-				
+				usedNumbers += Integer.toString(Integer.toString(character));
+				//add number in new box (FRONT END)
 			}
 		}
 	}
