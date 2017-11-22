@@ -9,21 +9,31 @@ public class AreejBackEnd implements JessicaSupport{
 	private AreejSupport frontend;
 	private static int[][] mainBoard;
 	private static boolean userMove;
-	private static int[][]tempBoard;
+//	private static int[][]tempBoard;
 	//0 EQUALS NULL
 	//1 EQUALS USER
 	//2 EQUALS COMPUTER
 	
 	public AreejBackEnd(AreejSupport frontend) {
 		this.frontend = frontend;
+	/*	mainBoard = new int[6][7];
+		userMove = true;
+		board = AreejJessBoard.getBoard();
+		populateBoard(mainBoard);
+		
+		System.out.println(mainBoard.length);*/
+	
+		
+	}
+	
+	public static void initialize()
+	{
 		mainBoard = new int[6][7];
 		userMove = true;
 	//	board = AreejJessBoard.getBoard();
 		populateBoard(mainBoard);
-		
-		
-	
-		
+		moveUser();
+	//	System.out.println(mainBoard.length);
 	}
 	public static void setUserMove(boolean userMove) {
 		AreejBackEnd.userMove = userMove;
@@ -128,7 +138,8 @@ public class AreejBackEnd implements JessicaSupport{
 	}
 	*/
 	public static void moveUser() {
-		
+	//	int[][] mainBoard = new int[6][7];
+	//	populateBoard(mainBoard);
 	//	String[][] boardFront = JessicaFrontEnd.getBoard();
 		
 		String userInput = CaveExplorer.in.nextLine();
@@ -150,40 +161,45 @@ public class AreejBackEnd implements JessicaSupport{
 			{
 				int userInt = Integer.parseInt(userInput);
 			//	System.out.println("in");
-				int[][]tempBoard = getMainBoard();
+			//	int[][]tempBoard = getMainBoard();
 				//changed == 1 to != 0
-				if (tempBoard[1][userInt] != 0 && !JessicaFrontEnd.isUserWon())
+				System.out.println(mainBoard.toString());
+				if (mainBoard[1][userInt] != 0 )
+					//&& !JessicaFrontEnd.isUserWon()
 				{
 					System.out.println("The column is full. Pick another column!");
 					return;
 					//changed moveUser to return
 				}
-				int i = tempBoard.length -1;
-				while (i > 0)
+				else
 				{
-				//	System.out.println("for");
-					if(tempBoard[i][userInt] == 0 ) 
+					int i = mainBoard.length -1;
+					while (i > 0)
 					{
-						tempBoard[i][userInt] = 1;
-					//	mainBoard1[i][userInt] = 1;
-					//	board1[i][userInt] = 1;
-						JessicaFrontEnd.placeCoord(i,userInt, "user");
-						setUserMove(false);
-						
-						break;
-					}
-					else
-					{
-						i--;
-					}
+					//	System.out.println("for");
+						if(mainBoard[i][userInt] == 0 ) 
+						{
+							mainBoard[i][userInt] = 1;
+						//	mainBoard1[i][userInt] = 1;
+						//	board1[i][userInt] = 1;
+							JessicaFrontEnd.placeCoord(i,userInt, "user");
+							setUserMove(false);
+							
+							break;
+						}
+						else
+						{
+							i--;
+						}
 					
+				}
 				}
 				if(userMove == false) {
 					
 					int comp = (int)(Math.random()*6);
 					System.out.println("My turn now! I'll place a Galleon here!");
-					int y = tempBoard.length - 1;
-					if(tempBoard[1][comp] != 0)
+					int y = mainBoard.length - 1;
+					if(mainBoard[1][comp] != 0)
 					{
 						comp = (int)(Math.random()*6);	
 					//	compMove();
@@ -192,14 +208,14 @@ public class AreejBackEnd implements JessicaSupport{
 					{
 					
 					
-						if(tempBoard[y][comp] == 0)
+						if(mainBoard[y][comp] == 0)
 						{
-							tempBoard[y][comp] = 2;
+							mainBoard[y][comp] = 2;
 							
 							JessicaFrontEnd.placeCoord(y,comp, "computer");
 							setUserMove(true);
 							System.out.println("Your turn now! Enter a number from 0 to 6.");
-							System.out.println((tempBoard[y][comp]));
+							System.out.println((mainBoard[y][comp]));
 						//	moveUser();
 						//commented out
 							//checkWinner();

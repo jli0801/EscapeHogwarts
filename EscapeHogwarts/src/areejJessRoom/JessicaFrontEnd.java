@@ -122,7 +122,7 @@ public class JessicaFrontEnd implements AreejSupport{
 		boolean playingGame = true;
 		while(playingGame)
 		{
-			AreejBackEnd.moveUser();
+			AreejBackEnd.initialize();
 			
 			if(userWon) 
 			{
