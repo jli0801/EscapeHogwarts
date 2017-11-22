@@ -198,9 +198,9 @@ public class JiBackEnd implements VickieSupport {
 			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
 			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15 &&
 			magicSquares[2][0] + magicSquares[1][1] + magicSquares[0][2] == 15 &&
+			magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
 			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
-			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
-			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15) {
+			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15) {
 			return true;
 		}else {
 			return false;
