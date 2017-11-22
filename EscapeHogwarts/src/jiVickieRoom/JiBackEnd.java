@@ -165,7 +165,9 @@ public class JiBackEnd implements VickieSupport {
 	}
 
 	public void cheatCode() {
-		
+		magicSquares[0][0] = 2; magicSquares[0][1] = 7; magicSquares[0][2] = 6;
+		magicSquares[1][0] = 9; magicSquares[1][1] = 5; magicSquares[1][2] = 1;
+		magicSquares[2][0] = 4; magicSquares[2][1] = 3; magicSquares[2][2] = 8;
 	
 		/*
 		for(int col = 0; col < magicSquares[row].length; col++) {
