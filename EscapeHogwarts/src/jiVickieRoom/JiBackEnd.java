@@ -27,56 +27,6 @@ public class JiBackEnd implements VickieSupport {
 		magicSquares = new int[3][3];
 		//createTheBox();
 	}
-/*
-	public static void createTheBox() {
-		for(int row = 0; row < magicSquares.length; row++){
-			for(int col = 0; col < magicSquares[row].length; col++){
-				magicSquares[row][col] = new magicSquares(row, col);
-			}
-		}
-	}
-*/
-	/*
-	public void checkMultiples(String character) {
-		if(checkValid(character) == true) {
-			newNumber = currentNumber;
-			if(usedNumbers().indexOf(newNumber) > -1) {
-				//replace original number 'x' (FRONT END)
-				//add number in new box (FRONT END)
-			}else {
-				usedNumbers += Integer.toString(newNumber);
-				//add number in new box (FRONT END)
-			}
-		}
-	}
-	*/
-	public void checkMultiples(String character) {
-		if(character.length() == 1 && isNumberic(character) &&
-		usedNumbers().indexOf(Integer.toString(character)) > -1) {
-				//replace original number 'x' (FRONT END)
-				//add number in new box (FRONT END)
-			}else {
-				usedNumbers += Integer.toString(Integer.toString(character));
-				//add number in new box (FRONT END)
-			}
-		}
-	}
-	
-	
-	/*
-	public boolean checkValid(String character) {
-		if(validNumbers().indexOf(character) > -1 && character.length() == 1) {
-			currentNumber = Integer.parseInt(character);
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	public String validNumbers() {
-		return "1234567890";
-	}
-	*/
 	
 	public String usedNumbers() {
 		return usedNumbers;
@@ -172,14 +122,8 @@ public class JiBackEnd implements VickieSupport {
 		random = (int)(Math.random() * max);
 		return random;
 	}
-	/*
-	public int getMid() {
-		initiatedNum = 5;
-		return initiatedNum;
-	}
-	*/
-	public static boolean isNumeric(String str)  
-	{  
+
+	public boolean isNumeric(String str) {  
 	  try  
 	  {  
 	    Double.parseDouble(str);  
@@ -191,8 +135,25 @@ public class JiBackEnd implements VickieSupport {
 	  return true;  
 	}
 	
+	public void checkMultiples(int num) {
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				int same = magicSquares[row][col];
+				
+				if(num == same) {
+					magicSquares[row][col]= 0;
+				}
+			}
+		}
+		
+	}
+	
 	public boolean checkTotal() {
 		//check each row, column, diagonal == 15
+		/*
+		for(int row = 0; row < magicSquares.length; row++){
+			for(int col = 0; col < magicSquares[row].length; col++){
+			*/
 		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
 			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
 			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
@@ -206,10 +167,23 @@ public class JiBackEnd implements VickieSupport {
 			return false;
 		}
 	}
-
+	//
 	public void cheatCode() {
-		//VickieFrontEnd.endGame();
-		
+		magicSquares[0][0] = 2; magicSquares[0][1] = 7; magicSquares[0][2] = 6;
+		magicSquares[1][0] = 9; magicSquares[1][1] = 5; magicSquares[1][2] = 1;
+		magicSquares[2][0] = 4; magicSquares[2][1] = 3; magicSquares[2][2] = 8;
+	
+		/*
+		for(int col = 0; col < magicSquares[row].length; col++) {
+			if(col ==)
+		}
+	
+		for(int row = 0; row < magicSquares.length; row++){
+			for(int col = 0; col < magicSquares[row].length; col++){
+				if()
+			}
+		}
+	*/
 	}
 
 	public int[][] getBoxes() {

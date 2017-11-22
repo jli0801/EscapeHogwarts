@@ -2,7 +2,7 @@ package jiVickieRoom;
 
 public interface VickieSupport {
 
-	void checkMultiples(String character);
+	//void checkMultiples(String character);
 	//when adding numbers to game, add in array
 	
 	String usedNumbers();
@@ -13,7 +13,7 @@ public interface VickieSupport {
 	boolean checkTotal();
 	//compare rows to total
 	
-	String validNumbers();
+	//String validNumbers();
 	//gives valid numbers
 	
 	//*** FRONT END
@@ -50,6 +50,12 @@ public interface VickieSupport {
 	
 	 int getColNum() ;
 	 //fixed ColNum
+	 
+	 void checkMultiples(int num);
+	 //check if number is more than 1
+	 
+	 boolean isNumeric(String str);
+	 //checks if character is num
 
 	int[][] getBoxes();
 }
