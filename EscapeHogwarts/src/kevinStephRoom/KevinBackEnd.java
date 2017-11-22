@@ -51,7 +51,7 @@ public class KevinBackEnd implements StephSupport{
 		String input = CaveExplorer.in.nextLine();
 		int[] coords = toCoords(input);
 		while(coords == null){
-			System.out.println("You must enter cordinates of the form:\n          <row>,<col>"
+			System.out.println("You must enter cordinates of the form:\n          <row>,<col>" //kevin
 					+ "\n<row> and <col> should be integers.");
 			input = CaveExplorer.in.nextLine();
 			coords = toCoords(input);
