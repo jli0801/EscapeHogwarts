@@ -143,7 +143,7 @@ public class VickieFrontEnd implements JiSupport{
 		placeNumbers(input);
 	}
 
-	private void placeNumbers(String nums) {
+	public void placeNumbers(String nums) {
 		int len = nums.length();
 		 if(len > 5 || len <5) {
 			error();
@@ -166,12 +166,12 @@ public class VickieFrontEnd implements JiSupport{
 				
 				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
 					checkMultiples(iNum);
-					magicSquares[iRow][iCol] = iNum;
+					magicSquares[iRow][iCol] = iNum; //create method in backend
 					//System.out.println(iNum); debugging purposes
 					//System.out.println(magicSquares[iRow][iCol]);debugging purposes
 					displayTheGrid();
-					getInput();
-					
+					complete();
+					//getInput();
 				}else
 				{
 					error();
@@ -184,6 +184,30 @@ public class VickieFrontEnd implements JiSupport{
 		
 	}
 	
+	public void complete() {
+		String numbersUsed = "";
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				int num = magicSquares[row][col];
+				String digit = Integer.toString(num);
+				numbersUsed += digit;
+			}
+		}
+		
+		if(numbersUsed.indexOf("0") == -1) {
+			System.out.print("You filled in all the boxes on the grid! Do you want it to be checked?");
+			input = CaveExplorer.in.nextLine();
+			input = input.toLowerCase();
+			if(input == "yes") {
+				endGame();
+				//backend.checkTotal();
+			}
+			if(input == "no") {
+				getInput();
+			}
+		}
+	}
+
 	public void doNotOverride() {
 		fixedNum = backend.getInitiateNum();
 		fixedRow = backend.getRowNum();
@@ -229,13 +253,7 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("	You entered an invalid response: \n		Ex: x,y,z \n		  	x = row (0-2)\n		  	y = column (0-2)\n		  	z = num (1-9)");
 		getInput();
 	}
-}
 
-	
-
-			
-	
-	/*
 	public void endGame() {
 		backend.checkTotal();
 		/*
@@ -244,7 +262,8 @@ public class VickieFrontEnd implements JiSupport{
 		 * 	if galleons = 0; say oh no, you wont recieve any money, but heres the part of the broom!
 		 * else say congrats: you get money and part of the broom!
 		 */
-	//}
+	}
+}
 
 
 	/*public static void userEntered() {
