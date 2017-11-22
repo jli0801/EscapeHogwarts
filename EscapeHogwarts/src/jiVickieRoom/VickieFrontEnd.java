@@ -489,7 +489,7 @@ public class JiBackEnd implements VickieSupport {
 			}
 		}
 		
-	}
+	}//jgjh
 	
 	public boolean checkTotal() {
 		//check each row, column, diagonal == 15
