@@ -259,4 +259,4 @@ public class StephanieRoom extends CaveRoom {
 		}
 	}
 }	
-	
+
