@@ -150,6 +150,10 @@ public class JiBackEnd implements VickieSupport {
 	
 	public boolean checkTotal() {
 		//check each row, column, diagonal == 15
+		/*
+		for(int row = 0; row < magicSquares.length; row++){
+			for(int col = 0; col < magicSquares[row].length; col++){
+			*/
 		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
 			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
 			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
