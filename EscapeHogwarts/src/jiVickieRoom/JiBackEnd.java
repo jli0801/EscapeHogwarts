@@ -51,8 +51,8 @@ public class JiBackEnd implements VickieSupport {
 	}
 	*/
 	public void checkMultiples(String character) {
-		if(character.length() == 1 && isNumberic(character)) {
-			if(usedNumbers().indexOf(Integer.toString(character) > -1) {
+		if(character.length() == 1 && isNumberic(character) &&
+		usedNumbers().indexOf(Integer.toString(character)) > -1) {
 				//replace original number 'x' (FRONT END)
 				//add number in new box (FRONT END)
 			}else {
