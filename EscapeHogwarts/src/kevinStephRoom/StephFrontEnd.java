@@ -39,18 +39,10 @@ public class StephFrontEnd implements KevinSupport{
 	}
 	
 	public void play() {
-		print("You have entered a dark room with only a large mirror. Do you wish to look into it?");
-		String input = CaveExplorer.in.nextLine().toLowerCase();
-			if(input.equals("yes")) {
-				new StephIntro().play();
-				CaveExplorer.in.nextLine();
-				menu();
-			}else {
-				System.out.println("You have escaped the illusions of the mirror.");
-				CaveExplorer.currentRoom = caves[1][4];
-				CaveExplorer.currentRoom.enter();
-			}
-		}
+		new StephIntro().play();
+		CaveExplorer.in.nextLine();
+		menu();
+	}
 	
 	private void menu() {
 		System.out.println("Enter 'r' for rules or 'p' to play.");

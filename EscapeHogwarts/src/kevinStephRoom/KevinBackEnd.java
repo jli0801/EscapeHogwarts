@@ -75,28 +75,44 @@ public class KevinBackEnd implements StephSupport{
 	}
 
 	public void lightSwitch(KevinStephLight c) {
-		while(frontend.getLightsOff() != 0) {
-			if(c.getLightOn() == true) {
-				c.setLightOn(false);
+//		while(frontend.getLightsOff() != 0) {
+		int row = c.getRow() + 1;
+		int col = c.getCol() + 1;
+		
+			if(c.getLightOn() == true && row >= 0 && row < board.length && col >= 0 && col < board[row].length) {
+				board[row][col].setLightOn(false);
 				switchAdjacentLight(c);
 				
 			}
-			else {
-				c.setLightOn(true);
+			else if (c.getLightOn() == false && row >= 0 && row < board.length && col >= 0 && col < board[row].length){
+				board[row][col].lightOn(true);
+				switchAdjacentLight(c);
 			}
-		}
+
+//		}
 		
 	}
 
 	private void switchAdjacentLight(KevinStephLight c) {
-		for(int row = c.getRow()-1; row < c.getRow()+2; row++){
-			for(int col = c.getCol()-1; col < c.getCol()+2; col++){
-				if(row >= 0 && row < board.length && col >= 0 && col < board[row].length){
-					if(board[row][col].getLightOn()) {
-						board[row][col].setLightOn(false);
-					} else if(!board[row][col].getLightOn()) {
-						board[row][col].setLightOn(true);
-					}
+		int row = c.getRow();
+		int col = c.getCol();
+		
+		for(row = c.getRow()-1; row < c.getRow()+2; row++){
+			if(row >= 0 && row < board.length && col >= 0 && col < board[row].length){
+				if(board[row][col].getLightOn()) {
+					board[row][col].setLightOn(false);
+				} else if(!board[row][col].getLightOn()) {
+					board[row][col].setLightOn(true);
+				}
+			}
+		}
+		
+		for(col = c.getCol()-1; col < c.getCol()+2; col++){
+			if(row >= 0 && row < board.length && col >= 0 && col < board[row].length){
+				if(board[row][col].getLightOn()) {
+					board[row][col].setLightOn(false);
+				} else if(!board[row][col].getLightOn()) {
+					board[row][col].setLightOn(true);
 				}
 			}
 		}
