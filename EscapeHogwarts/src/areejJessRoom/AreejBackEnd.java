@@ -9,19 +9,14 @@ public class AreejBackEnd implements JessicaSupport{
 	private AreejSupport frontend;
 	private static int[][] mainBoard;
 	private static boolean userMove;
-//	private static int[][]tempBoard;
+
 	//0 EQUALS NULL
 	//1 EQUALS USER
 	//2 EQUALS COMPUTER
 	
 	public AreejBackEnd(AreejSupport frontend) {
 		this.frontend = frontend;
-	/*	mainBoard = new int[6][7];
-		userMove = true;
-		board = AreejJessBoard.getBoard();
-		populateBoard(mainBoard);
-		
-		System.out.println(mainBoard.length);*/
+	
 	
 		
 	}
@@ -30,10 +25,10 @@ public class AreejBackEnd implements JessicaSupport{
 	{
 		mainBoard = new int[6][7];
 		userMove = true;
-	//	board = AreejJessBoard.getBoard();
+	
 		populateBoard(mainBoard);
 		moveUser();
-	//	System.out.println(mainBoard.length);
+	
 	}
 	public static void setUserMove(boolean userMove) {
 		AreejBackEnd.userMove = userMove;
@@ -41,7 +36,6 @@ public class AreejBackEnd implements JessicaSupport{
 	
 	public static int[][] getMainBoard()
 	{
-		
 		return mainBoard;
 	}
 	public static void compMove(){
@@ -52,7 +46,6 @@ public class AreejBackEnd implements JessicaSupport{
 		if(mainBoard1[1][comp] != 0)
 		{
 			comp = (int)(Math.random()*6);	
-		//	compMove();
 		}
 		while (y > 0)
 		{
@@ -138,16 +131,10 @@ public class AreejBackEnd implements JessicaSupport{
 	}
 	*/
 	public static void moveUser() {
-	//	int[][] mainBoard = new int[6][7];
-	//	populateBoard(mainBoard);
-	//	String[][] boardFront = JessicaFrontEnd.getBoard();
-		
+	
 		String userInput = CaveExplorer.in.nextLine();
 		
-	//	int[][] mainBoard1 = getBoard();
-		
-	//	System.out.println("Where would you like to place your Galleon? Pick a number from 0 to 6.");
-		
+	
 		if(userInput.equals("voldemort"))
 		{
 			System.out.println("No! Not Voldemort! You win, leave my room!");
@@ -160,88 +147,77 @@ public class AreejBackEnd implements JessicaSupport{
 			if(checkValid(userInput))
 			{
 				int userInt = Integer.parseInt(userInput);
-			//	System.out.println("in");
-			//	int[][]tempBoard = getMainBoard();
-				//changed == 1 to != 0
-				System.out.println(mainBoard.toString());
-				if (mainBoard[1][userInt] != 0 )
-					//&& !JessicaFrontEnd.isUserWon()
+			
+				if (mainBoard[0][userInt] != 0 && !JessicaFrontEnd.isUserWon())
+					
 				{
 					System.out.println("The column is full. Pick another column!");
 					return;
-					//changed moveUser to return
 				}
 				else
 				{
-					int i = mainBoard.length -1;
-					while (i > 0)
-					{
-					//	System.out.println("for");
-						if(mainBoard[i][userInt] == 0 ) 
-						{
-							mainBoard[i][userInt] = 1;
-						//	mainBoard1[i][userInt] = 1;
-						//	board1[i][userInt] = 1;
-							JessicaFrontEnd.placeCoord(i,userInt, "user");
-							setUserMove(false);
-							
-							break;
-						}
-						else
-						{
-							i--;
-						}
+					int rowNum = getIndex(mainBoard,userInt);
 					
-				}
+						mainBoard[rowNum][userInt] = 1;
+						JessicaFrontEnd.placeCoord(rowNum,userInt, "user");
+						setUserMove(false);
+				//		System.out.println("Your turn now! Enter a number from 0 to 6.");
+				
+						//checkWinner();
+					//	break;
+					
 				}
 				if(userMove == false) {
 					
 					int comp = (int)(Math.random()*6);
 					System.out.println("My turn now! I'll place a Galleon here!");
-					int y = mainBoard.length - 1;
-					if(mainBoard[1][comp] != 0)
+				
+					while(mainBoard[0][comp] != 0)
 					{
 						comp = (int)(Math.random()*6);	
-					//	compMove();
+			
 					}
-					while (y >= 0)
-					{
+					int rowNumC = getIndex(mainBoard, comp);
 					
-					
-						if(mainBoard[y][comp] == 0)
-						{
-							mainBoard[y][comp] = 2;
-							
-							JessicaFrontEnd.placeCoord(y,comp, "computer");
-							setUserMove(true);
-							System.out.println("Your turn now! Enter a number from 0 to 6.");
-							System.out.println((mainBoard[y][comp]));
-						//	moveUser();
-						//commented out
-							//checkWinner();
-							break;
-						}
-						else
-						{
-							
-							y--;
-							
-						}
-					}
+						mainBoard[rowNumC][comp] = 2;
+						JessicaFrontEnd.placeCoord(rowNumC,comp, "computer");
+						setUserMove(true);
+						System.out.println("Your turn now! Enter a number from 0 to 6.");
+				
+						//checkWinner();
 				}
 			}
 	 
 			else
 			{
-				
 				System.out.println("Pick a number between 0 and 6!");
-			//	moveUser();
-			//commented out
 			}
 		}
 	
 	}
 	
+	public static void debugPrint(String s) {
+		System.out.println(s);
+	}
+	
+	public static int getIndex(int[][] board, int col) {
+		for(int[] a: board) {
+			debugPrint(Arrays.toString(a));
+		}
+		for(int i = board.length - 1; i > 0; i--) {
+			int value = getValue(board, i, col);
+			if(value == 0 )
+			{
+				debugPrint("Found next empy space is "+i);
+				return i;
+			}
+		}
+		  return -1;
+	}
+	
+	public static int getValue(int[][] board, int row, int col) {
+		return board[row][col];
+	}
 	private static boolean checkValid(String userInput) {
 		
 		try{
