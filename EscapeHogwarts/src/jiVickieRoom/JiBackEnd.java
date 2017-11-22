@@ -36,7 +36,7 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 */
-	
+	/*
 	public void checkMultiples(String character) {
 		if(checkValid(character) == true) {
 			newNumber = currentNumber;
@@ -46,6 +46,17 @@ public class JiBackEnd implements VickieSupport {
 			}else {
 				usedNumbers += Integer.toString(newNumber);
 				//add number in new box (FRONT END)
+			}
+		}
+	}
+	*/
+	public void checkMultiples(String character) {
+		if(character.length() == 1 && isNumberic(character)) {
+			if(usedNumbers().indexOf(Integer.toString(character) > -1) {
+				//replace original number 'x' (FRONT END)
+				//add number in new box (FRONT END)
+			}else {
+				
 			}
 		}
 	}
