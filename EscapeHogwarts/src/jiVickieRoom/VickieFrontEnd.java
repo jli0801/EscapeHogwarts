@@ -9,16 +9,18 @@ public class VickieFrontEnd implements JiSupport{
 	private VickieSupport backend;
 	
 	private String input;
-	private String grid;
 	private String SRow;
 	private String SCol;
 	private String SNum;
 	
-	private boolean startGame = true;
+	private boolean NoOverride = false;
 	
 	private int iRow;
 	private int iCol;
 	private int iNum;
+	private int fixedNum;
+	private int fixedRow;
+	private int fixedCol;
 	private int modRow;
 	
 	private int [][] magicSquares;
@@ -52,6 +54,7 @@ public class VickieFrontEnd implements JiSupport{
 		startGame();
 		*/
 		
+		
 		/*System.out.println(iNum);
 		magicSquares[0][0] = 5;
 		magicSquares[1][0] = 9;
@@ -59,6 +62,7 @@ public class VickieFrontEnd implements JiSupport{
 		magicSquares[0][1] = 3;
 		magicSquares[2][2] = 6;
 		System.out.print(magicSquares[2][2]);*/
+		
 		
 		backend.chooseStartingPoint();
 		directions();
@@ -91,9 +95,11 @@ public class VickieFrontEnd implements JiSupport{
 				iCol = Integer.parseInt(SCol);
 				iNum = Integer.parseInt(SNum);
 				
+				doNotOverride();
 				
 				//turn the Snum to int
 				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
+					checkMultiples(iNum);
 					magicSquares[iRow][iCol] = iNum;
 					//System.out.println(iNum); debugging purposes
 					//System.out.println(magicSquares[iRow][iCol]);debugging purposes
@@ -112,6 +118,43 @@ public class VickieFrontEnd implements JiSupport{
 		
 	}
 	
+	public void doNotOverride() {
+		fixedNum = backend.getInitiateNum();
+		fixedRow = backend.getRowNum();
+		fixedCol = backend.getColNum();
+		
+		if(fixedRow == iRow && fixedCol == iCol) {
+			NoOverride = true;
+			System.out.println("That coordinate already has a fixed value from the beginning!\nSorry, but you have to enter another set of coordinates.");
+			error();
+			/*System.out.println("\nWhich coordinates do you want to put a number in?");
+			input = CaveExplorer.in.nextLine();
+			placeNumbers(input);*/
+		}
+		
+		if(fixedNum == iNum) {
+			NoOverride = true;
+			System.out.println("That number was given to you from the beginning! It's in a fixed spot and cannot be changed.\nSorry, but you have to enter another number.");
+			error();
+			/*System.out.println("\nWhich coordinates do you want to put a number in?");
+			input = CaveExplorer.in.nextLine();
+			placeNumbers(input);*/
+		}
+	}
+	
+	public void checkMultiples(int num) {
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				int same = magicSquares[row][col];
+				
+				if(iNum == same) {
+					magicSquares[row][col]= 0;
+				}
+			}
+		}
+		
+	}
+
 	public static boolean isNumeric(String str)  
 	{  
 	  try  
@@ -126,7 +169,11 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void error() {
-		CaveExplorer.print("You entered an invalid response: \n	Ex: x,y,z \n		  x = row (0-2)\n		  y = column (0-2)\n		  z = num (1-9)\n \nWhich coordinates do you want to put a number in?");
+		if(!NoOverride) {
+			CaveExplorer.print("You entered an invalid response: \n	Ex: x,y,z \n		  x = row (0-2)\n		  y = column (0-2)\n		  z = num (1-9)\n");
+		}
+		NoOverride = false;
+		System.out.println("\nWhich coordinates do you want to put a number in?");
 		input = CaveExplorer.in.nextLine();
 		placeNumbers(input);
 	}
@@ -157,13 +204,12 @@ public class VickieFrontEnd implements JiSupport{
 			System.out.print("|");
 				
 			if (row == 2 || row == 5 || row == 8){
-				
 				for(int col = 0; col < 3; col++){
 					System.out.print("________|");
 				}
 			}
+			
 			if(row == 0 || row == 3 || row == 6){
-				
 				for(int col = 0; col < 3; col++){
 					System.out.print("        |");
 				}
@@ -183,6 +229,7 @@ public class VickieFrontEnd implements JiSupport{
 				modRow = 2;
 				placeNumOnGrid();
 			}
+			
 			System.out.println(" " + rows.substring(row, row+1));
 		}
 		CaveExplorer.print("");
@@ -194,6 +241,7 @@ public class VickieFrontEnd implements JiSupport{
 			
 			if(magicSquares[modRow][col]==0) {
 				System.out.print("    X   |");
+				//System.out.print("        |");
 			}else {
 				int val = magicSquares[modRow][col];
 				System.out.print("    "+val+"   |");
@@ -206,16 +254,7 @@ public class VickieFrontEnd implements JiSupport{
 
 			
 	
-	/*public void setNumber(int row, int col, int num)
-	/*public void fixedNumbersInBox() {
-		// TODO Auto-generated method stub
-	}
-
-	
-	public void gameDialogue() {
-		
-	}
-	
+	/*
 	public void endGame() {
 		backend.checkTotal();
 	}*/

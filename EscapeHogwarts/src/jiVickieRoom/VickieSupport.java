@@ -41,6 +41,15 @@ public interface VickieSupport {
 	
 	void cheatCode();
 	//cheatCode
+	
+	 int getInitiateNum();
+	 //fixed initiateNum
+	
+	 int getRowNum();
+	 //fixed RowNum
+	
+	 int getColNum() ;
+	 //fixed ColNum
 
 	int[][] getBoxes();
 }
