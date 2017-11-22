@@ -151,11 +151,12 @@ public class AreejBackEnd implements JessicaSupport{
 				int userInt = Integer.parseInt(userInput);
 			//	System.out.println("in");
 				int[][]tempBoard = getMainBoard();
-				
-				if (tempBoard[1][userInt] == 1 && !JessicaFrontEnd.isUserWon())
+				//changed == 1 to != 0
+				if (tempBoard[1][userInt] != 0 && !JessicaFrontEnd.isUserWon())
 				{
 					System.out.println("The column is full. Pick another column!");
-					moveUser();
+					return;
+					//changed moveUser to return
 				}
 				int i = tempBoard.length -1;
 				while (i > 0)
@@ -199,8 +200,8 @@ public class AreejBackEnd implements JessicaSupport{
 							setUserMove(true);
 							System.out.println("Your turn now! Enter a number from 0 to 6.");
 							System.out.println((tempBoard[y][comp]));
-							moveUser();
-							
+						//	moveUser();
+						//commented out
 							//checkWinner();
 							break;
 						}
@@ -218,8 +219,8 @@ public class AreejBackEnd implements JessicaSupport{
 			{
 				
 				System.out.println("Pick a number between 0 and 6!");
-				moveUser();
-				
+			//	moveUser();
+			//commented out
 			}
 		}
 	
