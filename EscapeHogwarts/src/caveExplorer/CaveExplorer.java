@@ -9,6 +9,7 @@ public class CaveExplorer {
 	public static Inventory inventory;
 	public static boolean playing = true;
 	public static boolean firstStart = true;
+	public static boolean okay = true;
 	public static NPC[] npcs;
 	
 	public static void main(String[] args) {
@@ -38,6 +39,8 @@ public class CaveExplorer {
 			}
 			
 			print(inventory.getDescription());
+			
+			if(okay) {
 			print(currentRoom.getDescription());
 			print(currentRoom.getDirections());
 			print("HP: " + Integer.toString(inventory.getHp()) );
@@ -46,10 +49,26 @@ public class CaveExplorer {
 			print("What would you like to do?");
 			
 			currentRoom.interpretInput(in.nextLine());
-			
+			}
 			
 		}
 		
+	}
+
+	public static boolean isPlaying() {
+		return playing;
+	}
+
+	public static void setPlaying(boolean playing) {
+		CaveExplorer.playing = playing;
+	}
+
+	public static boolean isOkay() {
+		return okay;
+	}
+
+	public static void setOkay(boolean okay) {
+		CaveExplorer.okay = okay;
 	}
 
 	private static void moveNPCs() {

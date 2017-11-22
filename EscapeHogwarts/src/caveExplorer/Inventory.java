@@ -97,7 +97,7 @@ public class Inventory {
 		return map;
 	}
 
-	public boolean getSilverKey() {
+	public static boolean getSilverKey() {
 		return silverKey;
 	}
 
