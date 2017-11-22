@@ -27,58 +27,6 @@ public class JiBackEnd implements VickieSupport {
 		magicSquares = new int[3][3];
 		//createTheBox();
 	}
-/*
-	public static void createTheBox() {
-		for(int row = 0; row < magicSquares.length; row++){
-			for(int col = 0; col < magicSquares[row].length; col++){
-				magicSquares[row][col] = new magicSquares(row, col);
-			}
-		}
-	}
-*/
-	/*
-	public void checkMultiples(String character) {
-		if(checkValid(character) == true) {
-			newNumber = currentNumber;
-			if(usedNumbers().indexOf(newNumber) > -1) {
-				//replace original number 'x' (FRONT END)
-				//add number in new box (FRONT END)
-			}else {
-				usedNumbers += Integer.toString(newNumber);
-				//add number in new box (FRONT END)
-			}
-		}
-	}
-	*/
-	
-	/*
-	public void checkMultiples(String character) {
-		if(character.length() == 1 && isNumeric(character) &&
-		usedNumbers().indexOf(Integer.toString(character)) > -1) {
-				//replace original number 'x' (FRONT END)
-				//add number in new box (FRONT END)
-			}else {
-				usedNumbers += Integer.toString(Integer.toString(character));
-				//add number in new box (FRONT END)
-			}
-		}
-	}
-	
-	*/
-	/*
-	public boolean checkValid(String character) {
-		if(validNumbers().indexOf(character) > -1 && character.length() == 1) {
-			currentNumber = Integer.parseInt(character);
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	public String validNumbers() {
-		return "1234567890";
-	}
-	*/
 	
 	public String usedNumbers() {
 		return usedNumbers;
@@ -174,12 +122,7 @@ public class JiBackEnd implements VickieSupport {
 		random = (int)(Math.random() * max);
 		return random;
 	}
-	/*
-	public int getMid() {
-		initiatedNum = 5;
-		return initiatedNum;
-	}
-	*/
+
 	public boolean isNumeric(String str) {  
 	  try  
 	  {  
@@ -222,8 +165,19 @@ public class JiBackEnd implements VickieSupport {
 	}
 
 	public void cheatCode() {
-		//VickieFrontEnd.endGame();
 		
+	
+		/*
+		for(int col = 0; col < magicSquares[row].length; col++) {
+			if(col ==)
+		}
+	
+		for(int row = 0; row < magicSquares.length; row++){
+			for(int col = 0; col < magicSquares[row].length; col++){
+				if()
+			}
+		}
+	*/
 	}
 
 	public int[][] getBoxes() {
