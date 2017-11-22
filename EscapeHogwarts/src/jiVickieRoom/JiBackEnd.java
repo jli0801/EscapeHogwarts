@@ -20,6 +20,14 @@ public class JiBackEnd implements VickieSupport {
 	private String StrInitiatedNum;
 	private int rowNum = 1;
 	private int colNum = 1;
+	
+	private String SRow; //String Row #
+	private String SCol; //String Col #
+	private String SNum; //String Number #
+
+	private int iRow;  //Integer Row #
+	private int iCol;  //Integer Col #
+	private int iNum;  //Integer Number #
 
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
@@ -31,8 +39,6 @@ public class JiBackEnd implements VickieSupport {
 	public String usedNumbers() {
 		return usedNumbers;
 	}
-
-	
 	
 	public void chooseStartingPoint() {
 		createInitiateNum();
@@ -88,6 +94,40 @@ public class JiBackEnd implements VickieSupport {
 				}
 			}
 		}
+	}
+	
+	public void placeNumbers(String nums) {
+		int len = nums.length();
+		 if(len > 5 || len <5) {
+			frontend.error();
+		 }else {
+			  SRow = nums.substring(0, 1);
+			  SCol = nums.substring(2, 3);
+			  SNum = nums.substring(4, 5);
+
+			if(isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum) ){
+				 iRow = Integer.parseInt(SRow);
+				 iCol = Integer.parseInt(SCol);
+				 iNum = Integer.parseInt(SNum);
+				
+				frontend.doNotOverride();
+				
+				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
+					checkMultiples(iNum);
+					magicSquares[iRow][iCol] = iNum; //create method in backend
+					frontend.displayTheGrid();
+					frontend.complete();
+					//getInput();
+				}else
+				{
+					frontend.error();
+				}
+				
+			}else {
+				frontend.error();
+			}
+		 }
+		
 	}
 	
 	public int getInitiateNum() {
@@ -188,6 +228,12 @@ public class JiBackEnd implements VickieSupport {
 
 	public int[][] getBoxes() {
 		return magicSquares;
+	}
+
+	@Override
+	public int getiRow() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
