@@ -50,8 +50,10 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 	*/
+	
+	/*
 	public void checkMultiples(String character) {
-		if(character.length() == 1 && isNumberic(character) &&
+		if(character.length() == 1 && isNumeric(character) &&
 		usedNumbers().indexOf(Integer.toString(character)) > -1) {
 				//replace original number 'x' (FRONT END)
 				//add number in new box (FRONT END)
@@ -62,7 +64,7 @@ public class JiBackEnd implements VickieSupport {
 		}
 	}
 	
-	
+	*/
 	/*
 	public boolean checkValid(String character) {
 		if(validNumbers().indexOf(character) > -1 && character.length() == 1) {
@@ -178,8 +180,7 @@ public class JiBackEnd implements VickieSupport {
 		return initiatedNum;
 	}
 	*/
-	public static boolean isNumeric(String str)  
-	{  
+	public boolean isNumeric(String str) {  
 	  try  
 	  {  
 	    Double.parseDouble(str);  
@@ -189,6 +190,19 @@ public class JiBackEnd implements VickieSupport {
 	    return false;  
 	  }  
 	  return true;  
+	}
+	
+	public void checkMultiples(int num) {
+		for(int row = 0; row < 3; row++) {
+			for(int col = 0; col < 3; col++) {
+				int same = magicSquares[row][col];
+				
+				if(num == same) {
+					magicSquares[row][col]= 0;
+				}
+			}
+		}
+		
 	}
 	
 	public boolean checkTotal() {
