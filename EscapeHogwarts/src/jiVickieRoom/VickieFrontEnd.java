@@ -302,7 +302,7 @@ public class VickieFrontEnd implements JiSupport{
 	
 }
 /*
- * 1) Game starts
+ * 1) Game starts!
  * 2) Provide the rules
  * 3) Game starts:
  * 		a grid of nine boxes are created,

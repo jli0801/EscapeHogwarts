@@ -41,7 +41,6 @@ public class CaveExplorer {
 			print(currentRoom.getDirections());
 			print("HP: " + Integer.toString(inventory.getHp()) );
 			
-			
 			print("What would you like to do?");
 			
 			currentRoom.interpretInput(in.nextLine());

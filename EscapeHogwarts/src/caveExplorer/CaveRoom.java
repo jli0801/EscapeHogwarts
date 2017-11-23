@@ -88,7 +88,7 @@ public class CaveRoom {
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("M"))
 		{
-			//jiVickieRoom.VickieFrontEnd.startGame();
+			//jiVickieRoom.VickieFrontEnd.startGame(); :)
 			VickieFrontEnd.main(null);
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("L"))
