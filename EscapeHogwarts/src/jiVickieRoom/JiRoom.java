@@ -51,8 +51,8 @@ public class JiRoom extends CaveRoom {
 					CaveExplorer.print("OOOOOOF! (Press enter)");
 					CaveExplorer.in.nextLine();
 					CaveExplorer.print("You slip off and hurt yourself in the landing.");
-					CaveExplorer.print("You lose 30 hp.");
-					int userHp = Inventory.getHp() - 30;
+					CaveExplorer.print("You lose 15 hp.");
+					int userHp = Inventory.getHp() - 15;
 					Inventory.setHp(userHp);
 					CaveExplorer.print("Your HP is now: " + userHp + ".");
 				}else {
