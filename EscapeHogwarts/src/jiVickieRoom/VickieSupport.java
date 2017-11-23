@@ -62,5 +62,9 @@ public interface VickieSupport {
 	int[][] getBoxes();
 
 	int getiRow();
+
+	int getiCol();
+
+	int getiNum();
 }
 //

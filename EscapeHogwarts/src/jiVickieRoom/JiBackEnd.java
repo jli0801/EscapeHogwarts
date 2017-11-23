@@ -36,9 +36,11 @@ public class JiBackEnd implements VickieSupport {
 		//createTheBox();
 	}
 	
-	public String usedNumbers() {
+	/*public String usedNumbers() {
 		return usedNumbers;
-	}
+	}*/
+
+	
 	
 	public void chooseStartingPoint() {
 		createInitiateNum();
@@ -88,13 +90,14 @@ public class JiBackEnd implements VickieSupport {
 							magicSquares[2][1] = initiatedNum;
 							rowNum = 2;
 							colNum = 1;
-						}
+						}//2123fgdf
 					}
 				
 				}
 			}
 		}
 	}
+	
 	
 	public void placeNumbers(String nums) {
 		int len = nums.length();
@@ -129,7 +132,31 @@ public class JiBackEnd implements VickieSupport {
 		 }
 		
 	}
-	
+	//STOP
+	public String getSRow() {
+		return SRow;
+	}
+
+	public String getSCol() {
+		return SCol;
+	}
+
+	public String getSNum() {
+		return SNum;
+	}
+
+	public int getiRow() {
+		return iRow;
+	}
+
+	public int getiCol() {
+		return iCol;
+	}
+
+	public int getiNum() {
+		return iNum;
+	}
+ //STOP
 	public int getInitiateNum() {
 		return initiatedNum;
 	}
@@ -186,33 +213,43 @@ public class JiBackEnd implements VickieSupport {
 			}
 		}
 		
-	}
+	}//jgjhfgh
 	
 	public boolean checkTotal() {
 		//check each row, column, diagonal == 15
-		/*
-		for(int row = 0; row < magicSquares.length; row++){
-			for(int col = 0; col < magicSquares[row].length; col++){
-			*/
 		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
 			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
 			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
+			//^^^ ROW
+			magicSquares[0][0] + magicSquares[1][0] + magicSquares[2][0] == 15 &&
+			magicSquares[0][1] + magicSquares[1][1] + magicSquares[2][1] == 15 &&
+			magicSquares[0][2] + magicSquares[1][2] + magicSquares[2][2] == 15 &&
+			//^^^ COLUMN
 			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15 &&
-			magicSquares[2][0] + magicSquares[1][1] + magicSquares[0][2] == 15 &&
-			magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
-			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
-			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15) {
+			magicSquares[0][2] + magicSquares[1][1] + magicSquares[2][0] == 15) {
+			//^^^^^ DIAGONAL
 			return true;
 		}else {
 			return false;
 		}
 	}
-	//
+
 	public void cheatCode() {
-		magicSquares[0][0] = 2; magicSquares[0][1] = 7; magicSquares[0][2] = 6;
-		magicSquares[1][0] = 9; magicSquares[1][1] = 5; magicSquares[1][2] = 1;
-		magicSquares[2][0] = 4; magicSquares[2][1] = 3; magicSquares[2][2] = 8;
-	
+		//COL1
+		magicSquares[0][0] = 2;
+		magicSquares[1][0] = 9;
+		magicSquares[2][0] = 4;
+		//COL2
+		magicSquares[0][1] = 7;
+		magicSquares[1][1] = 5;
+		magicSquares[2][1] = 3;
+		//COL3
+		magicSquares[0][2] = 6;
+		magicSquares[1][2] = 1;
+		magicSquares[2][2] = 8;
+		
+		frontend.displayTheGrid();
+		frontend.endGame();
 		/*
 		for(int col = 0; col < magicSquares[row].length; col++) {
 			if(col ==)
@@ -228,12 +265,6 @@ public class JiBackEnd implements VickieSupport {
 
 	public int[][] getBoxes() {
 		return magicSquares;
-	}
-
-	@Override
-	public int getiRow() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

@@ -17,7 +17,7 @@ public interface JiSupport {
 	
 //	void gameDialogue(); //dialogue during the game (theme)
 	
-	//void backgroundStory(); //npc talks to harry before playing the game
+	void backgroundStory(); //npc talks to harry before playing the game
 	
 	
 	
@@ -26,7 +26,7 @@ public interface JiSupport {
 	
 	
 	
-	//void endGame(); //ends game and gets reward//
+	void endGame(); //ends game and gets reward//
 	
 	void getInput();
 	
@@ -41,16 +41,4 @@ public interface JiSupport {
 	 void doNotOverride();
 	 
 	 void error();
-	 
-	  String getSRow();
-
-		 String getSCol() ;
-
-		 String getSNum() ;
-
-		 int getiRow() ;
-
-		 int getiCol() ;
-
-		 int getiNum() ;
 }

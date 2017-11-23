@@ -21,6 +21,9 @@ public class VickieFrontEnd implements JiSupport{
 	private int fixedCol;
 	private int modRow;
 	
+	private boolean endOfStory = false;
+	private boolean win;
+	
 	private int [][] magicSquares;
 
 	//SHOULD WE PROVIDE ONE INNER AND OUTER NUMBER AS WELL AS THE MIDDLE NUMBER TO MAKE IT EASIER FOR PPL TO COMPLETE GAME???
@@ -37,22 +40,25 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void startGame() {
-		/*int i = 0;
-		while (iRow == 0) {
-			i++;
-			=backend.createInitiateNum();
-			System.out.println(backend.initiatedNum);
-			if (i == 50) {
-				iRow++;
-			}
-		}*/
-		
 		/*backend.chooseStartingPoint();
 		displayTheGrid(magicSquares);
 		CaveExplorer.in.nextLine();
 		startGame();
 		*/
 		backend.chooseStartingPoint();
+		//COL1
+				magicSquares[0][0] = 2;
+				magicSquares[1][0] = 9;
+				magicSquares[2][0] = 4;
+				//COL2
+				magicSquares[0][1] = 7;
+				magicSquares[1][1] = 5;
+				magicSquares[2][1] = 3;
+				//COL3
+				magicSquares[0][2] = 6;
+				magicSquares[1][2] = 1;
+				magicSquares[2][2] = 8;
+		backgroundStory();
 		directions();
 		getInput();
 	}
@@ -82,14 +88,12 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void directions() {
-		CaveExplorer.print("Welcome to Magic Squares! Play in order to ...... (we'll fill it in later).....");
-		CaveExplorer.print("");
 		CaveExplorer.print("The Rules:");
 		CaveExplorer.print("	You're given a grid of nine boxes. ");
 		CaveExplorer.print("	You must fill in the boxes with numbers 1-9.");
 		CaveExplorer.print("	In each row, column, and diagonal, the sum of the numbers must be 15.");
 		CaveExplorer.print("	To fill in a particular box, tell us the coordinates of that box, and the number you want to be in it.");
-		CaveExplorer.print("		Ex: 1,2,8 --> the row, the column, and the number // maybe front end:????????????????????????????????");
+		CaveExplorer.print("		Ex: 1,2,8 --> the row, the column, and the number ");
 		CaveExplorer.print("");
 		CaveExplorer.print("When you're ready to play, press enter!");
 		CaveExplorer.in.nextLine();
@@ -154,7 +158,8 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("\nWhich coordinates do you want to put a number in, and which number do you have in mind?");
 		input = CaveExplorer.in.nextLine();
 		input= input.toLowerCase();
-		if(input == "skip") {
+		String skip = "skip";
+		if(input.indexOf(skip) ==0) {
 			backend.cheatCode();
 		}else {
 		backend.placeNumbers(input);
@@ -173,14 +178,20 @@ public class VickieFrontEnd implements JiSupport{
 		}
 		
 		if(numbersUsed.indexOf("0") == -1) {
-			System.out.print("You filled in all the boxes on the grid! Do you want it to be checked?");
+			System.out.print("You filled in all the boxes on the grid! Do you want it to be checked?\n\n");
 			input = CaveExplorer.in.nextLine();
 			input = input.toLowerCase();
-			if(input == "yes") {
-				endGame();
-				//backend.checkTotal();
+			if(input.equals("yes")) {
+				//endGame();
+				boolean endOrNo = backend.checkTotal();
+				if(endOrNo) {
+					endGame();
+				}else {
+					System.out.print("	Sorry! Not all the rows, columns, and diagonals add up to 15!\n");
+					getInput();
+				}
 			}
-			if(input == "no") {
+			if(input.equals("no")) {
 				getInput();
 			}
 		}else {
@@ -193,13 +204,13 @@ public class VickieFrontEnd implements JiSupport{
 		fixedRow = backend.getRowNum();
 		fixedCol = backend.getColNum();
 		
-		if(fixedRow == backend.getiRow() && fixedCol == iCol) {
+		if(fixedRow == backend.getiRow() && fixedCol == backend.getiCol()) {
 			System.out.println("	That coordinate already has a fixed value from the beginning!");
 			System.out.println("	Sorry, but you have to enter another set of coordinates.");
 			getInput();
 		}
 		
-		if(fixedNum == iNum) {
+		if(fixedNum == backend.getiNum()) {
 			System.out.println("	That number was given to you from the beginning!\n	It's in a fixed spot and cannot be changed.");
 			System.out.println("	Sorry, but you have to enter another number.");
 			getInput();
@@ -212,7 +223,15 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void endGame() {
-		backend.checkTotal();
+		win = backend.checkTotal();
+		
+		if(!win) {
+			System.out.println("	Sorry, but not every row, column or diagonal produces a sum of 15.\n You have to fix it.\n");
+			getInput();
+		}else {
+			System.out.println("	CONGRATULATIONS!!! YOU'VE SOLVED THE PUZZLE!!\n");
+			backgroundStory();
+		}
 		/*
 		 * Reward: Galleons to buy stuff in shop: also, 1/3 of a broom?
 		 * maybe make a decreaseGalleons():every time the error function or overidden function is called, -1 or -10 galleons from 100? and if it reaches zero, no money
@@ -221,39 +240,74 @@ public class VickieFrontEnd implements JiSupport{
 		 */
 	}
 
-	public String getSRow() {
-		return SRow;
-	}
-
-	public String getSCol() {
-		return SCol;
-	}
-
-	public String getSNum() {
-		return SNum;
-	}
-
-	public int getiRow() {
-		return iRow;
-	}
-
-	public int getiCol() {
-		return iCol;
-	}
-
-	public int getiNum() {
-		return iNum;
-	}
-}
 
 
-	/*@Override
-	public void backgroundStory() {
-		// TODO Auto-generated method stub
-		
-	}*/
+
 	
-
+	public void backgroundStory() {
+		if(!endOfStory) {
+			endOfStory = true;
+			CaveExplorer.print("");
+			CaveExplorer.print("	You enter the room and see Peeves, the poltergeist, floating in the air and holding a wooden puzzle grumbling to himself.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES:(Mumbling to himself) Stupid Dumbledore and his stupid spell ...(Incoherent words).");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	He notices you and widens his eyes in surprise. \n	Then a slow smile appears on his face, a smile that makes warning bells go off in your head.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: Hellllooooo Potter! Loook at this puzzle!");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	He shakes the wooden puzzle at you.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: It's IMPOSSIBLE to solve.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("YOU:(Warily) Really?");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	Peeves explodes (figuratively).");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: Ohh what, you think YOU can solve itt?? \n");
+			CaveExplorer.print("PEEVES: (To himself) Harry Potter, the boy who lived, eh? \n");
+			CaveExplorer.print("PEEVES: (To You) Prove it then.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	He tosses the wooden puzzle at you, which you catch.\n	You glance at it and notice it's a board game with a surface that changes every now and then.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: Now, if you don't solve it - ");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	Peeves whizzes around the room and the door you entered slams shut.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: You'll be trapped in this room for eternity! MUAHAHAHAHAHAHAHAAAA!!!\n\n	He gives you a smirk and then vanishes into thin air.\n	Groaning inwardly, you prepare to solve the puzzle");
+			CaveExplorer.in.nextLine();
+		}else {
+			CaveExplorer.print("	Peeves reappears into the room.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES:(Dumbfounded) You did it, you actually solved it! WHOOHOO!!");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	He raises and shakes his fist into the air.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: Take that Dumbledore!! Now, I'm free!");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	Just as he says that, a wave of magic is released from the puzzle and hits Peeves.\n	An invisible bubble hidden to you before appears around Peeves. \n	It flickers for a few seconds, and then it pops. *POP* ");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: FINALLLYY! Now I can roam the halls and prank students again!!");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	He whizzes around the room, cackling with mischeif. Then he disappears.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("YOU: HEY!! I solved your puzzle! Now let me out!!");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	Peeves's smug disembodied voice reaches your ear, and disbelief washes over your features. ");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: The door was never locked!! Bye now, Potter! AHAHAHHAAA!");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	Chagrinned, you are about to throw the puzzle across the room when you notice the surface has changed.\n	It now shows Dumbledore's face.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("DUMBLEDORE: Don't worry, Peeves won't get far. He didn't solve the puzzle himself so he's still bound to this room. He's only out temporarily.\n            Here's your reward for completing the puzzle: 50 galleons and a part of the broom.\n\n	He winks.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("DUMBLEDORE: Don't drink too much butterbeer now, you hear? \n\n	And with that, the surface of the puzzle becomes blank.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	You walk to the door and turn the doorknob. The door opens away easily, and you walk through.\n\n	-----GAME OVER-----");
+		}
+	}
+	
+}
 /*
  * 1) Game starts
  * 2) Provide the rules
@@ -273,258 +327,3 @@ public class VickieFrontEnd implements JiSupport{
  * 		innovate: if they have the correct number in the correct place something magical will happen
  */
 //
-
-package jiVickieRoom;
-
-import caveExplorer.CaveExplorer;
-
-public class JiBackEnd implements VickieSupport {
-	
-	private int[][] magicSquares;
-	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!kjk
-	
-	private JiSupport frontend;
-	
-	//private int total = 15;
-	private int random;
-	private int currentNumber;
-	private int newNumber;
-	private String usedNumbers;
-	private String outerNumbers = "2648";
-	private String innerNumbers = "7931";
-	private int initiatedNum;
-	private String StrInitiatedNum;
-	private int rowNum = 1;
-	private int colNum = 1;
-	
-	private String SRow; //String Row #
-	private String SCol; //String Col #
-	private String SNum; //String Number #
-
-	private int iRow;  //Integer Row #
-	private int iCol;  //Integer Col #
-	private int iNum;  //Integer Number #
-
-	public JiBackEnd(JiSupport frontend) {
-		this.frontend = frontend;
-		//magicSquares = magicSquares[3][3];
-		magicSquares = new int[3][3];
-		//createTheBox();
-	}
-	
-	/*public String usedNumbers() {
-		return usedNumbers;
-	}*/
-
-	
-	
-	public void chooseStartingPoint() {
-		createInitiateNum();
-		if(initiatedNum == 5) {
-			magicSquares[rowNum][colNum] = 5;
-		}else {
-			if(isOuterNumber(initiatedNum)) {
-				//randomize outer starting box
-				// (0,0) (0,2) (2,0) (2,2)
-				
-				if(Math.random() < .5) {
-					rowNum = 0;
-				}else {
-					rowNum = 2;
-				}
-				
-				if(Math.random() < .5) {
-					colNum = 0;
-				}else {
-					colNum = 2;
-				}
-				magicSquares[rowNum][colNum] = initiatedNum;
-			}
-			else {
-				//randomize inner starting box
-				// (0,1) (1,0) (1,2) (2,1)
-				generateNumber(4); 
-				if(random == 0) {
-					magicSquares[0][1] = initiatedNum;
-					rowNum = 0;
-					colNum = 1;
-					
-				}else {
-					if(random == 1) 
-					{
-						magicSquares[1][0] = initiatedNum;
-						rowNum = 1;
-						colNum = 0;
-					}
-					else {
-						if(random == 2) {
-							magicSquares[1][2] = initiatedNum;
-							rowNum = 1;
-							colNum = 2;
-						}else {
-							if(random == 3)
-							magicSquares[2][1] = initiatedNum;
-							rowNum = 2;
-							colNum = 1;
-						}//2123fgdf
-					}
-				
-				}
-			}
-		}
-	}
-	
-	
-	public void placeNumbers(String nums) {
-		int len = nums.length();
-		 if(len > 5 || len <5) {
-			frontend.error();
-		 }else {
-			  SRow = nums.substring(0, 1);
-			  SCol = nums.substring(2, 3);
-			  SNum = nums.substring(4, 5);
-
-			if(isNumeric(SCol) && isNumeric(SRow) && isNumeric(SNum) ){
-				 iRow = Integer.parseInt(SRow);
-				 iCol = Integer.parseInt(SCol);
-				 iNum = Integer.parseInt(SNum);
-				
-				frontend.doNotOverride();
-				
-				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
-					checkMultiples(iNum);
-					magicSquares[iRow][iCol] = iNum; //create method in backend
-					frontend.displayTheGrid();
-					frontend.complete();
-					//getInput();
-				}else
-				{
-					frontend.error();
-				}
-				
-			}else {
-				frontend.error();
-			}
-		 }
-		
-	}
-	//STOP
-	public String getSRow() {
-		return SRow;
-	}
-
-	public String getSCol() {
-		return SCol;
-	}
-
-	public String getSNum() {
-		return SNum;
-	}
-
-	public int getiRow() {
-		return iRow;
-	}
-
-	public int getiCol() {
-		return iCol;
-	}
-
-	public int getiNum() {
-		return iNum;
-	}
- //STOP
-	public int getInitiateNum() {
-		return initiatedNum;
-	}
-	
-	public int getRowNum() {
-		return rowNum;
-	}
-	
-	public int getColNum() {
-		return colNum;
-	}
-	
-	public boolean isOuterNumber(int num) {
-		StrInitiatedNum = Integer.toString(num);
-		if(outerNumbers.indexOf(StrInitiatedNum) > -1) {
-			return true;
-		}else {
-			if(innerNumbers.indexOf(StrInitiatedNum) > -1) {
-				return false;
-			}
-		}
-		return false;
-	}
-	
-	public void createInitiateNum() {
-		initiatedNum = (int)(Math.random() * 9) + 1;
-	}
-
-	public int generateNumber(int max) {
-		random = (int)(Math.random() * max);
-		return random;
-	}
-
-	public boolean isNumeric(String str) {  
-	  try  
-	  {  
-	    Double.parseDouble(str);  
-	  }  
-	  catch(NumberFormatException nfe)  
-	  {  
-	    return false;  
-	  }  
-	  return true;  
-	}
-	
-	public void checkMultiples(int num) {
-		for(int row = 0; row < 3; row++) {
-			for(int col = 0; col < 3; col++) {
-				int same = magicSquares[row][col];
-				
-				if(num == same) {
-					magicSquares[row][col]= 0;
-				}
-			}
-		}
-		
-	}//jgjhfgh
-	
-	public boolean checkTotal() {
-		//check each row, column, diagonal == 15
-		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
-			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
-			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
-			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15 &&
-			magicSquares[2][0] + magicSquares[1][1] + magicSquares[0][2] == 15 &&
-			magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
-			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
-			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-	public void cheatCode() {
-		
-	
-		/*
-		for(int col = 0; col < magicSquares[row].length; col++) {
-			if(col ==)
-		}
-	
-		for(int row = 0; row < magicSquares.length; row++){
-			for(int col = 0; col < magicSquares[row].length; col++){
-				if()
-			}
-		}
-	*/
-	}
-
-	public int[][] getBoxes() {
-		return magicSquares;
-	}
-
-}
