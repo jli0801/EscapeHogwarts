@@ -6,7 +6,9 @@ import caveExplorer.CaveExplorer;
 
 public class VickieFrontEnd implements JiSupport{
 
-	private VickieSupport backend;
+	private static VickieSupport backend;
+	
+	public static CaveExplorer cave;
 	
 	private String input;
 	private String SRow; //String Row #
@@ -30,7 +32,9 @@ public class VickieFrontEnd implements JiSupport{
 	
 	public static final void main(String[] args){
 		VickieFrontEnd game = new VickieFrontEnd();
+		
 		game.startGame();
+		
 	}
 	
 	public VickieFrontEnd() {
@@ -46,18 +50,6 @@ public class VickieFrontEnd implements JiSupport{
 		startGame();
 		*/
 		backend.chooseStartingPoint();
-		//COL1
-				magicSquares[0][0] = 2;
-				magicSquares[1][0] = 9;
-				magicSquares[2][0] = 4;
-				//COL2
-				magicSquares[0][1] = 7;
-				magicSquares[1][1] = 5;
-				magicSquares[2][1] = 3;
-				//COL3
-				magicSquares[0][2] = 6;
-				magicSquares[1][2] = 1;
-				magicSquares[2][2] = 8;
 		backgroundStory();
 		directions();
 		getInput();
@@ -304,6 +296,7 @@ public class VickieFrontEnd implements JiSupport{
 			CaveExplorer.print("DUMBLEDORE: Don't drink too much butterbeer now, you hear? \n\n	And with that, the surface of the puzzle becomes blank.");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("	You walk to the door and turn the doorknob. The door opens away easily, and you walk through.\n\n	-----GAME OVER-----");
+			CaveExplorer.startExploring(); //IN ORDER FOR THIS TO WORK, YOU MUST RUN CAVEROOM FILE AND THEN GO TO ROOM "M" FOR THIS MINIGAME!!!!!
 		}
 	}
 	

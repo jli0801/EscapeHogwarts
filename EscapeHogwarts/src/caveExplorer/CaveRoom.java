@@ -5,6 +5,7 @@ import java.util.Scanner;
 import areejJessRoom.AreejJessRoom;
 import areejJessRoom.StoreRoom;
 import jiVickieRoom.JiRoom;
+import jiVickieRoom.VickieFrontEnd;
 import jiVickieRoom.VickieRoom;
 import kevinStephRoom.KevinRoom;
 import kevinStephRoom.StephFrontEnd;
@@ -87,7 +88,8 @@ public class CaveRoom {
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("M"))
 		{
-	//		jiVickieRoom.VickieFrontEnd.startGame();
+			//jiVickieRoom.VickieFrontEnd.startGame();
+			VickieFrontEnd.main(null);
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("L"))
 		{

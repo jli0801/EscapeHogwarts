@@ -23,13 +23,13 @@ public class CaveExplorer {
 		System.out.println(s);
 	}
 
-	private static void startExploring() {
+	public static void startExploring() {
 		while (playing)
 		{
-			moveNPCs();
+			
 			
 			if(firstStart)
-			{
+			{moveNPCs();
 			print("Welcome!" +
 			" In order to get permission to go on a trip, you must visit each of " + "\nthese rooms and defeat all six of them to go." 
 			+ " Good luck!");
@@ -51,7 +51,7 @@ public class CaveExplorer {
 		
 	}
 
-	private static void moveNPCs() {
+	public static void moveNPCs() {
 		for(NPC n:npcs)
 		{
 			n.autoMove();
