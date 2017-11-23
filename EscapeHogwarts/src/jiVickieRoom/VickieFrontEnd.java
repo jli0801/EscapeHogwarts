@@ -295,7 +295,7 @@ public class VickieFrontEnd implements JiSupport{
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("	Peeves's smug disembodied voice reaches your ear, and disbelief washes over your features. ");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("PEEVES: The door was never locked!! Bye now, Potter! AHAHAHHAAA!");
+			CaveExplorer.print("PEEVES: The door was never locked!! Tricked ya! Bye now, Potter! AHAHAHHAAA!");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("	Chagrinned, you are about to throw the puzzle across the room when you notice the surface has changed.\n	It now shows Dumbledore's face.");
 			CaveExplorer.in.nextLine();
