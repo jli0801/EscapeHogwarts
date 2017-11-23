@@ -45,7 +45,7 @@ public class JiRoom extends CaveRoom {
 			input = CaveExplorer.in.nextLine();
 			inputCase = input.toLowerCase();
 			if(inputCase.equals("yes")) {
-				if(Math.random() < .7) {
+				if(Math.random() < .13) {
 					CaveExplorer.print("You jump on lower ledge to try to reach it and.. (Press enter)");
 					CaveExplorer.in.nextLine();
 					CaveExplorer.print("OOOOOOF! (Press enter)");
