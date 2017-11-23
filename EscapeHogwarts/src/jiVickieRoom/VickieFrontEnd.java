@@ -239,6 +239,7 @@ public class VickieFrontEnd implements JiSupport{
 	public void backgroundStory() {
 		if(!endOfStory) {
 			endOfStory = true;
+			CaveExplorer.print("********************A story will appear. To move the story along, press enter********************");
 			CaveExplorer.print("");
 			CaveExplorer.print("	You enter the room and see Peeves, the poltergeist, floating in the air and holding a wooden puzzle grumbling to himself.");
 			CaveExplorer.in.nextLine();
