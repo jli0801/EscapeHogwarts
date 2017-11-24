@@ -12,13 +12,7 @@ public class VickieFrontEnd implements JiSupport{
 	public static CaveExplorer cave;
 	
 	private String input;
-	private String SRow; //String Row #
-	private String SCol; //String Col #
-	private String SNum; //String Number #
 
-	private int iRow;  //Integer Row #
-	private int iCol;  //Integer Col #
-	private int iNum;  //Integer Number #
 	private int fixedNum;
 	private int fixedRow;
 	private int fixedCol;
@@ -28,14 +22,10 @@ public class VickieFrontEnd implements JiSupport{
 	private boolean win;
 	
 	private int [][] magicSquares;
-
-	//SHOULD WE PROVIDE ONE INNER AND OUTER NUMBER AS WELL AS THE MIDDLE NUMBER TO MAKE IT EASIER FOR PPL TO COMPLETE GAME???
 	
 	public static final void main(String[] args){
 		VickieFrontEnd game = new VickieFrontEnd();
-		
 		game.startGame();
-		
 	}
 	
 	public VickieFrontEnd() {
@@ -45,41 +35,12 @@ public class VickieFrontEnd implements JiSupport{
 	}
 
 	public void startGame() {
-		/*backend.chooseStartingPoint();
-		displayTheGrid(magicSquares);
-		CaveExplorer.in.nextLine();
-		startGame();
-		*/
 		backend.chooseStartingPoint();
 		backgroundStory();
 		directions();
 		getInput();
 	}
 	
-	public void setSRow(String sRow) {
-		SRow = sRow;
-	}
-
-	public void setSCol(String sCol) {
-		SCol = sCol;
-	}
-
-	public void setSNum(String sNum) {
-		SNum = sNum;
-	}
-
-	public void setiRow(int iRow) {
-		this.iRow = iRow;
-	}
-
-	public void setiCol(int iCol) {
-		this.iCol = iCol;
-	}
-
-	public void setiNum(int iNum) {
-		this.iNum = iNum;
-	}
-
 	public void directions() {
 		CaveExplorer.print("The Rules:");
 		CaveExplorer.print("	You're given a grid of nine boxes. ");
@@ -99,36 +60,31 @@ public class VickieFrontEnd implements JiSupport{
 		//String rows = "0123456789";
 		String rows = " 0  1  2  ";
 		
-		for(int row = 0; row < 9; row++){
+		for(int row = 0; row < 9; row++)
+		{
 			System.out.print("	|");
-				
 			if (row == 2 || row == 5 || row == 8){
 				for(int col = 0; col < 3; col++){
 					System.out.print("________|");
 				}
 			}
-			
 			if(row == 0 || row == 3 || row == 6){
 				for(int col = 0; col < 3; col++){
 					System.out.print("        |");
 				}
 			}
-				
 			if (row == 1 ){
 				modRow = 0;
 				placeNumOnGrid();
 			}
-			
 			if (row == 4 ){
 				modRow = 1;
 				placeNumOnGrid();
 			}
-			
 			if (row == 7){
 				modRow = 2;
 				placeNumOnGrid();
 			}
-			
 			System.out.println(" " + rows.substring(row, row+1));
 		}
 		CaveExplorer.print("");
@@ -159,7 +115,6 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 
-	
 	public void complete() {
 		String numbersUsed = "";
 		for(int row = 0; row < 3; row++) {
@@ -175,7 +130,6 @@ public class VickieFrontEnd implements JiSupport{
 			input = CaveExplorer.in.nextLine();
 			input = input.toLowerCase();
 			if(input.equals("yes")) {
-				//endGame();
 				boolean endOrNo = backend.checkTotal();
 				if(endOrNo) {
 					endGame();
@@ -234,10 +188,6 @@ public class VickieFrontEnd implements JiSupport{
 		 */
 	}
 
-
-
-
-	
 	public void backgroundStory() {
 		if(!endOfStory) {
 			endOfStory = true;
@@ -312,22 +262,3 @@ public class VickieFrontEnd implements JiSupport{
 	}
 	
 }
-/*
- * 1) Game starts!
- * 2) Provide the rules
- * 3) Game starts:
- * 		a grid of nine boxes are created,
- * 		ask the user which coordinates they want to place a number in, and ask what number they want to type;
- * 		put it in
- * 
- * 		if all the nine slots are filled, ask wheether we should check if its correct
- * 
- * 		and reward is.....
- * 
- * 
- * 
- * 		STORYYY: ...... unknown
- * 
- * 		innovate: if they have the correct number in the correct place something magical will happen
- */
-//
