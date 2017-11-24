@@ -3,6 +3,7 @@ package jiVickieRoom;
 import java.util.Scanner;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.Inventory;
 
 public class VickieFrontEnd implements JiSupport{
 
@@ -222,6 +223,7 @@ public class VickieFrontEnd implements JiSupport{
 			getInput();
 		}else {
 			System.out.println("	CONGRATULATIONS!!! YOU'VE SOLVED THE PUZZLE!!\n");
+			Inventory.setBroomP3(true);
 			backgroundStory();
 		}
 		/*
@@ -239,7 +241,7 @@ public class VickieFrontEnd implements JiSupport{
 	public void backgroundStory() {
 		if(!endOfStory) {
 			endOfStory = true;
-			CaveExplorer.print("********************A story will appear. To move the story along, press enter********************");
+			CaveExplorer.print("********************A storyline will appear. To move the story along, PRESS ENTER********************");
 			CaveExplorer.print("");
 			CaveExplorer.print("	You enter the room and see Peeves, the poltergeist, floating in the air and holding a wooden puzzle grumbling to himself.");
 			CaveExplorer.in.nextLine();
@@ -257,17 +259,21 @@ public class VickieFrontEnd implements JiSupport{
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("	Peeves explodes (figuratively).");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("PEEVES: Ohh what, you think YOU can solve itt?? \n");
-			CaveExplorer.print("PEEVES: (To himself) Harry Potter, the boy who lived, eh? \n");
+			CaveExplorer.print("PEEVES: Ohh what, you think YOU can solve itt??");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("PEEVES: (To himself) Harry Potter, the boy who lived, eh?");
+			CaveExplorer.in.nextLine();
 			CaveExplorer.print("PEEVES: (To You) Prove it then.");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("	He tosses the wooden puzzle at you, which you catch.\n	You glance at it and notice it's a board game with a surface that changes every now and then.");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("PEEVES: Now, if you don't solve it - ");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("	Peeves whizzes around the room and the door you entered slams shut.");
+			CaveExplorer.print("	Peeves whizzes around the room and the door you just entered through slams shut.");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("PEEVES: You'll be trapped in this room for eternity! MUAHAHAHAHAHAHAHAAAA!!!\n\n	He gives you a smirk and then vanishes into thin air.\n	Groaning inwardly, you prepare to solve the puzzle");
+			CaveExplorer.print("PEEVES: - you'll be trapped in this room for eternity! MUAHAHAHAHAHAHAHAAAA!!!");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	He gives you a smirk and then vanishes into thin air.\n	Groaning inwardly, you prepare to solve the puzzle.");//\n	The surface of the puzzle changes and you see it diplays the rules.");
 			CaveExplorer.in.nextLine();
 		}else {
 			CaveExplorer.print("	Peeves reappears into the room.");
@@ -278,7 +284,7 @@ public class VickieFrontEnd implements JiSupport{
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("PEEVES: Take that Dumbledore!! Now, I'm free!");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("	Just as he says that, a wave of magic is released from the puzzle and hits Peeves.\n	An invisible bubble hidden to you before appears around Peeves. \n	It flickers for a few seconds, and then it pops. *POP* ");
+			CaveExplorer.print("	Just as he says that, a wave of magic is released from the puzzle and hits Peeves.\n	An invisible bubble, hidden to you before, appears around him. \n	It flickers for a few seconds, and then it pops. *POP* ");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("PEEVES: FINALLLYY! Now I can roam the halls and prank students again!!");
 			CaveExplorer.in.nextLine();
@@ -286,17 +292,21 @@ public class VickieFrontEnd implements JiSupport{
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("YOU: HEY!! I solved your puzzle! Now let me out!!");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("	Peeves's smug disembodied voice reaches your ear, and disbelief washes over your features. ");
+			CaveExplorer.print("	Peeves's smug disembodied voice reaches your ear, and disbelief washes over your features at what you hear. ");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("PEEVES: The door was never locked!! Tricked ya! Bye now, Potter! AHAHAHHAAA!");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("	Chagrinned, you are about to throw the puzzle across the room when you notice the surface has changed.\n	It now shows Dumbledore's face.");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("DUMBLEDORE: Don't worry, Peeves won't get far. He didn't solve the puzzle himself so he's still bound to this room. He's only out temporarily.\n            Here's your reward for completing the puzzle: 50 galleons and a part of the broom.\n\n	He winks.");
+			CaveExplorer.print("DUMBLEDORE: Don't worry, Peeves won't get far. He didn't solve the puzzle himself so he's still bound to this room. He's only out temporarily.\n            Here's your reward for completing the puzzle: 50 galleons and a part of the broom.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	He winks.");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("DUMBLEDORE: Don't drink too much butterbeer now, you hear? \n\n	And with that, the surface of the puzzle becomes blank.");
 			CaveExplorer.in.nextLine();
-			CaveExplorer.print("	You walk to the door and turn the doorknob. The door opens away easily, and you walk through.\n\n	-----GAME OVER-----");
+			CaveExplorer.print("	You walk to the door and turn the doorknob. The door opens away easily, and you walk through.");
+			CaveExplorer.in.nextLine();
+			CaveExplorer.print("	-----GAME OVER-----");
 			CaveExplorer.startExploring(); //IN ORDER FOR THIS TO WORK, YOU MUST RUN CAVEROOM FILE AND THEN GO TO ROOM "M" FOR THIS MINIGAME!!!!!
 		}
 	}
