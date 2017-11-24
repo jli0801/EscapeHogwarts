@@ -3,6 +3,7 @@ package areejJessRoom;
 import java.util.Scanner;
 
 import caveExplorer.CaveExplorer;
+import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
 import caveExplorer.NPC;
 import caveExplorer.NPCRoom;
@@ -22,7 +23,10 @@ public class StoreRoom extends NPCRoom {
 	
 	private NPCAJ npc;
 	private static boolean userEnter;
+	public static Scanner in;
+
 	
+	static CaveRoom[][] c = CaveExplorer.caves; 
 
 	public void setUserEnter(boolean userEntered) {
 		this.userEnter = userEntered;
@@ -33,6 +37,7 @@ public class StoreRoom extends NPCRoom {
 		super(description);
 		//super.getContents();
 		userEnter = false;
+	
 	}
 
 	
@@ -66,21 +71,25 @@ public class StoreRoom extends NPCRoom {
 		userEnter = true;
 		}
 		
-		String input = getUserInput();
+		String userInput = CaveExplorer.in.nextLine();
 		
 		//same bug as chatbot
 		
-		if( input.equals("i"))
+		if( userInput.equals("i"))
 		{
 			interactDialogue();
 		}
-		if(input.equals("b"))
+		if(userInput.equals("b"))
 		{
 			buyItems();
 		}
-		if(input.equals("m"))
+		if(userInput.equals("m"))
 		{
 			mergeItems();
+		}
+		if(userInput.equals("e"))
+		{
+			leaveRoom();
 		}
 		
 	}
@@ -97,9 +106,9 @@ public class StoreRoom extends NPCRoom {
 		{
 			if(Inventory.hasBroom())
 			{
-				Inventory.setBroomP1(Inventory.getBroomP1()-1);
-				Inventory.setBroomP2(Inventory.getBroomP2()-1);
-				Inventory.setBroomP3(Inventory.getBroomP3()-1);
+				Inventory.setBroomP1(false);
+				Inventory.setBroomP2(false);
+				Inventory.setBroomP3(false);
 			}
 			else
 			{
@@ -117,9 +126,8 @@ public class StoreRoom extends NPCRoom {
 
 	
 	private static void leaveRoom() {
-		
-		//coordinate = CaveExplorer.currentRoom;
-		
+		CaveExplorer.currentRoom = c[2][1];
+		CaveExplorer.currentRoom.enter();
 	}
 
 
