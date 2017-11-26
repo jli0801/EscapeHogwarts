@@ -288,7 +288,7 @@ public class VickieRoom extends CaveRoom {
 		CaveExplorer.npcs[0] = testNPC; */
 		
 		//room1 : 1,4
-		//room2: 2,5
+		//room2: 2,5sd
 		//room3: 4.3
 		
 		//replace default room with custom room (SAVE FOR LATER)

@@ -75,6 +75,7 @@ public class CaveRoom {
 	 *    1 -> "the East"
 	 * hint: complete this method without using an if statement
 	 * @param dir
+	 * sd
 	 * @return
 	 */
 	public static String toDirection(int dir) {
