@@ -257,7 +257,7 @@ public class VickieFrontEnd implements JiSupport{
 			CaveExplorer.print("	You walk to the door and turn the doorknob. The door opens away easily, and you walk through.");
 			CaveExplorer.in.nextLine();
 			CaveExplorer.print("	-----GAME OVER-----");
-			CaveExplorer.startExploring(); //IN ORDER FOR THIS TO WORK, YOU MUST RUN CAVEROOM FILE AND THEN GO TO ROOM "M" FOR THIS MINIGAME!!!!!
+			//CaveExplorer.startExploring(); //IN ORDER FOR THIS TO WORK, YOU MUST RUN CAVEROOM FILE AND THEN GO TO ROOM "M" FOR THIS MINIGAME!!!!!
 		}
 	}
 	
