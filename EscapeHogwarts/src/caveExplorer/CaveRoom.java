@@ -320,8 +320,8 @@ public class CaveRoom {
 		c[3][5].setContents("S");
 		
 		//thematic rooms
-		c[2][0].setContents("1"); //Vickie Room
-		c[0][8].setContents("2"); //Ji Room
+		c[0][8].setContents("1"); //Vickie Room
+		c[2][0].setContents("2"); //Ji Room
 		c[2][3].setContents("3");	//Steph Room
 		c[2][7].setContents("4");	//Kevin Room
 		
