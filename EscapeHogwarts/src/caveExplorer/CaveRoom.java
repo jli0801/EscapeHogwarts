@@ -140,17 +140,17 @@ public class CaveRoom {
 			JiRoom = true;
 			jiVickieRoom.JiRoom.userEntered();
 		}
-		else if(CaveExplorer.currentRoom.getContents().equals("4"))
-		{
-			KRoom = true;
-			kevinStephRoom.KevinRoom.userEntered();
-		}
+		
 		else if(CaveExplorer.currentRoom.getContents().equals("3"))
 		{
 			SRoom = true;
 			kevinStephRoom.StephanieRoom.userEntered();
 		}
-
+		else if(CaveExplorer.currentRoom.getContents().equals("4"))
+		{
+			KRoom = true;
+			kevinStephRoom.KevinRoom.userEntered();
+		}
 		else if(CaveExplorer.currentRoom.getContents().equals("C"))
 		{
 			Connect4 = true;
