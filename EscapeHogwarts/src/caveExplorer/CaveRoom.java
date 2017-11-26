@@ -22,6 +22,16 @@ public class CaveRoom {
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
 	
+	public static boolean ARoom;
+	//public static boolean JRoom;
+	public static boolean JiRoom;
+	public static boolean KRoom;
+	public static boolean SRoom;
+	public static boolean Store;
+	public static boolean magicSquare;
+	public static boolean Connect4;
+	public static boolean LightsOut;
+
 	//constants
 	public static final int NORTH = 0;
 	public static final int EAST = 1;
@@ -82,21 +92,49 @@ public class CaveRoom {
 
 	
 	public void enter() {
-		if(CaveExplorer.currentRoom.getContents().equals("C"))
+		/*if(CaveExplorer.currentRoom.getContents().equals("A"))
 		{
+			ARoom = true;
+			areejJessRoom.AreejRoom.userEntered();
+		}
+		else*/ if(CaveExplorer.currentRoom.getContents().equals("V"))
+		{
+			jiVickieRoom.VickieRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("J"))
+		{
+			JiRoom = true;
+			jiVickieRoom.JiRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("K"))
+		{
+			KRoom = true;
+			kevinStephRoom.KevinRoom.userEntered();
+		}
+		else if(CaveExplorer.currentRoom.getContents().equals("S"))
+		{
+			SRoom = true;
+			kevinStephRoom.StephanieRoom.userEntered();
+		}
+
+		else if(CaveExplorer.currentRoom.getContents().equals("C"))
+		{
+			Connect4 = true;
 			areejJessRoom.JessicaFrontEnd.play();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("M"))
 		{
-			//jiVickieRoom.VickieFrontEnd.startGame(); :)
+			magicSquare = true;
 			VickieFrontEnd.main(null);
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("L"))
 		{
-			StephFrontEnd.main(null);
+			LightsOut = true;
+			StephFrontEnd.main(null);	
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("S"))
 		{
+			Store = true;
 			areejJessRoom.StoreRoom.userEntered();
 		}
 		
