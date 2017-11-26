@@ -8,5 +8,7 @@ public interface StephSupport {
 
 	void lightSwitch(KevinStephLight c);
 
+	void cheatcode();
+
 
 }

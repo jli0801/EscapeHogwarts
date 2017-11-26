@@ -118,4 +118,12 @@ public class KevinBackEnd implements StephSupport{
 		}
 	}
 
+	public void cheatcode() {
+		for(int row = 0; row < board.length; row++){
+			for(int col = 0; col < board[row].length; col++){
+				board[row][col] = new KevinStephLight(row, col); //board is created 
+				board[row][col].lightOn(false); // all lights are on
+			}
+		}
+	}
 }

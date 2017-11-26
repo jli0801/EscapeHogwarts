@@ -2,6 +2,7 @@ package kevinStephRoom;
 
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
+import caveExplorer.Inventory;
 
 import java.util.Scanner;
 
@@ -28,22 +29,22 @@ public class StephFrontEnd implements KevinSupport{
 		StephFrontEnd game = new StephFrontEnd();
 		game.play();
 	}
-
-	public static boolean getYesNo() {
-		String input = CaveExplorer.in.nextLine().toLowerCase();
-		if(input.equals("yes") || input.equals("no")){
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
 	public void play() {
 		new StephIntro().play();
 		CaveExplorer.in.nextLine();
 		menu();
+		skip();
 	}
 	
+	private boolean skip() {
+		String input = CaveExplorer.in.nextLine().toLowerCase();
+		if(input.equals("finish")){
+			return true;
+		}
+		return false;
+	}
+
 	private void menu() {
 		System.out.println("Enter 'r' for rules or 'p' to play.");
 		String command = waitForLetterInput("rp");
@@ -63,19 +64,36 @@ public class StephFrontEnd implements KevinSupport{
 		board = backend.createBoard();
 		KevinStephLight c = null; 
 		
-		while (getLightsOff() > 0) {
+		print("Do you Know the magic word?");
+		if(skip() == true) {
+			backend.cheatcode();
 			displayBoard(board);
 			displayMoveCount();
-		
-			print("Where would you like to turn the lights off next?");
-			int[] coords = backend.getCoordInput();
-			c = board[coords[0]][coords[1]];
-			backend.lightSwitch(c);
-			
-			move++;
+			print("Congratulations, you have successfully escaped from the Mirror of Erised. You have earned a piece of a broom.");
+			Inventory.setBroomP2(true);
+		}else {
+			if(getLightsOff() == 0) {
+				print("Congratulations, you have successfully escaped from the Mirror of Erised. You have earned a piece of a broom.");
+				Inventory.setBroomP2(true);
+			}else {
+				while (getLightsOff() > 0) {
+					if(move < 3) {
+						displayBoard(board);
+						displayMoveCount();
+					
+						print("Where would you like to turn the lights off next?");
+						int[] coords = backend.getCoordInput();
+						c = board[coords[0]][coords[1]];
+						backend.lightSwitch(c);
+						
+						move++;
+					}else {
+						print("Your eyes are forever locked onto the mirror....");
+						break;
+					}
+				}
+			}
 		}
-		
-		print("Congratulations, you win!");
 	}
 	
 	private void displayMoveCount() {
