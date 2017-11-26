@@ -97,21 +97,21 @@ public class CaveRoom {
 			ARoom = true;
 			areejJessRoom.AreejRoom.userEntered();
 		}
-		else*/ if(CaveExplorer.currentRoom.getContents().equals("V"))
+		else*/ if(CaveExplorer.currentRoom.getContents().equals("1"))
 		{
 			jiVickieRoom.VickieRoom.userEntered();
 		}
-		else if(CaveExplorer.currentRoom.getContents().equals("J"))
+		else if(CaveExplorer.currentRoom.getContents().equals("2"))
 		{
 			JiRoom = true;
 			jiVickieRoom.JiRoom.userEntered();
 		}
-		else if(CaveExplorer.currentRoom.getContents().equals("K"))
+		else if(CaveExplorer.currentRoom.getContents().equals("4"))
 		{
 			KRoom = true;
 			kevinStephRoom.KevinRoom.userEntered();
 		}
-		else if(CaveExplorer.currentRoom.getContents().equals("S"))
+		else if(CaveExplorer.currentRoom.getContents().equals("3"))
 		{
 			SRoom = true;
 			kevinStephRoom.StephanieRoom.userEntered();
@@ -284,9 +284,15 @@ public class CaveRoom {
 		
 		//rooms 
 		c[3][1].setContents("C");
-		c[1][7].setContents("M");
+		c[3][9].setContents("M");
 		c[0][4].setContents("L");
 		c[3][5].setContents("S");
+		
+		//thematic rooms
+		c[2][0].setContents("1"); //Vickie Room
+		c[0][8].setContents("2"); //Ji Room
+		c[2][3].setContents("3");	//Kevin Room
+		c[2][7].setContents("4");	//Steph Room
 		
 		
 		//addRoom
@@ -325,6 +331,17 @@ public class CaveRoom {
 	//	c[3][1].setConnection(NORTH, c[2][1], new Door("hallway", true));
 		
 		c[2][1].setConnection(SOUTH, c[3][1], new Door("hallways",true));
+		
+		//Hallways for thematic
+		c[2][0].setConnection(EAST, c[2][1], new Door("hallway", true));
+		c[2][3].setConnection(NORTH, c[1][3], new Door("hallway", true));
+		c[2][7].setConnection(NORTH, c[1][7], new Door("hallway", true));
+		//hall
+		c[1][7].setConnection(EAST, c[1][8], new Door("hallway", true));
+		c[1][8].setConnection(EAST, c[1][9], new Door("hallway", true));
+		c[1][9].setConnection(SOUTH, c[2][9], new Door("hallway", true));
+		c[2][9].setConnection(SOUTH, c[3][9], new Door("hallway", true));
+		c[0][8].setConnection(SOUTH, c[1][8], new Door("hallway", true));
 	}
 
 
