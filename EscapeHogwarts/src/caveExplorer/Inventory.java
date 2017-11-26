@@ -37,15 +37,24 @@ public class Inventory {
 		silverKey = false;
 	}
 
-	public static boolean hasBroom()
+	/*public static boolean hasBroom()
 	{
 		if(broomP1  && broomP2  && broomP3 )
 		{
 			return true;
 		}
 		return false;
-	}
+	}*/
 
+	public static void merge() {
+		if(broomP1  && broomP2  && broomP3 )
+		{
+			CaveExplorer.print("You have all the three broom pieces! It merges into the firebolt right before your eyes!"
+					+ "\n With the firebolt in hand, you fly out of Hogwarts to Hogsmeade and meet up with Ron and Hermione.\nYou did it!");
+			CaveExplorer.setPlaying(false);
+		}
+	}
+	
 	public static void setBroomP1(boolean broomP1) {
 		Inventory.broomP1 = broomP1;
 	}

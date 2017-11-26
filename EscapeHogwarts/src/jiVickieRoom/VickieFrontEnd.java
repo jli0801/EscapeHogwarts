@@ -179,6 +179,7 @@ public class VickieFrontEnd implements JiSupport{
 			System.out.println("	CONGRATULATIONS!!! YOU'VE SOLVED THE PUZZLE!!\n");
 			Inventory.setBroomP3(true);
 			backgroundStory();
+			Inventory.merge();
 		}
 		/*
 		 * Reward: Galleons to buy stuff in shop: also, 1/3 of a broom?
