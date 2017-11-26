@@ -20,6 +20,13 @@ public class CaveRoom {
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
 	
+	public static boolean ARoom;
+	public static boolean JRoom;
+	public static boolean JiRoom;
+	public static boolean KRoom;
+	public static boolean SRoom;
+	//private boolean ARoom;
+	
 	//constants
 	public static final int NORTH = 0;
 	public static final int EAST = 1;
@@ -82,10 +89,12 @@ public class CaveRoom {
 	public void enter() {
 		if(CaveExplorer.currentRoom.getContents().equals("A"))
 		{
+			ARoom = true;
 			areejJessRoom.AreejRoom.userEntered();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("L"))
 		{
+			JRoom = true;
 			areejJessRoom.JessRoom.userEntered();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("V"))
@@ -94,14 +103,17 @@ public class CaveRoom {
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("J"))
 		{
+			JiRoom = true;
 			jiVickieRoom.JiRoom.userEntered();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("K"))
 		{
+			KRoom = true;
 			kevinStephRoom.KevinRoom.userEntered();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("S"))
 		{
+			SRoom = true;
 			kevinStephRoom.StephanieRoom.userEntered();
 		}
 		
@@ -119,6 +131,31 @@ public class CaveRoom {
 		
 	}
 	
+	public static  boolean isARoom() {
+		return ARoom;
+	}
+
+
+	public static boolean isJRoom() {
+		return JRoom;
+	}
+
+
+	public static boolean isJiRoom() {
+		return JiRoom;
+	}
+
+
+	public static boolean isKRoom() {
+		return KRoom;
+	}
+
+
+	public static boolean isSRoom() {
+		return SRoom;
+	}
+
+
 	public void leave() {
 		contents = defaultContents;
 	}

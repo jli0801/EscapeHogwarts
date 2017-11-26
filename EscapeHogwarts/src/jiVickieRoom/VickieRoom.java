@@ -163,12 +163,7 @@ public class VickieRoom extends CaveRoom {
 		//Set up doors
 		
 		//rooms 
-		c[0][3].setContents("A");
-		c[1][4].setContents("L");
-		c[3][2].setContents("V");
-		c[3][4].setContents("J");
-		c[2][1].setContents("K");
-		c[1][0].setContents("S");
+		
 		
 		
 		//addRoom
@@ -303,12 +298,24 @@ public class VickieRoom extends CaveRoom {
 		//Set up doors
 		
 		//rooms 
-		c[1][2].setContents("A");
-		c[2][0].setContents("L");
-		//c[0][3].setContents("V");
-		c[0][0].setContents("J");
-		c[1][5].setContents("K");
-		c[3][4].setContents("S");
+		
+		if(CaveRoom.isARoom() ==false) {
+			c[1][2].setContents("A");
+		}
+		
+		if(CaveRoom.isJRoom() ==false) {
+			c[2][0].setContents("L");
+		}
+		
+		if(CaveRoom.isJiRoom() ==false) {
+			c[0][0].setContents("J");
+		}
+		if(CaveRoom.isKRoom() ==false) {
+			c[1][5].setContents("K");
+		}
+		if(CaveRoom.isSRoom() ==false) {
+			c[3][4].setContents("S");
+		}
 		
 		//addRoom
 		/*c[1][2].addRoom(SOUTH, c[1][3], new Door("room 1", true));
