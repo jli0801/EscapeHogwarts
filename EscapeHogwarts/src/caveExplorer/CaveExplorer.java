@@ -30,7 +30,7 @@ public class CaveExplorer {
 			
 			if(firstStart)
 			{moveNPCs();
-			print("A story line will appear. ***PRESS ENTER*** for the story to progress.");
+			print("***PRESS ENTER*** for the Intro to progress.");
 			CaveExplorer.in.nextLine();
 			print("You are Harry Potter.");
 			CaveExplorer.in.nextLine();
