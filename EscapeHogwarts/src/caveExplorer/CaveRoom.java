@@ -22,8 +22,42 @@ public class CaveRoom {
 	private CaveRoom[] borderingRooms;
 	private Door[] doors;
 	
-	public static boolean ARoom;
-	//public static boolean JRoom;
+
+	public static boolean isKRoom() {
+		return KRoom;
+	}
+
+
+	public static boolean isJiRoom() {
+		return JiRoom;
+	}
+
+
+	public static boolean isSRoom() {
+		return SRoom;
+	}
+
+
+	public static boolean isStore() {
+		return Store;
+	}
+
+
+	public static boolean isMagicSquare() {
+		return magicSquare;
+	}
+
+
+	public static boolean isConnect4() {
+		return Connect4;
+	}
+
+
+	public static boolean isLightsOut() {
+		return LightsOut;
+	}
+
+
 	public static boolean JiRoom;
 	public static boolean KRoom;
 	public static boolean SRoom;
@@ -276,9 +310,6 @@ public class CaveRoom {
 		
 		//replace default room with custom room (SAVE FOR LATER)
 		//Set starting room
-		
-		CaveExplorer.currentRoom = c[0][1];
-		CaveExplorer.currentRoom.enter();
 	
 		//Set up doors
 		
@@ -291,8 +322,8 @@ public class CaveRoom {
 		//thematic rooms
 		c[2][0].setContents("1"); //Vickie Room
 		c[0][8].setContents("2"); //Ji Room
-		c[2][3].setContents("3");	//Kevin Room
-		c[2][7].setContents("4");	//Steph Room
+		c[2][3].setContents("3");	//Steph Room
+		c[2][7].setContents("4");	//Kevin Room
 		
 		
 		//addRoom
