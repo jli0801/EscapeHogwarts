@@ -20,7 +20,9 @@ public class JessicaFrontEnd implements AreejSupport{
 	private static AreejBackEnd backend;
 	private static boolean userWon = false;
 	private static boolean computerWon = false;
+
 	static CaveRoom[][] c = CaveExplorer.caves; 
+	
 	private static String [][] board;
 	
 	public static String[][] getBoard() {
@@ -106,9 +108,15 @@ public class JessicaFrontEnd implements AreejSupport{
 					+ "You get all the Galleons you placed down if you win. Let the best player win! Press enter to start!");
 			CaveExplorer.in.nextLine();
 			menu();
-		}else{
+		}
+		else if(userInput.equals("p"))
+		{
 		//	board = createBoard(6,7);
 			startGame();
+		}
+		else
+		{
+			print("Enter 'r' or 'p', Potter!");
 		}
 		
 	}
@@ -128,23 +136,23 @@ public class JessicaFrontEnd implements AreejSupport{
 			{
 				
 				int moneyUser  = (int)Math.random()*15 + 1;
-	
-				System.out.println("I guess you won..Keep those Galleons! Get out of my room now!");
 				Inventory.setMoney(Inventory.getMoney() + moneyUser);
+				System.out.println("Keep those Galleons and take this Broom piece! Get out of my room now!"
+						+ "\nGalleon(s): " + Inventory.getMoney());
+				Inventory.setBroomP1(true);
+				Inventory.merge();
+				leaveRoom();
 				playingGame = false;
-				CaveExplorer.currentRoom = c[2][1];
-				CaveExplorer.currentRoom.enter();
+		
 			}
-			else //our turn
-			{
+	
+			if(computerWon){
+				System.out.println("I won! Now get out of my room! There'll be no prize for you!");
+				leaveRoom();
+				playingGame = false;
 				
-				if(computerWon){
-					System.out.println("I won! Now get out of my room! There'll be no prize for you!");
-					playingGame =false;
-					CaveExplorer.currentRoom = c[2][1];
-					CaveExplorer.currentRoom.enter();
-				}
 			}
+			
 		}
 		
 		
@@ -152,14 +160,12 @@ public class JessicaFrontEnd implements AreejSupport{
 
 	
 
-	private static void getBadRes() {
-		String[] badRes = {"That's not correct,", "Please try again!", "Follow the rules!"};
-		System.out.println(badRes[(int)Math.random()*2]);
+	private static void leaveRoom() {
+		CaveExplorer.currentRoom = c[2][1];
+		CaveExplorer.currentRoom.enter();
+		
 	}
 
-
-
-	
 
 	private static void displayBoard(String[][] board2) {
 		

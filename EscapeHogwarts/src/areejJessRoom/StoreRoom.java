@@ -23,6 +23,7 @@ public class StoreRoom extends NPCRoom {
 	
 	private NPCAJ npc;
 	private static boolean userEnter;
+	private static boolean inRoom;
 	public static Scanner in;
 
 	
@@ -37,7 +38,7 @@ public class StoreRoom extends NPCRoom {
 		super(description);
 		//super.getContents();
 		userEnter = false;
-	
+		inRoom = true; 
 	}
 
 	
@@ -46,31 +47,19 @@ public class StoreRoom extends NPCRoom {
 		 String input =CaveExplorer.in.nextLine().toLowerCase();
 		 return input;
 	}
-	public void printValidMoves()
-	{
-		System.out.println("You can only enter 'i', 'b', 'm', or 'e' ");
-	}
 	
-	/*public void performAction (int direction)
-	{
-		if(direction == 4) {
-			if(npc != null && npc.isActive()) {
-				npc.interact();
-			}else {
-				CaveExplorer.print("There is nothing to interact with.");
-			}
-		}else {
-			CaveExplorer.print("That key does nothing.");
-		}
-	}*/
 
 	public static void userEntered() {
 		if(!userEnter)
 		{
-		CaveExplorer.print("You've entered the merchant's store. Enter 'i' to interact, 'b' to buy, or 'm' to merge items.");
+		CaveExplorer.print("Welcome, Harry Potter. You've entered the merchant's store, where all the magic happens.");
 		userEnter = true;
+		inRoom = true;
 		}
 		
+		while(inRoom)
+		{
+		CaveExplorer.print("Enter 'i' to interact, 'b' to buy, or 'e' to exit.");
 		String userInput = CaveExplorer.in.nextLine();
 		
 		//same bug as chatbot
@@ -79,69 +68,66 @@ public class StoreRoom extends NPCRoom {
 		{
 			interactDialogue();
 		}
-		if(userInput.equals("b"))
+		else if(userInput.equals("b"))
 		{
 			buyItems();
 		}
-		if(userInput.equals("m"))
-		{
-			mergeItems();
-		}
-		if(userInput.equals("e"))
+		else if(userInput.equals("e"))
 		{
 			leaveRoom();
-		}
-		
-	}
-
-	
-	
-
-
-	private static void mergeItems() {
-		CaveExplorer.print("So you want to merge some items, I see. You better have all the ingredients or I'll kick you out. Are you sure you have all the items?");
-		String input = getUserInput();
-
-		if(input.equals("yes"))
-		{
-			if(Inventory.hasBroom())
-			{
-				Inventory.setBroomP1(false);
-				Inventory.setBroomP2(false);
-				Inventory.setBroomP3(false);
-			}
-			else
-			{
-				CaveExplorer.print("YOU LIED TO ME! GET OUT OF MY STORE!");
-				leaveRoom();
-			}
+			inRoom = false;
 		}
 		else
 		{
-			CaveExplorer.print("Get out and find me all pieces before I expell you!");
-			leaveRoom();
+			CaveExplorer.print("You can only enter 'i', 'b', or 'e' ");
+		}
 		}
 	}
 
-
 	
-	private static void leaveRoom() {
-		CaveExplorer.currentRoom = c[2][1];
+	public static void leaveRoom() {
+		CaveExplorer.print("Alright, Potter. Begone!");
+		CaveExplorer.currentRoom = c[2][5];
 		CaveExplorer.currentRoom.enter();
 	}
 
 
 	private static void buyItems() {
 		CaveExplorer.print("What would you like to purchase today?"
-				+ "\nWe have freshly made Chocolate Frogs, potions, and some accessories to help with your battles.");
-		
+				+ "\nWe have freshly made Chocolate Frogs, and some potions to help with your battles."
+				+ "\nEnter 'c' for Chocolate Frogs or 'p' for some potions. The Chocolate Frogs provide you with 15 HP."
+				+ "\nThe potion will randomly give you any amount of HP. Let's see if you get lucky."
+				+ "\nThe Chocolate Frogs cost 5 Galleons, while the potions are a bit pricey, at 8 Galleons.");
+		String userInput = CaveExplorer.in.nextLine();
+		if(userInput.equals("c") && Inventory.getMoney() > 5)
+		{
+			Inventory.setMoney(Inventory.getMoney() - 5);
+			Inventory.setHp(Inventory.getHp() + 15);
+			CaveExplorer.print("You have " + Inventory.getHp() + " HP now and " + Inventory.getMoney() + " Galleon(s).");
+		}
+		if(userInput.equals("p") && Inventory.getHp() > 8)
+		{
+			int randomHP = (int)(Math.random()*30 +1);
+			if (randomHP > 15)
+			{
+				CaveExplorer.print("Wow, you got luck this time! " + "You got " + randomHP + "!");
+			}
+			else
+			{
+				CaveExplorer.print("Oh, not so lucky, Potter. ");
+			}
+			Inventory.setMoney(Inventory.getMoney() - 8);
+			Inventory.setHp(Inventory.getHp() + randomHP);
+			CaveExplorer.print("You have " + Inventory.getHp() + " HP now and " + Inventory.getMoney() + " Galleon(s).");
+		}
+		userEntered();
 	}
 
 
 	private static void interactDialogue() {
 		CaveExplorer.print("Welcome to Hogwart's One and Only Store! You can purchase goods to boost your health. "
-				+ "\nIf you have the pieces for to complete the broom, you can choose to merge to create the broom."
-				+ "\nTo purchase goods, enter 'b'. To merge the pieces, enter 'm'. To exit the store, enter 'e'");
+				+ "\nYou're welcome to try these goods for a price, Potter. Only do it if you dare.."
+				+ "\nTo purchase goods, enter 'b'. To exit the store, enter 'e'");
 		userEntered();
 		
 	}

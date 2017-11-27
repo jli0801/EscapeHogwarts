@@ -18,6 +18,9 @@ public class CaveExplorer {
 		startExploring();
 
 	}
+	public static void setCurrentRoom(CaveRoom currentRoom) {
+		CaveExplorer.currentRoom = currentRoom;
+	}
 	public static void print(String s)
 	{
 		System.out.println(s);
@@ -59,7 +62,7 @@ public class CaveExplorer {
 			print(currentRoom.getDescription());
 			print(currentRoom.getDirections());
 			print("HP: " + Integer.toString(inventory.getHp()) );
-			
+			print("Galleon(s): " + Integer.toString(inventory.getMoney()));
 			print("What would you like to do?");
 			
 			currentRoom.interpretInput(in.nextLine());
@@ -69,6 +72,9 @@ public class CaveExplorer {
 		
 	}
 
+	public static CaveRoom[][] getCaves() {
+		return caves;
+	}
 	public static void setPlaying(boolean playing) {
 		CaveExplorer.playing = playing;
 	}

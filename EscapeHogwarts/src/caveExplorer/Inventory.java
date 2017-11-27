@@ -32,7 +32,7 @@ public class Inventory {
 	{
 		updateMap();
 		hp = 100;
-		money = 0;
+		money = 35;
 		attack = (int)(Math.random()*15 +1);
 		silverKey = false;
 	}
@@ -145,6 +145,11 @@ public class Inventory {
 	public String getDescription()
 	{
 		return map;
+	}
+
+	public static boolean hasBroom() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

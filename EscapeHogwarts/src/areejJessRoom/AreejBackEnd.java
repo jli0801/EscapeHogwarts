@@ -51,7 +51,7 @@ public class AreejBackEnd implements JessicaSupport{
 		String userInput = CaveExplorer.in.nextLine();
 		if(userInput.equals("voldemort"))
 		{
-			System.out.println("No! Not Voldemort! You win, leave my room!");
+			System.out.println("No! Not Voldemort! You win!");
 			JessicaFrontEnd.setUserWon(true);
 		}
 		else
