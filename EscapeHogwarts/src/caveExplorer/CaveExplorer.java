@@ -30,31 +30,31 @@ public class CaveExplorer {
 		while (playing)
 		{
 			
-			
 			if(firstStart)
-			{moveNPCs();
-			print("***PRESS ENTER*** for the Intro to progress.");
-			CaveExplorer.in.nextLine();
-			print("You are Harry Potter.");
-			CaveExplorer.in.nextLine();
-			print("You've heard Hogsmeade is the best village in the wizardry world and you want to explore it! " );
-			CaveExplorer.in.nextLine();
-			print("Unfortunately, your mean Uncle and Aunt didn't sign your permission slip so you can't go. ") ;
-			CaveExplorer.in.nextLine();
-			print("You decide to sneak out of Hogwarts in order to explore it with Ron and Hermione.");
-			CaveExplorer.in.nextLine();
-			print("You have the Maurauder's Map which shows you the whole map of Hogwarts.");
-			CaveExplorer.in.nextLine();
-			print("In order to escape, you must navigate through rooms and beat the minigames to get 3 pieces of your broom.");
-			CaveExplorer.in.nextLine();
-			print("However, certain rooms will be obstacles on your way to merge the three pieces. ");
-			CaveExplorer.in.nextLine();
-			print("Good luck!");
-			firstStart = false;
+			{
+				moveNPCs();
+				print("***PRESS ENTER*** for the Intro to progress.");
+				CaveExplorer.in.nextLine();
+				print("You are Harry Potter.");
+				CaveExplorer.in.nextLine();
+				print("You've heard Hogsmeade is the best village in the wizardry world and you want to explore it! " );
+				CaveExplorer.in.nextLine();
+				print("Unfortunately, your mean Uncle and Aunt didn't sign your permission slip so you can't go. ") ;
+				CaveExplorer.in.nextLine();
+				print("You decide to sneak out of Hogwarts in order to explore it with Ron and Hermione.");
+				CaveExplorer.in.nextLine();
+				print("You have the Maurauder's Map which shows you the whole map of Hogwarts.");
+				CaveExplorer.in.nextLine();
+				print("In order to escape, you must navigate through rooms and beat the minigames to get 3 pieces of your broom.");
+				CaveExplorer.in.nextLine();
+				print("However, certain rooms will be obstacles on your way to merge the three pieces. ");
+				CaveExplorer.in.nextLine();
+				print("Good luck!");
+				firstStart = false;
 			}
 			
 			print(inventory.getDescription());
-			print("* 1-4: Thematic Rooms");
+			print("* 1-5: Thematic Rooms");
 			print("* C/L/M: Minigames");
 			print("* S: Store");
 			

@@ -37,15 +37,6 @@ public class Inventory {
 		silverKey = false;
 	}
 
-	/*public static boolean hasBroom()
-	{
-		if(broomP1  && broomP2  && broomP3 )
-		{
-			return true;
-		}
-		return false;
-	}*/
-
 	public static void merge() {
 		if(broomP1  && broomP2  && broomP3 )
 		{
@@ -145,11 +136,6 @@ public class Inventory {
 	public String getDescription()
 	{
 		return map;
-	}
-
-	public static boolean hasBroom() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 

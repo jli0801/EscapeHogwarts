@@ -21,7 +21,7 @@ public class StoreRoom extends NPCRoom {
 
 	//private static Scanner inputSource = new Scanner(System.in);
 	
-	private NPCAJ npc;
+	//private NPCAJ npc;
 	private static boolean userEnter;
 	private static boolean inRoom;
 	public static Scanner in;
