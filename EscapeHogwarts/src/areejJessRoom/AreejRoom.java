@@ -1,8 +1,8 @@
 package areejJessRoom;
 
 import caveExplorer.CaveExplorer;
-import caveExplorer.NPC;
-import caveExplorer.NPCRoom;
+
+import caveExplorer.CaveRoom;
 
 
 public class AreejRoom extends CaveRoom {
