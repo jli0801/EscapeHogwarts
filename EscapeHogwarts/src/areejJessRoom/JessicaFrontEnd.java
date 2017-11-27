@@ -17,7 +17,7 @@ public class JessicaFrontEnd{
 	}
 
 	public static Scanner in;
-//	private static AreejBackEnd backend;
+	private static AreejBackEnd backend;
 	private static boolean userWon = false;
 	private static boolean computerWon = false;
 
