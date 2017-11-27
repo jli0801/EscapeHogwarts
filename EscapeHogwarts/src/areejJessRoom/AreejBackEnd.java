@@ -82,19 +82,19 @@ public class AreejBackEnd implements JessicaSupport{
 	
 	}
 	
-	public static void debugPrint(String s) {
-		System.out.println(s);
-	}
+	//public static void debugPrint(String s) {
+//		System.out.println(s);
+	//}
 	
 	public static int getIndex(int[][] board, int col) {
 		for(int[] a: board) {
-			debugPrint(Arrays.toString(a));
+		//	debugPrint(Arrays.toString(a));
 		}
 		for(int i = board.length - 1; i > 0; i--) {
 			int value = getValue(board, i, col);
 			if(value == 0 )
 			{
-				debugPrint("Found next empy space is "+i);
+			//	debugPrint("Found next empty space is "+i);
 				return i;
 			}
 		}
@@ -143,7 +143,7 @@ public class AreejBackEnd implements JessicaSupport{
 		dL+= checkDiagLeft(r,c,player);
 		dR+= checkDiagRight(r,c,player);
 		
-		if(h>=4||v>=4||dL>=4||dR>=4){
+		if(h==4||v==4||dL==4||dR==4){
 			switch(player){
 				case 2:
 						JessicaFrontEnd.setComputerWon(true);
