@@ -27,7 +27,7 @@ public interface VickieSupport {
 	int generateNumber(int max);
 	//generates number based on maximum integer
 	
-	boolean isOuterNumber(int num);
+	boolean isCornerNumber(int num);
 	//returns true if outer else false
 	
 	//int getMid();
@@ -51,7 +51,7 @@ public interface VickieSupport {
 	 int getColNum() ;
 	 //fixed ColNum
 	 
-	 void checkMultiples(int num);
+	 void resetMultiples(int num);
 	 //check if number is more than 1
 	 
 	 boolean isNumeric(String str);
@@ -66,5 +66,12 @@ public interface VickieSupport {
 	int getiCol();
 
 	int getiNum();
+	
+	int getRandomInitialIndex();
+	//generate first col and row
+	
+	//thinking to define these two methods
+	//boolean isFixedRowCol();
+	//booean isFixedNum();
 }
 //

@@ -19,18 +19,10 @@ public class JiBackEnd implements VickieSupport {
 	private int iCol;  //Integer Col #
 	private int iNum;  //Integer Number #
 
-	/*private JiBackEnd() {
-	}*/
-	
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
 		magicSquares = new int[3][3];
 	}
-	
-	/*public static void main(String[] args) {
-		VickieSupport backend = new JiBackEnd();
-		
-	}*/
 	
 	public int getRandomInitialIndex() {
 		int num = 0;
