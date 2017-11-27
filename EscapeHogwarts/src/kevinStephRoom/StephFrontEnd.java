@@ -69,15 +69,19 @@ public class StephFrontEnd implements KevinSupport{
 			backend.cheatcode();
 			displayBoard(board);
 			displayMoveCount();
-			print("Congratulations, you have successfully escaped from the Mirror of Erised. You have earned a piece of a broom.");
+			print("You have successfully escaped from the Mirror of Erised. As you are about to leave, you see Dumbledore start to approach you...\n"
+					+ "He hands you a piece of a broom and says, 'you earned it.'"
+					+ "\n- - press enter - -");
 			Inventory.setBroomP2(true);
 		}else {
 			if(getLightsOff() == 0) {
-				print("Congratulations, you have successfully escaped from the Mirror of Erised. You have earned a piece of a broom.");
+				print("You have successfully escaped from the Mirror of Erised. As you are about to leave, you see Dumbledore start to approach you...\n" 
+						+ "He hands you a piece of a broom and says, 'you earned it.'"
+						+ "\n- - press enter - -");
 				Inventory.setBroomP2(true);
 			}else {
 				while (getLightsOff() > 0) {
-					if(move < 3) {
+					if(move < 15) {
 						displayBoard(board);
 						displayMoveCount();
 					
@@ -88,7 +92,13 @@ public class StephFrontEnd implements KevinSupport{
 						
 						move++;
 					}else {
-						print("Your eyes are forever locked onto the mirror....");
+						print("Your eyes are forever locked onto the mirror.... \n"
+								+ "Thankfully, Dumbledore has opened the door snapping you out of it. "
+								+ "However, you end up losing 20 hp from staring too long."
+								+ "\n- - press enter - -");
+						int userHp = Inventory.getHp() - 20;
+						Inventory.setHp(userHp);
+						CaveExplorer.print("Your HP is now: " + userHp + ".");
 						break;
 					}
 				}
@@ -138,7 +148,7 @@ public class StephFrontEnd implements KevinSupport{
 	
 	public static void print(String s){
 		String printString = "";
-		int cutoff = 55;
+		int cutoff = 75;
 		while(s.length() > 0){
 			String currentLine = "";
 			String nextWord = "";

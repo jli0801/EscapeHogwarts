@@ -52,7 +52,7 @@ public class CaveExplorer {
 			
 			print(inventory.getDescription());
 			print("* 1-4: Thematic Rooms");
-			print("* C/S/M: Minigames");
+			print("* C/L/M: Minigames");
 			print("* S: Store");
 			
 			print("");
