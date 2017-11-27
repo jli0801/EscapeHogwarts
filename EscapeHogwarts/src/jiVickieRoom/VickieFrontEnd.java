@@ -19,7 +19,6 @@ public class VickieFrontEnd implements JiSupport{
 	private int modRow;
 	
 	private boolean endOfStory;
-	private boolean win;
 	
 	private int [][] magicSquares;
 	
@@ -174,12 +173,6 @@ public class VickieFrontEnd implements JiSupport{
 			Inventory.setBroomP3(true);
 			backgroundStory();
 			Inventory.merge();
-		/*
-		 * Reward: Galleons to buy stuff in shop: also, 1/3 of a broom?
-		 * maybe make a decreaseGalleons():every time the error function or overidden function is called, -1 or -10 galleons from 100? and if it reaches zero, no money
-		 * if galleons = 0; say oh no, you wont recieve any money, but heres the part of the broom!
-		 * else say congrats: you get money and part of the broom!
-		 */
 	}
 
 	public void backgroundStory() {
