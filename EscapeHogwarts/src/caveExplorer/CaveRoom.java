@@ -6,7 +6,7 @@ import areejJessRoom.StoreRoom;
 import jiVickieRoom.JiRoom;
 import jiVickieRoom.VickieFrontEnd;
 import jiVickieRoom.VickieRoom;
-import kevinStephRoom.KevinRoom;
+import kevinStephRoom.KevinRoomd;
 import kevinStephRoom.StephFrontEnd;
 import kevinStephRoom.StephanieRoom;
 
@@ -152,7 +152,7 @@ public class CaveRoom {
 		else if(CaveExplorer.currentRoom.getContents().equals("4"))
 		{
 			KRoom = true;
-			kevinStephRoom.KevinRoom.userEntered();
+			kevinStephRoom.KevinRoomd.userEntered();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("C"))
 		{
