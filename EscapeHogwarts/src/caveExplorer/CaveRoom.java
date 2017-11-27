@@ -1,14 +1,7 @@
 package caveExplorer;
 
-import java.util.Scanner;
-
-import areejJessRoom.StoreRoom;
-import jiVickieRoom.JiRoom;
 import jiVickieRoom.VickieFrontEnd;
-import jiVickieRoom.VickieRoom;
-import kevinStephRoom.KevinRoomd;
 import kevinStephRoom.StephFrontEnd;
-import kevinStephRoom.StephanieRoom;
 
 public class CaveRoom {
 
@@ -152,7 +145,7 @@ public class CaveRoom {
 		else if(CaveExplorer.currentRoom.getContents().equals("4"))
 		{
 			KRoom = true;
-			kevinStephRoom.KevinRoomd.userEntered();
+			kevinStephRoom.KevinRoom.userEntered();
 		}
 		else if(CaveExplorer.currentRoom.getContents().equals("C"))
 		{
