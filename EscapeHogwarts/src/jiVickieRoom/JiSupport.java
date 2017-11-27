@@ -2,43 +2,36 @@ package jiVickieRoom;
 
 public interface JiSupport {
 
+	void startGame(); //Starts magicSquares Minigame!
 	
-	//create the box: foundation of the game
-	void startGame(); 
+	void directions();//Displays the rules of the game
 	
-	void directions();
+	void displayTheGrid();//Displays the grid the numbers will be shown on
 	
-	//void createTheGrid();
+	void placeNumOnGrid();//Updates the grid with either X's or numbers, depending on user input
 	
-	//start asking questions such as what is the coordinates the user wants to put the number in
-	//ask two questions: coordinates and number 
+	void getInput();//Gets user input for coordinates and the number they want on the grid
 	
-	//void fixedNumbersInBox(); //add one number from the 9 numbers and everytime it runs, the number will appear randomly.
+	void complete();//Checks if all the boxes on the grid are filled with numbers or not
 	
-//	void gameDialogue(); //dialogue during the game (theme)
+	void doNotOverride();//The given number on the given coordinate can not be changed
 	
-	void backgroundStory(); //npc talks to harry before playing the game
-	
-	
-	
-	
-	//void oneNumber(); //make sure only one number is up on the grid at a time; replace old spot with space "nothing"
-	
-	
-	
-	void endGame(); //ends game and gets reward//
-	
-	void getInput();
-	
-	void placeNumOnGrid();
-	
-	void displayTheGrid();
-	
-	//void placeNumbers(String nums);
-	
-	void complete();
-	
-	 void doNotOverride();
+	void error();//Prints error message
 	 
-	 void error();
+	void endGame(); //Ends game and gets reward
+	
+	void backgroundStory(); //Peeves talks to Harry (the user) before playing the game, and then after as well as Dumbldore
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
 }
