@@ -73,12 +73,14 @@ public class StephFrontEnd implements KevinSupport{
 					+ "He hands you a piece of a broom and says, 'you earned it.'"
 					+ "\n- - press enter - -");
 			Inventory.setBroomP2(true);
+			Inventory.merge();
 		}else {
 			if(getLightsOff() == 0) {
 				print("You have successfully escaped from the Mirror of Erised. As you are about to leave, you see Dumbledore start to approach you...\n" 
 						+ "He hands you a piece of a broom and says, 'you earned it.'"
 						+ "\n- - press enter - -");
 				Inventory.setBroomP2(true);
+				Inventory.merge();
 			}else {
 				while (getLightsOff() > 0) {
 					if(move < 15) {
