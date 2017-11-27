@@ -29,6 +29,13 @@ public class AreejBackEnd implements JessicaSupport{
 		System.out.println("My turn now! I'll place a Galleon here!");
 		int rowNum = getIndex(mainBoard,comp);
 		
+		if (rowNum == 0)
+		{
+			while (mainBoard[0][comp] != 0 && !JessicaFrontEnd.isComputerWon())
+			{
+				int comp1 = (int)(Math.random()*6);
+			}
+		}
 		mainBoard[rowNum][comp] = 2;
 		JessicaFrontEnd.placeCoord(rowNum,comp, "computer");
 		checkWinner(rowNum,comp,2);
@@ -52,23 +59,25 @@ public class AreejBackEnd implements JessicaSupport{
 		
 			if(checkValid(userInput))
 			{
-				int userInt = Integer.parseInt(userInput);
-				if (mainBoard[0][userInt] != 0 && !JessicaFrontEnd.isUserWon())
-					
-				{
-					System.out.println("The column is full. Pick another column!");
-					return;
-				}
-				else
-				{
+				
+					int userInt = Integer.parseInt(userInput);
 					int rowNum = getIndex(mainBoard,userInt);
+					if (rowNum == 0)
+						
+					{
+						if(mainBoard[0][userInt] != 0 && !JessicaFrontEnd.isUserWon())
+						{
+						System.out.println("The column is full. Pick another column!");
+						return;
+						}
+					}
 					
 						mainBoard[rowNum][userInt] = 1;
 						JessicaFrontEnd.placeCoord(rowNum,userInt, "user");
 						checkWinner(rowNum,userInt,1);
 						setUserMove(false);
 					
-				}
+				
 				if(userMove == false) {
 					
 					compMove();
@@ -96,9 +105,11 @@ public class AreejBackEnd implements JessicaSupport{
 			{
 			//	debugPrint("Found next empty space is "+i);
 				return i;
+				
 			}
 		}
-		  return -1;
+		return 0;
+	//	  return -1;
 	}
 	
 	public static int getValue(int[][] board, int row, int col) {
