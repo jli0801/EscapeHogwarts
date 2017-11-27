@@ -10,22 +10,12 @@ public class AreejBackEnd implements JessicaSupport{
 	private static int[][] mainBoard;
 	private static boolean userMove;
 
-	//0 EQUALS NULL
-	//1 EQUALS USER
-	//2 EQUALS COMPUTER
-	
-	public AreejBackEnd(AreejSupport frontend) {
-		this.frontend = frontend;
-	
-	
-		
+	public AreejBackEnd(JessicaFrontEnd jessicaFrontEnd) {
 	}
-	
 	public static void initialize()
 	{
 		mainBoard = new int[6][7];
 		userMove = true;
-	
 		populateBoard(mainBoard);
 		moveUser();
 	
@@ -34,107 +24,24 @@ public class AreejBackEnd implements JessicaSupport{
 		AreejBackEnd.userMove = userMove;
 	}
 	
-	public static int[][] getMainBoard()
-	{
-		return mainBoard;
-	}
 	public static void compMove(){
-		int[][] mainBoard1 = getBoard();
 		int comp = (int)(Math.random()*6);
 		System.out.println("My turn now! I'll place a Galleon here!");
-		int y = mainBoard1.length - 1;
-		if(mainBoard1[1][comp] != 0)
-		{
-			comp = (int)(Math.random()*6);	
-		}
-		while (y > 0)
-		{
+		int rowNum = getIndex(mainBoard,comp);
 		
-		
-			if(mainBoard1[y][comp] == 0)
-			{
-				mainBoard1[y][comp] = 2;
+		mainBoard[rowNum][comp] = 2;
+		JessicaFrontEnd.placeCoord(rowNum,comp, "computer");
+		checkWinner(rowNum,comp,2);
+		setUserMove(true);
+		System.out.println("Your turn now! Enter a number from 0 to 6.");
 				
-				JessicaFrontEnd.placeCoord(y,comp, "computer");
-				setUserMove(true);
-				System.out.println("Your turn now! Enter a number from 0 to 6.");
-				System.out.println((mainBoard1[y][comp]));
-				moveUser();
+		moveUser();
 				
-				//checkWinner();
-				break;
-			}
-			else
-			{
-				
-				y--;
-				
-			}
-		}
-		
 	}
-	public static int[][] getBoard() {
-		
-		return mainBoard;
-	}
-	
-	//check for both user and AI
-	/*public static void checkWinner()
-	{
-		for(int i =0; i< board.length; i ++) {
-			for(int j = 0; j <board[i].length; j++) {
-				
-			if(checkHorizontal() || checkVertical() ||
-					checkDiagonalRight() || checkDiagonalLeft())
-			{
-				//i have no idea if this logic even makes sense
-				
-				String place = Integer.toString(board[i][j*2 +1]);
-				
-				if(place.equals("U ")) {
-					JessicaFrontEnd.setUserWon(true);
-				}
-				else if(place.equals("C ")) {
-					JessicaFrontEnd.setComputerWon(true);
-				}
-			}
-		}
-		}
-		
-		
-	}
-	
-	private boolean checkVertical(char user, char comp, int row, int column) {
-		int possibleBottom = Math.max(0, row - 3);
-		int possibleTop = possibleBottom + 4;
-		int playerCount = 0;
-		int opponentCount = 0;
-		
 
-		for (int checkRow = possibleBottom; checkRow < possibleTop; checkRow++){
-			if (board[checkRow][column] == comp){
-				opponentCount = opponentCount + 1;
-			} else if (board[checkRow][column] == user){
-				playerCount = playerCount + 1;
-			}
-		}
-		 if(playerCount)
-	}
-	public static boolean checkDiagonalRight() {
-		return false;
-	}
-	public static boolean checkDiagonalLeft() {
-		return false;
-	}
-	public static boolean checkHorizontal() {
-		return false;
-	}
-	*/
 	public static void moveUser() {
 	
 		String userInput = CaveExplorer.in.nextLine();
-		
-	
 		if(userInput.equals("voldemort"))
 		{
 			System.out.println("No! Not Voldemort! You win, leave my room!");
@@ -143,11 +50,9 @@ public class AreejBackEnd implements JessicaSupport{
 		else
 		{
 		
-	//		int userInt = Integer.parseInt(userInput);
 			if(checkValid(userInput))
 			{
 				int userInt = Integer.parseInt(userInput);
-			
 				if (mainBoard[0][userInt] != 0 && !JessicaFrontEnd.isUserWon())
 					
 				{
@@ -160,34 +65,15 @@ public class AreejBackEnd implements JessicaSupport{
 					
 						mainBoard[rowNum][userInt] = 1;
 						JessicaFrontEnd.placeCoord(rowNum,userInt, "user");
+						checkWinner(rowNum,userInt,1);
 						setUserMove(false);
-				//		System.out.println("Your turn now! Enter a number from 0 to 6.");
-				
-						//checkWinner();
-					//	break;
 					
 				}
 				if(userMove == false) {
 					
-					int comp = (int)(Math.random()*6);
-					System.out.println("My turn now! I'll place a Galleon here!");
-				
-					while(mainBoard[0][comp] != 0)
-					{
-						comp = (int)(Math.random()*6);	
-			
-					}
-					int rowNumC = getIndex(mainBoard, comp);
-					
-						mainBoard[rowNumC][comp] = 2;
-						JessicaFrontEnd.placeCoord(rowNumC,comp, "computer");
-						setUserMove(true);
-						System.out.println("Your turn now! Enter a number from 0 to 6.");
-				
-						//checkWinner();
+					compMove();
 				}
-			}
-	 
+			} 
 			else
 			{
 				System.out.println("Pick a number between 0 and 6!");
@@ -245,9 +131,115 @@ public class AreejBackEnd implements JessicaSupport{
 		}
 		
 	}
-	public static boolean validateMove(int column) {
+	public static void checkWinner(int r, int c, int player)
+	{
+		int v = 1;
+		int dL = 1;
+		int dR = 1;
+		int h = 1;
 		
-		return false;
+		h += checkHoriz(r,c,player);
+		v+= checkVert(r,c,player);
+		dL+= checkDiagLeft(r,c,player);
+		dR+= checkDiagRight(r,c,player);
+		
+		if(h>=4||v>=4||dL>=4||dR>=4){
+			switch(player){
+				case 2:
+						JessicaFrontEnd.setComputerWon(true);
+						break;
+				case 1:
+						JessicaFrontEnd.setUserWon(true);
+						break;
+			}
+		}
+		
 	}
 	
+	public static int checkDiagRight(int r, int c,int p){
+		
+	
+		int row = r+1;
+		int col = c+2;
+		int count = 0;
+		while(row<mainBoard.length && col<mainBoard[r].length){
+			if(mainBoard[row][col]==p)
+				count++;
+			else
+				break;
+			row++;
+			col+=2;
+		}
+		
+		row = r-1;
+		col = c-1;
+		while(row>0 && col>-1){
+			if(mainBoard[row][col]==p)
+				count++;
+			else
+				break;
+			row--;
+			col-=2;
+		}
+		return count;
+	}
+	public static int checkDiagLeft(int r,int c,int p){
+		
+		
+		int row = r+1;
+		int col = c-2;
+		int count = 0;
+		while(row<mainBoard.length && col>-1){
+			if(mainBoard[row][col]==(p))
+				count++;
+			else
+				break;
+			row++;
+			col-=2;
+		}
+		
+		row = r-1;
+		col = c+2;
+		while(row>0 && col<mainBoard[r].length){
+			if(mainBoard[row][col]==p)
+				count++;
+			else
+				break;
+			row--;
+			col+=2;
+		}
+		return count;
+	}
+	public static int checkVert(int r, int c, int p) {
+		int count = 0;
+		for(int row = r-1;row>0;row--){
+			if(mainBoard[row][c]==p)
+				count++;
+			else
+				break;
+		}
+		for(int row = r+1;row<mainBoard.length;row++){
+			if(mainBoard[row][c]==p)
+				count++;
+			else
+				break;
+		}
+		return count;
+	}
+	public static int checkHoriz(int r, int c,int p) {
+		int count=0;
+		for(int col = c-2;col>-1;col-=2){
+			if(mainBoard[r][col]==p)
+				count++;
+			else
+				break;
+		}
+		for(int col = c+2;col<mainBoard[0].length;col+=2){
+			if(mainBoard[r][col]==p)
+				count++;
+			else
+				break;
+		}
+		return count;
+	}
 }
