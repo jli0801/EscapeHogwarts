@@ -37,7 +37,7 @@ public class VickieFrontEnd implements JiSupport{
 		getInput();
 	}
 	
-	public void directions() {	//Displays the rules
+	public void directions() {									//Displays the rules
 		CaveExplorer.print("The Rules:");
 		CaveExplorer.print("	You're given a grid of nine boxes. ");
 		CaveExplorer.print("	You must fill in the boxes with numbers 1-9.");
@@ -50,7 +50,7 @@ public class VickieFrontEnd implements JiSupport{
 		displayTheGrid();
 	}
 	
-	public void displayTheGrid() { //Displays the grid
+	public void displayTheGrid() { 								//Creates and displays the grid
 		CaveExplorer.print("	    0         1        2    ");
 		CaveExplorer.print("	 ________ ________ ________ ");
 		//String rows = "0123456789";
@@ -86,7 +86,7 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("");
 	}
 	
-	public void placeNumOnGrid() {//Prints number or x's on grid
+	public void placeNumOnGrid() {							//Prints number or x's on grid based on array value
 		int[][] magicSquares = backend.getBoxes();
 		for(int col = 0; col < 3; col++){
 			
@@ -100,21 +100,21 @@ public class VickieFrontEnd implements JiSupport{
 		} 
 	}
 	
-	public void getInput(){//Gets row, col and num from user
+	public void getInput(){									//Gets row, col and num from user
 		CaveExplorer.print("\nWhich coordinates do you want to put a number in, and which number do you have in mind?");
 		input = CaveExplorer.in.nextLine();
 		input= input.toLowerCase();
 		String skip = "skip";
-		if(input.indexOf(skip) ==0) {
+		if(input.indexOf(skip) ==0) { 						//triggers cheat code
 			backend.cheatCode();
 		}else {
 		backend.placeNumbers(input);
 		}
 	}
 
-	public void complete() { //Is the grid completed?
+	public void complete() { 								//Is the grid completed?
 		int[][] magicSquares = backend.getBoxes();
-		String numbersUsed = "";
+		String numbersUsed = "";							//creates string of the current values in the array
 		for(int row = 0; row < 3; row++) {
 			for(int col = 0; col < 3; col++) {
 				int num = magicSquares[row][col];
@@ -123,11 +123,11 @@ public class VickieFrontEnd implements JiSupport{
 			}
 		}
 		
-		if(numbersUsed.indexOf("0") == -1) {
+		if(numbersUsed.indexOf("0") == -1) { 			//if there is no 0 in the string, the whole grid is filled with numbers 1-9
 			System.out.print("You filled in all the boxes on the grid! Do you want it to be checked?\n\n");
 			input = CaveExplorer.in.nextLine();
 			input = input.toLowerCase();
-			if(input.equals("yes")) {
+			if(input.equals("yes")) {					//checks if every row, col, and diagonal equals 15 
 				endOfStory = backend.checkTotal();
 				if(endOfStory == true) {
 					endGame();
@@ -144,7 +144,7 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 
-	public void doNotOverride() { //The given number on the given coordinate can not be changed
+	public void doNotOverride() {		//The given number on the given coordinate can not be changed
 		fixedNum = backend.getInitiateNum();
 		fixedRow = backend.getRowNum();
 		fixedCol = backend.getColNum();
@@ -162,7 +162,7 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 	
-	public void error() { //Prints error message
+	public void error() { 				//Prints error message
 		CaveExplorer.print("	You entered an invalid response: \n		Ex: x,y,z \n		  	x = row (0-2)\n		  	y = column (0-2)\n		  	z = num (1-9)");
 		getInput();
 	}
