@@ -37,7 +37,7 @@ public class VickieFrontEnd implements JiSupport{
 		getInput();
 	}
 	
-	public void directions() {
+	public void directions() {	//Displays the rules
 		CaveExplorer.print("The Rules:");
 		CaveExplorer.print("	You're given a grid of nine boxes. ");
 		CaveExplorer.print("	You must fill in the boxes with numbers 1-9.");
@@ -50,7 +50,7 @@ public class VickieFrontEnd implements JiSupport{
 		displayTheGrid();
 	}
 	
-	public void displayTheGrid() {
+	public void displayTheGrid() { //Displays the grid
 		CaveExplorer.print("	    0         1        2    ");
 		CaveExplorer.print("	 ________ ________ ________ ");
 		//String rows = "0123456789";
@@ -86,7 +86,7 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("");
 	}
 	
-	public void placeNumOnGrid() {
+	public void placeNumOnGrid() {//Prints number or x's on grid
 		int[][] magicSquares = backend.getBoxes();
 		for(int col = 0; col < 3; col++){
 			
@@ -100,7 +100,7 @@ public class VickieFrontEnd implements JiSupport{
 		} 
 	}
 	
-	public void getInput(){
+	public void getInput(){//Gets row, col and num from user
 		CaveExplorer.print("\nWhich coordinates do you want to put a number in, and which number do you have in mind?");
 		input = CaveExplorer.in.nextLine();
 		input= input.toLowerCase();
@@ -112,7 +112,7 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 
-	public void complete() {
+	public void complete() { //Is the grid completed?
 		int[][] magicSquares = backend.getBoxes();
 		String numbersUsed = "";
 		for(int row = 0; row < 3; row++) {
@@ -144,7 +144,7 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 
-	public void doNotOverride() {
+	public void doNotOverride() { //The given number on the given coordinate can not be changed
 		fixedNum = backend.getInitiateNum();
 		fixedRow = backend.getRowNum();
 		fixedCol = backend.getColNum();
@@ -162,7 +162,7 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 	
-	public void error() {
+	public void error() { //Prints error mesage
 		CaveExplorer.print("	You entered an invalid response: \n		Ex: x,y,z \n		  	x = row (0-2)\n		  	y = column (0-2)\n		  	z = num (1-9)");
 		getInput();
 	}
