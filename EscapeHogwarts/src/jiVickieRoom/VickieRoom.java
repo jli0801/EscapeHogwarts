@@ -115,6 +115,7 @@ public class VickieRoom extends CaveRoom {
 		//hallways
 		c[2][0].setConnection(EAST, c[2][1], new Door("hallway", true));
 		
+		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));
 		c[1][1].setConnection(SOUTH, c[2][1], new Door("hallway", true));
 		c[2][1].setConnection(SOUTH, c[3][1], new Door("hallway", true));
 		c[2][1].setConnection(EAST, c[2][2], new Door("hallway", true));
