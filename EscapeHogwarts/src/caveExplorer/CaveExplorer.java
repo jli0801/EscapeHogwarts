@@ -61,8 +61,8 @@ public class CaveExplorer {
 			print("");
 			print(currentRoom.getDescription());
 			print(currentRoom.getDirections());
-			print("HP: " + Integer.toString(inventory.getHp()) );
-			print("Galleon(s): " + Integer.toString(inventory.getMoney()));
+			print("HP: " + Integer.toString(Inventory.getHp()) );
+			print("Galleon(s): " + Integer.toString(Inventory.getMoney()));
 			print("What would you like to do?");
 			
 			currentRoom.interpretInput(in.nextLine());
