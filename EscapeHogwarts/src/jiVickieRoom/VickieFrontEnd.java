@@ -19,9 +19,6 @@ public class VickieFrontEnd implements JiSupport{
 	private int modRow;
 	
 	private boolean endOfStory = false;
-	private boolean win;
-	
-	private int [][] magicSquares;
 	
 	public static final void main(String[] args){
 		VickieFrontEnd game = new VickieFrontEnd();
@@ -31,7 +28,6 @@ public class VickieFrontEnd implements JiSupport{
 	public VickieFrontEnd() {
 		backend = new JiBackEnd(this);
 		CaveExplorer.in = new Scanner(System.in);
-		magicSquares =  backend.getBoxes();
 	}
 
 	public void startGame() {
@@ -41,7 +37,7 @@ public class VickieFrontEnd implements JiSupport{
 		getInput();
 	}
 	
-	public void directions() {
+	public void directions() {	//Displays the rules
 		CaveExplorer.print("The Rules:");
 		CaveExplorer.print("	You're given a grid of nine boxes. ");
 		CaveExplorer.print("	You must fill in the boxes with numbers 1-9.");
@@ -54,7 +50,7 @@ public class VickieFrontEnd implements JiSupport{
 		displayTheGrid();
 	}
 	
-	public void displayTheGrid() {
+	public void displayTheGrid() { //Displays the grid
 		CaveExplorer.print("	    0         1        2    ");
 		CaveExplorer.print("	 ________ ________ ________ ");
 		//String rows = "0123456789";
@@ -90,7 +86,8 @@ public class VickieFrontEnd implements JiSupport{
 		CaveExplorer.print("");
 	}
 	
-	public void placeNumOnGrid() {
+	public void placeNumOnGrid() {//Prints number or x's on grid
+		int[][] magicSquares = backend.getBoxes();
 		for(int col = 0; col < 3; col++){
 			
 			if(magicSquares[modRow][col]==0) {
@@ -103,7 +100,7 @@ public class VickieFrontEnd implements JiSupport{
 		} 
 	}
 	
-	public void getInput(){
+	public void getInput(){//Gets row, col and num from user
 		CaveExplorer.print("\nWhich coordinates do you want to put a number in, and which number do you have in mind?");
 		input = CaveExplorer.in.nextLine();
 		input= input.toLowerCase();
@@ -115,7 +112,8 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 
-	public void complete() {
+	public void complete() { //Is the grid completed?
+		int[][] magicSquares = backend.getBoxes();
 		String numbersUsed = "";
 		for(int row = 0; row < 3; row++) {
 			for(int col = 0; col < 3; col++) {
@@ -130,8 +128,8 @@ public class VickieFrontEnd implements JiSupport{
 			input = CaveExplorer.in.nextLine();
 			input = input.toLowerCase();
 			if(input.equals("yes")) {
-				boolean endOrNo = backend.checkTotal();
-				if(endOrNo) {
+				endOfStory = backend.checkTotal();
+				if(endOfStory == true) {
 					endGame();
 				}else {
 					System.out.print("	Sorry! Not all the rows, columns, and diagonals add up to 15!\n");
@@ -146,7 +144,7 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 
-	public void doNotOverride() {
+	public void doNotOverride() { //The given number on the given coordinate can not be changed
 		fixedNum = backend.getInitiateNum();
 		fixedRow = backend.getRowNum();
 		fixedCol = backend.getColNum();
@@ -164,29 +162,17 @@ public class VickieFrontEnd implements JiSupport{
 		}
 	}
 	
-	public void error() {
+	public void error() { //Prints error message
 		CaveExplorer.print("	You entered an invalid response: \n		Ex: x,y,z \n		  	x = row (0-2)\n		  	y = column (0-2)\n		  	z = num (1-9)");
 		getInput();
 	}
 
 	public void endGame() {
-		win = backend.checkTotal();
-		
-		if(!win) {
-			System.out.println("	Sorry, but not every row, column or diagonal produces a sum of 15.\n You have to fix it.\n");
-			getInput();
-		}else {
-			System.out.println("	CONGRATULATIONS!!! YOU'VE SOLVED THE PUZZLE!!\n");
-			Inventory.setBroomP3(true);
-			backgroundStory();
-			Inventory.merge();
-		}
-		/*
-		 * Reward: Galleons to buy stuff in shop: also, 1/3 of a broom?
-		 * maybe make a decreaseGalleons():every time the error function or overidden function is called, -1 or -10 galleons from 100? and if it reaches zero, no money
-		 * if galleons = 0; say oh no, you wont recieve any money, but heres the part of the broom!
-		 * else say congrats: you get money and part of the broom!
-		 */
+		System.out.println("	CONGRATULATIONS!!! YOU'VE SOLVED THE PUZZLE!!\n");
+		Inventory.setMoney(Inventory.getMoney() +50);
+		Inventory.setBroomP3(true);
+		backgroundStory();
+		Inventory.merge();
 	}
 
 	public void backgroundStory() {
