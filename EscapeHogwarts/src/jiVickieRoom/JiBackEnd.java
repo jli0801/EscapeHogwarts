@@ -1,105 +1,91 @@
 package jiVickieRoom;
 
-import caveExplorer.CaveExplorer;
-
 public class JiBackEnd implements VickieSupport {
 	
 	private int[][] magicSquares;
-	private String numbers;//a symbol showing you what is in the room... //RENAME!!!!kjk
 	
 	private JiSupport frontend;
-	
-	//private int total = 15;
-	private int random;
-	private int currentNumber;
-	private int newNumber;
-	private String usedNumbers;
-	private String outerNumbers = "2648";
-	private String innerNumbers = "7931";
-	private int initiatedNum;
-	private String StrInitiatedNum;
-	private int rowNum = 1;
-	private int colNum = 1;
-	
-	private String SRow; //String Row #
-	private String SCol; //String Col #
-	private String SNum; //String Number #
 
+	private final static String CORNER_NUMS = "2648";
+	private final static int MAGIC_SUM = 15;
+	private final static int MATRIX_SIZE = 3;
+	private final static int[][] ANSWER = {{2,7,6},{9,5,1},{4,3,8}};
+	
+	private int iStartingNum;
+	private int iStartingRow = 1;
+	private int iStartingCol = 1;
+	
 	private int iRow;  //Integer Row #
 	private int iCol;  //Integer Col #
 	private int iNum;  //Integer Number #
 
+	/*private JiBackEnd() {
+	}*/
+	
 	public JiBackEnd(JiSupport frontend) {
 		this.frontend = frontend;
-		//magicSquares = magicSquares[3][3];
 		magicSquares = new int[3][3];
-		//createTheBox();
 	}
 	
-	/*public String usedNumbers() {
-		return usedNumbers;
+	/*public static void main(String[] args) {
+		VickieSupport backend = new JiBackEnd();
+		
 	}*/
-
 	
+	public int getRandomInitialIndex() {
+		int num = 0;
+		if (Math.random() >= .5) {
+			num = 2;
+		}
+		
+		return num;
+	}
 	
 	public void chooseStartingPoint() {
 		createInitiateNum();
-		if(initiatedNum == 5) {
-			magicSquares[rowNum][colNum] = 5;
-		}else {
-			if(isOuterNumber(initiatedNum)) {
+		if (iStartingNum != 5) {
+			if(isCornerNumber(iStartingNum)) {
 				//randomize outer starting box
 				// (0,0) (0,2) (2,0) (2,2)
 				
-				if(Math.random() < .5) {
-					rowNum = 0;
-				}else {
-					rowNum = 2;
-				}
-				
-				if(Math.random() < .5) {
-					colNum = 0;
-				}else {
-					colNum = 2;
-				}
-				magicSquares[rowNum][colNum] = initiatedNum;
+				iStartingRow = getRandomInitialIndex();
+				iStartingCol = getRandomInitialIndex();
 			}
 			else {
 				//randomize inner starting box
 				// (0,1) (1,0) (1,2) (2,1)
-				generateNumber(4); 
+				int random = generateNumber(4); 
 				if(random == 0) {
-					magicSquares[0][1] = initiatedNum;
-					rowNum = 0;
-					colNum = 1;
+					iStartingRow = 0;
+					iStartingCol = 1;
 					
 				}else {
-					if(random == 1) 
-					{
-						magicSquares[1][0] = initiatedNum;
-						rowNum = 1;
-						colNum = 0;
+					if(random == 1) {
+						iStartingRow = 1;
+						iStartingCol = 0;
 					}
 					else {
 						if(random == 2) {
-							magicSquares[1][2] = initiatedNum;
-							rowNum = 1;
-							colNum = 2;
+							iStartingRow = 1;
+							iStartingCol = 2;
 						}else {
-							if(random == 3)
-							magicSquares[2][1] = initiatedNum;
-							rowNum = 2;
-							colNum = 1;
-						}//2123fgdf
+							iStartingRow = 2;
+							iStartingCol = 1;
+						}
 					}
 				
 				}
 			}
 		}
+		
+		magicSquares[iStartingRow][iStartingCol] = iStartingNum;
 	}
 	
 	
 	public void placeNumbers(String nums) {
+		String SRow;
+		String SCol;
+		String SNum;
 		int len = nums.length();
 		 if(len > 5 || len <5) {
 			frontend.error();
@@ -116,11 +102,10 @@ public class JiBackEnd implements VickieSupport {
 				frontend.doNotOverride();
 				
 				if(iNum<10 && iNum>0 && iRow<3 && iRow>=0 && iCol<3 && iCol>=0) {
-					checkMultiples(iNum);
-					magicSquares[iRow][iCol] = iNum; //create method in backend
+					resetMultiples(iNum);
+					magicSquares[iRow][iCol] = iNum;
 					frontend.displayTheGrid();
 					frontend.complete();
-					//getInput();
 				}else
 				{
 					frontend.error();
@@ -131,18 +116,6 @@ public class JiBackEnd implements VickieSupport {
 			}
 		 }
 		
-	}
-	//STOP
-	public String getSRow() {
-		return SRow;
-	}
-
-	public String getSCol() {
-		return SCol;
-	}
-
-	public String getSNum() {
-		return SNum;
 	}
 
 	public int getiRow() {
@@ -156,38 +129,29 @@ public class JiBackEnd implements VickieSupport {
 	public int getiNum() {
 		return iNum;
 	}
- //STOP
+
 	public int getInitiateNum() {
-		return initiatedNum;
+		return iStartingNum;
 	}
 	
 	public int getRowNum() {
-		return rowNum;
+		return iStartingRow;
 	}
 	
 	public int getColNum() {
-		return colNum;
+		return iStartingCol;
 	}
 	
-	public boolean isOuterNumber(int num) {
-		StrInitiatedNum = Integer.toString(num);
-		if(outerNumbers.indexOf(StrInitiatedNum) > -1) {
-			return true;
-		}else {
-			if(innerNumbers.indexOf(StrInitiatedNum) > -1) {
-				return false;
-			}
-		}
-		return false;
+	public boolean isCornerNumber(int num) {
+		return CORNER_NUMS.indexOf(Integer.toString(num)) > -1;
 	}
 	
 	public void createInitiateNum() {
-		initiatedNum = (int)(Math.random() * 9) + 1;
+		iStartingNum = (int)(Math.random() * 9) + 1;
 	}
 
 	public int generateNumber(int max) {
-		random = (int)(Math.random() * max);
-		return random;
+		return (int)(Math.random() * max);
 	}
 
 	public boolean isNumeric(String str) {  
@@ -202,7 +166,7 @@ public class JiBackEnd implements VickieSupport {
 	  return true;  
 	}
 	
-	public void checkMultiples(int num) {
+	public void resetMultiples(int num) {
 		for(int row = 0; row < 3; row++) {
 			for(int col = 0; col < 3; col++) {
 				int same = magicSquares[row][col];
@@ -213,54 +177,54 @@ public class JiBackEnd implements VickieSupport {
 			}
 		}
 		
-	}//jgjhfgh
+	}
 	
 	public boolean checkTotal() {
-		//check each row, column, diagonal == 15
-		if(magicSquares[0][0] + magicSquares[0][1] + magicSquares[0][2] == 15 &&
-			magicSquares[1][0] + magicSquares[1][1] + magicSquares[1][2] == 15 &&
-			magicSquares[2][0] + magicSquares[2][1] + magicSquares[2][2] == 15 &&
-			//^^^ ROW
-			magicSquares[0][0] + magicSquares[1][0] + magicSquares[2][0] == 15 &&
-			magicSquares[0][1] + magicSquares[1][1] + magicSquares[2][1] == 15 &&
-			magicSquares[0][2] + magicSquares[1][2] + magicSquares[2][2] == 15 &&
-			//^^^ COLUMN
-			magicSquares[0][0] + magicSquares[1][1] + magicSquares[2][2] == 15 &&
-			magicSquares[0][2] + magicSquares[1][1] + magicSquares[2][0] == 15) {
-			//^^^^^ DIAGONAL
-			return true;
-		}else {
+		for(int row = 0; row < MATRIX_SIZE; row++) {
+			int rowTotal = 0;
+			for(int col = 0; col < MATRIX_SIZE; col++) {
+				rowTotal += magicSquares[row][col];
+			}
+				
+			if(rowTotal != MAGIC_SUM) {
+				return false;
+			}
+		}
+		
+		for(int col = 0; col < MATRIX_SIZE; col++) {
+			int colTotal = 0;
+			for(int row = 0; row < MATRIX_SIZE; row++) {
+				colTotal += magicSquares[row][col];
+			}
+			
+			if(colTotal != MAGIC_SUM) {
+				return false;
+			}
+		}
+		
+		int diagonalSum = 0;
+		for(int i = 0 ; i < MATRIX_SIZE; i++) {
+			diagonalSum += magicSquares[i][i];
+		}
+		if(diagonalSum != MAGIC_SUM) {
 			return false;
 		}
+		
+		int diagonalSum2 = 0;
+		for(int i = 0 ; i < MATRIX_SIZE; i++) {
+			diagonalSum2 += magicSquares[i][MATRIX_SIZE - 1 - i];
+		}
+		if(diagonalSum2 != MAGIC_SUM) {
+			return false;
+		}
+		
+		return true;
 	}
 
 	public void cheatCode() {
-		//COL1
-		magicSquares[0][0] = 2;
-		magicSquares[1][0] = 9;
-		magicSquares[2][0] = 4;
-		//COL2
-		magicSquares[0][1] = 7;
-		magicSquares[1][1] = 5;
-		magicSquares[2][1] = 3;
-		//COL3
-		magicSquares[0][2] = 6;
-		magicSquares[1][2] = 1;
-		magicSquares[2][2] = 8;
-		
+		magicSquares = ANSWER;
 		frontend.displayTheGrid();
 		frontend.endGame();
-		/*
-		for(int col = 0; col < magicSquares[row].length; col++) {
-			if(col ==)
-		}
-	
-		for(int row = 0; row < magicSquares.length; row++){
-			for(int col = 0; col < magicSquares[row].length; col++){
-				if()
-			}
-		}
-	*/
 	}
 
 	public int[][] getBoxes() {
