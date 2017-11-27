@@ -7,7 +7,7 @@ import caveExplorer.Door;
 import caveExplorer.Inventory;
 import caveExplorer.NPCRoom;
 import caveExplorer.NPC;
-
+//THEMATIC ROOM 3
 public class StephanieRoom extends CaveRoom {
 	
 	public static CaveRoom[][] c = CaveExplorer.caves;

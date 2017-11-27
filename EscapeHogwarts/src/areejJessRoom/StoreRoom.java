@@ -1,6 +1,7 @@
 package areejJessRoom;
 
 import java.util.Scanner;
+//THEMATIC ROOM S
 
 import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;

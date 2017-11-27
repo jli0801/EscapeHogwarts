@@ -7,7 +7,7 @@ import caveExplorer.Inventory;
 import caveExplorer.NPCRoom;
 
 public class VickieRoom extends CaveRoom {
-
+	//THEMATIC ROOM 1
 	public static String input;
 	public static String inputCase;
 	private static boolean firstEntered = true;

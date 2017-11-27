@@ -1,6 +1,6 @@
 package areejJessRoom;
 
-public class AreejJessBoard {
+public class AreejJessBoard { //THEMATIC ROOM 5
 
 	private static int[][] board;
 	

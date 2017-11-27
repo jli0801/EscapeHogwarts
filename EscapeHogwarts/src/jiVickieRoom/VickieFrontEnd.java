@@ -6,7 +6,7 @@ import caveExplorer.CaveExplorer;
 import caveExplorer.Inventory;
 
 public class VickieFrontEnd implements JiSupport{
-
+	
 	private static VickieSupport backend;
 	
 	public static CaveExplorer cave;

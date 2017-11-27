@@ -5,7 +5,7 @@ import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
 
 public class JiRoom extends CaveRoom {
-	
+	//THEMATIC ROOM2
 	private static boolean gotKey = false;
 	private static String input;
 	private static String inputCase;
