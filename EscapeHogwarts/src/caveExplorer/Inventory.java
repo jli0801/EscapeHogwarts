@@ -40,8 +40,8 @@ public class Inventory {
 	public static void merge() {
 		if(broomP1  && broomP2  && broomP3 )
 		{
-			CaveExplorer.print("You have all the three broom pieces! It merges into the firebolt right before your eyes!"
-					+ "\n With the firebolt in hand, you fly out of Hogwarts to Hogsmeade and meet up with Ron and Hermione.\nYou did it!");
+			CaveExplorer.print("\n\nYou have all the three broom pieces! It merges into the firebolt right before your eyes!"
+					+ "\n\nWith the firebolt in hand, you fly out of Hogwarts to Hogsmeade and meet up with Ron and Hermione.\n\n			You did it!");
 			CaveExplorer.setPlaying(false);
 		}
 	}

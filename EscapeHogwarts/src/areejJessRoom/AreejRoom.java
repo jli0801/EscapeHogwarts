@@ -43,6 +43,7 @@ public class AreejRoom extends CaveRoom {
 	}
 	public static void userEnter() {
 	int userMoney = Inventory.getMoney() +5;
+	Inventory.setMoney(userMoney);
 	CaveExplorer.print("You gained 5 galleons! You now have "+userMoney+".");
 }
 }

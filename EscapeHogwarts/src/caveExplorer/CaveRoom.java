@@ -1,7 +1,15 @@
 package caveExplorer;
 
+import java.util.Scanner;
+
+import areejJessRoom.AreejRoom;
+import areejJessRoom.StoreRoom;
+import jiVickieRoom.JiRoom;
 import jiVickieRoom.VickieFrontEnd;
+import jiVickieRoom.VickieRoom;
+import kevinStephRoom.KevinRoom;
 import kevinStephRoom.StephFrontEnd;
+import kevinStephRoom.StephanieRoom;
 
 public class CaveRoom {
 
@@ -48,7 +56,6 @@ public class CaveRoom {
 	public static boolean isLightsOut() {
 		return LightsOut;
 	}
-	
 	public static boolean isARoom() {
 		return ARoom;
 	}
@@ -256,20 +263,6 @@ public class CaveRoom {
 		CaveExplorer.caves = new NPCRoom[4][10];
 		CaveRoom[][] c = CaveExplorer.caves; //shortcut for accessing CaveExplorer
 		
-	/*	CaveRoom AreejRoom = new AreejRoom("Room");
-		CaveExplorer.caves[2][3] = AreejRoom;
-		CaveRoom JessRoom = new JessRoom("Room");
-		CaveExplorer.caves[2][3] = JessRoom;
-		
-		CaveRoom JiRoom = new JiRoom("Room");
-		CaveExplorer.caves[3][3] = JiRoom;
-		CaveRoom VickieRoom = new VickieRoom("Room");
-		CaveExplorer.caves[2][3] = VickieRoom;
-		
-		CaveRoom StephanieRoom = new StephanieRoom("Room");
-		CaveExplorer.caves[2][3] = StephanieRoom;
-		CaveRoom KevinRoom = new KevinRoom("Room");
-		CaveExplorer.caves[2][3] = KevinRoom; */
 
 		
 		//Populate with default caves
@@ -286,21 +279,42 @@ public class CaveRoom {
 		
 		CaveExplorer.currentRoom = c[0][1];
 		CaveExplorer.currentRoom.enter();
+		//Set up doors
+		
+		NPC NPCAJ = new NPC(); //EDIT TO OWN NPC
+		NPCAJ.setPosition(1,4);
+		CaveExplorer.npcs = new NPC[1];
+		CaveExplorer.npcs[0] = NPCAJ; 
+		
+		
+		
+	/*	NPC testNPCAJ = new NPC();
+		testNPC.setPosition(1,2);
+		CaveExplorer.npcs = new NPC[1];
+		CaveExplorer.npcs[0] = testNPC; */
+		
+		//room1 : 1,4
+		//room2: 2,5
+		//room3: 4.3
+		
+		//replace default room with custom room (SAVE FOR LATER)
+		//Set starting room
+	
+		//Set up doors
 		
 		//rooms 
-		
-		c[3][1].setContents("C");
-		c[3][9].setContents("M");
-		c[0][4].setContents("L");
-		
-		//thematic rooms
-		c[3][5].setContents("S");//Jess
-		c[0][6].setContents("5"); //Areej
-		
-		c[0][8].setContents("1"); //Vickie Room
-		c[2][0].setContents("2"); //Ji Room
-		c[2][3].setContents("3");	//Steph Room
-		c[2][7].setContents("4");	//Kevin Room
+				c[3][1].setContents("C");
+				c[3][9].setContents("M");
+				c[0][4].setContents("L");
+				
+				//thematic rooms
+				c[3][5].setContents("S");//Jess
+				c[0][6].setContents("5"); //Areej
+				
+				c[0][8].setContents("1"); //Vickie Room
+				c[2][0].setContents("2"); //Ji Room
+				c[2][3].setContents("3");	//Steph Room
+				c[2][7].setContents("4");	//Kevin Room
 		
 		
 		//addRoom
@@ -311,12 +325,17 @@ public class CaveRoom {
 		
 		
 		//connections
-		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));		
+		c[0][1].setConnection(SOUTH, c[1][1], new Door("hallway", true));
+		//c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
+		
 		c[1][1].setConnection(SOUTH, c[2][1], new Door("hallway", true));
+	//	c[1][1].setConnection(WEST, c[1][0], new Door("hallway", true));
 		c[1][1].setConnection(EAST, c[1][2], new Door("hallway", true));
 		
+	//	c[1][3].setConnection(SOUTH, c[2][3], new Door("hallway", true));
 		c[1][3].setConnection(WEST, c[1][2], new Door("hallway", true)); 
 		c[1][3].setConnection(EAST, c[1][4], new Door("hallway", true));
+	//	c[1][3].setConnection(NORTH, c[0][3], new Door("hallway", true));
 		
 		c[1][2].setConnection(WEST, c[1][1], new Door("hallway", true));
 		
@@ -331,6 +350,7 @@ public class CaveRoom {
 		c[1][5].setConnection(SOUTH, c[2][5], new Door("hallways",true));
 		c[2][5].setConnection(SOUTH, c[3][5], new Door("hallways",true));
 		c[2][5].setConnection(NORTH, c[1][5], new Door("hallways",true));
+	//	c[3][1].setConnection(NORTH, c[2][1], new Door("hallway", true));
 		
 		c[2][1].setConnection(SOUTH, c[3][1], new Door("hallways",true));
 		
@@ -415,7 +435,4 @@ public class CaveRoom {
 	public Door getDoor(int direction) {
 		return doors[direction];
 	}
-
-	
-
 }
