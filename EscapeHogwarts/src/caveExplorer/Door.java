@@ -6,12 +6,13 @@ public class Door {
 	private boolean open;
 	private String description;
 	private String details;
+	private boolean roomH;
 	
-	public Door() {
+	public Door(String des, boolean npcR) {
 		locked = false;
 		open = true;
-		description = "passage";
-		details = "";
+		description = des;
+		roomH = npcR;
 	}
 
 	public boolean isLocked() {
@@ -32,6 +33,11 @@ public class Door {
 
 	public  String getDescription() {
 		return description;
+	}
+	
+	public boolean getRoom()
+	{
+		return roomH;
 	}
 
 	public void setDescription(String description) {
