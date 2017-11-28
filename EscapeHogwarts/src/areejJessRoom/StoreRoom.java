@@ -108,17 +108,31 @@ public class StoreRoom extends NPCRoom {
 		}
 		if(userInput.equals("p") && Inventory.getHp() > 8)
 		{
-			int randomHP = (int)(Math.random()*30 +1);
-			if (randomHP > 15)
+			double randomChance = (Math.random()*1);
+			if(randomChance > .4)
 			{
-				CaveExplorer.print("Wow, you got luck this time! " + "You got " + randomHP + "!");
+				int randomHP = (int)(Math.random()*30 +1);
+				if (randomHP > 15)
+				{
+					CaveExplorer.print("Wow, you got luck this time! " + "You got " + randomHP + "!");
+				}
+				else
+				{
+					CaveExplorer.print("Oh, not so lucky, Potter. ");
+				}
+				Inventory.setHp(Inventory.getHp() + randomHP);
 			}
 			else
 			{
-				CaveExplorer.print("Oh, not so lucky, Potter. ");
+				int decreaseHP = (int)(Math.random()*30 +1);
+				if(Inventory.getHp() - decreaseHP > 0)
+				{
+					CaveExplorer.print("Oh no, Potter..YOU LOST HP! These potions are dangerous..time to revisit the recipe.");
+					Inventory.setHp(Inventory.getHp() - decreaseHP);
+				}
+				
 			}
 			Inventory.setMoney(Inventory.getMoney() - 8);
-			Inventory.setHp(Inventory.getHp() + randomHP);
 			CaveExplorer.print("You have " + Inventory.getHp() + " HP now and " + Inventory.getMoney() + " Galleon(s).");
 		}
 		userEntered();
@@ -126,9 +140,19 @@ public class StoreRoom extends NPCRoom {
 
 
 	private static void interactDialogue() {
-		CaveExplorer.print("Welcome to Hogwart's One and Only Store! You can purchase goods to boost your health. "
-				+ "\nYou're welcome to try these goods for a price, Potter. Only do it if you dare.."
-				+ "\nTo purchase goods, enter 'b'. To exit the store, enter 'e'");
+		CaveExplorer.print("Welcome to Hogwart's One and Only Store! You can purchase goods to boost your health. Press ENTER to continue.");
+		CaveExplorer.in.nextLine();
+		CaveExplorer.print("\nSome potions will give you random amounts of HP and some might take HP away. But Chocolate Frogs will always give you 15 HP.");
+		CaveExplorer.in.nextLine();
+		CaveExplorer.print("It's a gamble, Potter. Only try them if you dare..");
+		CaveExplorer.in.nextLine();
+		CaveExplorer.print("I reccommend the Chocolate Frogs. They're always a sweet treat. Suitable for all ages");
+		CaveExplorer.in.nextLine();
+		CaveExplorer.print("The potions, however, are a bit bitter. But you could get a good deal.");
+		CaveExplorer.in.nextLine();
+		CaveExplorer.print("Well, that's all Potter. Good luck with all your adventures..");
+		CaveExplorer.in.nextLine();
+		CaveExplorer.print("\nTo purchase goods, enter 'b'. To exit the store, enter 'e'");
 		userEntered();
 		
 	}
