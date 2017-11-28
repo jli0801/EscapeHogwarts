@@ -147,7 +147,17 @@ public class JessicaFrontEnd{
 			}
 	
 			if(computerWon){
-				System.out.println("I won! Now get out of my room! There'll be no prize for you!");
+				System.out.println("I won! I shall take some HP from you! Get out, Potter!");
+				int healthUser  = (int)Math.random()*30 + 1;
+				if(Inventory.getHp() > healthUser && Inventory.getHp() > 5)
+				{
+				Inventory.setHp(Inventory.getHp() - healthUser);
+				}
+				else
+				{
+					int randomHp = (int)(Math.random()*5 + 1);
+					Inventory.setHp(Inventory.getHp() - randomHp);
+				}
 				leaveRoom();
 				playingGame = false;
 				
