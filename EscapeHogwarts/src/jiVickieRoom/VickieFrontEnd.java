@@ -19,6 +19,8 @@ public class VickieFrontEnd implements JiSupport{
 	private int modRow;
 	
 	private boolean endOfStory = false;
+
+	private boolean win;
 	
 	public static final void main(String[] args){
 		VickieFrontEnd game = new VickieFrontEnd();
@@ -127,9 +129,10 @@ public class VickieFrontEnd implements JiSupport{
 			System.out.print("You filled in all the boxes on the grid! Do you want it to be checked?\n\n");
 			input = CaveExplorer.in.nextLine();
 			input = input.toLowerCase();
+			
 			if(input.equals("yes")) {					//checks if every row, col, and diagonal equals 15 
-				endOfStory = backend.checkTotal();
-				if(endOfStory == true) {
+				win = backend.checkTotal();
+				if(win == true) { 				//b4, instead of win, it was endofStory which f'ed things up
 					endGame();
 				}else {
 					System.out.print("	Sorry! Not all the rows, columns, and diagonals add up to 15!\n");
@@ -169,6 +172,7 @@ public class VickieFrontEnd implements JiSupport{
 
 	public void endGame() {
 		System.out.println("	CONGRATULATIONS!!! YOU'VE SOLVED THE PUZZLE!!\n");
+		endOfStory = true;					// Now tht i changed the boolean name, i don't need this at all, but i'll just leave it here.. :(
 		Inventory.setMoney(Inventory.getMoney() +50);
 		Inventory.setBroomP3(true);
 		backgroundStory();
