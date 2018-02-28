@@ -4,30 +4,78 @@ import caveExplorer.CaveExplorer;
 import caveExplorer.CaveRoom;
 import caveExplorer.Inventory;
 
+import java.util.Random;
 import java.util.Scanner;
 
-public class StephFrontEnd implements KevinSupport{
+public class StephFrontEnd {
 
-	private  StephSupport backend;
 	private  int move;
-	private  int lightsOff;
-	private  KevinStephLight[][] board;
+	private  int toggler = 6;
+	private int gridHeight = 4;
+	private int gridWidth = 4;
+	public boolean[][] grid;
 	public static CaveRoom[][] caves;
 	
-	public KevinStephLight[][] getBoard() {
-		return board;
-	}
-	
 	public StephFrontEnd() {
-		backend = new KevinBackEnd(this);
 		CaveExplorer.in = new Scanner(System.in);
 		move = 0;
-		setLightsOff(0); //for now until we give it a value
+		boolean grid[][] = new boolean[gridHeight][gridWidth];
+		createBoard();
 	}
 
 	public static void main(String[] args) {
 		StephFrontEnd game = new StephFrontEnd();
 		game.play();
+	}
+
+	public void createBoard() {
+		for (int i = 0; i < toggler; i++) {
+		     //Get random position
+		     Random rand = new Random();
+		     int row = rand.nextInt(gridWidth);
+		     int col = rand.nextInt(gridHeight);
+		     while(grid[row][col]) { //if this position is true
+		          //we get new position
+		          row = rand.nextInt(gridWidth);
+		          col = rand.nextInt(gridHeight);
+		     }
+		     grid[row][col] = true; //make new position
+		}
+		
+	}
+	
+	public void switchRow(boolean[] row, int x) {
+		row[x] = !row[x];
+		if(x > 0) {
+			row[x - 1] = !row[x - 1];
+		}
+		if(x < row.length - 1) {
+			row[x + 1] = !row[x + 1];
+		}
+	}
+	
+	public void switchColumn(boolean[][] grid, int r, int c) {
+		if(r > 0) {
+			grid[r - 1][c] = !grid[r - 1][c];
+		}
+		if(r < grid.length - 1) {
+			grid[r + 1][c] = !grid[r + 1][c];
+		}
+	}
+	
+	public void switcher(int r, int c) {
+		switchRow(grid[r],c);
+		switchColumn(grid, r, c);
+		for(boolean[] row:grid) {
+			for(boolean b: row) {
+				if (b) return;
+			}
+		}
+		print("You have successfully escaped from the Mirror of Erised. As you are about to leave, you see Dumbledore start to approach you...\n" 
+				+ "He hands you a piece of a broom and says, 'you earned it.'"
+				+ "\n- - press enter - -");
+		Inventory.setBroomP2(true);
+		Inventory.merge();
 	}
 	
 	public void play() {
@@ -61,13 +109,11 @@ public class StephFrontEnd implements KevinSupport{
 	}
 	
 	private void startGame() { //START GAME
-		board = backend.createBoard();
-		KevinStephLight c = null; 
 		
 		print("Do you Know the magic word?");
 		if(skip() == true) {
-			backend.cheatcode();
-			displayBoard(board);
+			cheatcode();
+			displayBoard(grid);
 			displayMoveCount();
 			print("You have successfully escaped from the Mirror of Erised. As you are about to leave, you see Dumbledore start to approach you...\n"
 					+ "He hands you a piece of a broom and says, 'you earned it.'"
@@ -75,50 +121,48 @@ public class StephFrontEnd implements KevinSupport{
 			Inventory.setBroomP2(true);
 			Inventory.merge();
 		}else {
-			if(getLightsOff() == 0) {
-				print("You have successfully escaped from the Mirror of Erised. As you are about to leave, you see Dumbledore start to approach you...\n" 
-						+ "He hands you a piece of a broom and says, 'you earned it.'"
-						+ "\n- - press enter - -");
-				Inventory.setBroomP2(true);
-				Inventory.merge();
+			if(move < 15) {
+				displayBoard(grid);
+				displayMoveCount();
+				
+				print("Where would you like to turn the lights off next?");
+				int[] coords = getCoordInput();
+				c = grid[coords[0]][coords[1]];
+				backend.lightSwitch(c);
+				
+				move++;
 			}else {
-				while (getLightsOff() > 0) {
-					if(move < 15) {
-						displayBoard(board);
-						displayMoveCount();
-					
-						print("Where would you like to turn the lights off next?");
-						int[] coords = backend.getCoordInput();
-						c = board[coords[0]][coords[1]];
-						backend.lightSwitch(c);
-						
-						move++;
-					}else {
-						print("Your eyes are forever locked onto the mirror.... \n"
-								+ "Thankfully, Dumbledore has opened the door snapping you out of it. "
-								+ "However, you end up losing 20 hp from staring too long."
-								+ "\n- - press enter - -");
-						int userHp = Inventory.getHp() - 20;
-						Inventory.setHp(userHp);
-						CaveExplorer.print("Your HP is now: " + userHp + ".");
-						break;
-					}
-				}
+				print("Your eyes are forever locked onto the mirror.... \n"
+						+ "Thankfully, Dumbledore has opened the door snapping you out of it. "
+						+ "However, you end up losing 20 hp from staring too long."	
+						+ "\n- - press enter - -");
+				int userHp = Inventory.getHp() - 20;
+				Inventory.setHp(userHp);
+				CaveExplorer.print("Your HP is now: " + userHp + ".");
+				break;
+			}		
+		}			
+	}
+	
+	public void cheatcode() {
+		for(int row = 0; row < grid.length; row++){
+			for(int col = 0; col < grid[row].length; col++){
+				grid[row][col] = true;
 			}
 		}
 	}
-	
+
 	private void displayMoveCount() {
 		print("You have taken " + move + " moves.");
 	}
 
-	private void displayBoard(KevinStephLight[][] board) {
-		for(int row = 0; row < board.length; row++){
-			for(int col = 0; col < board[row].length; col++){
+	private void displayBoard(boolean[][] grid) {
+		for(int row = 0; row < grid.length; row++){
+			for(int col = 0; col < grid[row].length; col++){
 				
 				System.out.print(" | ");
 				
-				if(board[row][col].getLightOn() == true) {
+				if(grid[row][col] == true) {
 					System.out.print("O");
 				}else {
 					System.out.print("X");
@@ -131,21 +175,31 @@ public class StephFrontEnd implements KevinSupport{
 		}
 	}
 
-	public  int getLightsOff() {
-		int counter = 0;
-		
-		for(int row = 0; row < board.length; row++){
-			for(int col = 0; col < board[row].length; col++){
-				if(board[row][col].getLightOn()) {
-					counter++;
-				}
-			}
+	public int[] getCoordInput() {
+		String input = CaveExplorer.in.nextLine();
+		int[] coords = toCoords(input);
+		while(coords == null){
+			System.out.println("You must enter cordinates of the form:\n          <row>,<col>" //kevin
+					+ "\n<row> and <col> should be integers.");
+			input = CaveExplorer.in.nextLine();
+			coords = toCoords(input);
 		}
-		return counter;
+		return coords;
 	}
 
-	public void setLightsOff(int lightsOff) {
-		this.lightsOff = lightsOff;
+	private int[] toCoords(String input) {
+		try{
+			int a = Integer.parseInt(input.substring(0,1));
+			int b = Integer.parseInt(input.substring(2,3));
+			if(input.substring(1,2).equals(",") && input.length() ==3){
+				int[] coords = {a,b};
+				return coords;
+			}else{
+				return null;
+			}
+		}catch(Exception e){
+			return null;
+		}
 	}
 	
 	public static void print(String s){
