@@ -12,19 +12,24 @@ public class StephFrontEnd {
 	private  int move;
 	private  int toggler = 6;
 	private int gridHeight = 4;
-	private int gridWidth = 4;
+	private  int gridWidth = 4;
 	public boolean[][] grid;
 	public static CaveRoom[][] caves;
+	
+	public int row;
+	public int col;
 	
 	public StephFrontEnd() {
 		CaveExplorer.in = new Scanner(System.in);
 		move = 0;
-		boolean grid[][] = new boolean[gridHeight][gridWidth];
+		grid = new boolean[gridHeight][gridWidth];
 		createBoard();
 	}
 
 	public static void main(String[] args) {
+		
 		StephFrontEnd game = new StephFrontEnd();
+		
 		game.play();
 	}
 
@@ -124,9 +129,11 @@ public class StephFrontEnd {
 			displayBoard(grid);
 			//displayMoveCount();
 			print("Where would you like to turn the lights off next?");
-			int[] coords = getCoordInput();
-			switcher(coords[coords[0]], coords[coords[1]]);		
-			
+			//int[] coords = 
+			getCoordInput();
+			switcher(row, col);		
+			displayBoard(grid);
+		
 			move++;
 			}
 			
@@ -143,7 +150,7 @@ public class StephFrontEnd {
 	}
 	
 	public void cheatcode() {
-		for(int row = 0; row < grid.length; row++){
+		for(int row = 0; row < grid.length;row++){
 			for(int col = 0; col < grid[row].length; col++){
 				grid[row][col] = true;
 			}
@@ -173,16 +180,22 @@ public class StephFrontEnd {
 		}
 	}
 
-	public int[] getCoordInput() {
+	public void getCoordInput() {
 		String input = CaveExplorer.in.nextLine();
-		int[] coords = toCoords(input);
+		if(input.length() ==3) {
+			row = Integer.parseInt(input.substring(0,1));
+			col = Integer.parseInt(input.substring(2,3));
+		}else {
+			//error message
+		}
+		/*int[] coords = toCoords(input);
 		while(coords == null){
 			System.out.println("You must enter cordinates of the form:\n          <row>,<col>" //kevin
 					+ "\n<row> and <col> should be integers.");
 			input = CaveExplorer.in.nextLine();
 			coords = toCoords(input);
 		}
-		return coords;
+		return coords;*/
 	}
 
 	private int[] toCoords(String input) {
