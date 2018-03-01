@@ -121,17 +121,16 @@ public class StephFrontEnd {
 			Inventory.setBroomP2(true);
 			Inventory.merge();
 		}else {
-			if(move < 15) {
-				displayBoard(grid);
-				displayMoveCount();
-				
-				print("Where would you like to turn the lights off next?");
-				int[] coords = getCoordInput();
-				c = grid[coords[0]][coords[1]];
-				backend.lightSwitch(c);
-				
-				move++;
-			}else {
+			displayBoard(grid);
+			//displayMoveCount();
+			print("Where would you like to turn the lights off next?");
+			int[] coords = getCoordInput();
+			switcher(coords[coords[0]], coords[coords[1]]);		
+			
+			move++;
+			}
+			
+			/*}else {
 				print("Your eyes are forever locked onto the mirror.... \n"
 						+ "Thankfully, Dumbledore has opened the door snapping you out of it. "
 						+ "However, you end up losing 20 hp from staring too long."	
@@ -140,8 +139,7 @@ public class StephFrontEnd {
 				Inventory.setHp(userHp);
 				CaveExplorer.print("Your HP is now: " + userHp + ".");
 				break;
-			}		
-		}			
+			}*/					
 	}
 	
 	public void cheatcode() {
